@@ -23,13 +23,12 @@ jobs:
       LAB_CLUSTER: aks-devops-homework
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.image_tag }}
       - name: Require a successful image pipeline for this commit
         env:
           GH_TOKEN: ${{ github.token }}
           IMAGE_TAG: ${{ inputs.image_tag }}
         run: |
+          echo "Chart/workflow commit: $GITHUB_SHA; application image commit: $IMAGE_TAG"
           [[ "$IMAGE_TAG" =~ ^[a-f0-9]{40}$ ]]
           gh api "repos/$GITHUB_REPOSITORY/actions/workflows/devops.yml/runs?head_sha=$IMAGE_TAG&status=success" --jq '.workflow_runs | length' > /tmp/passed-runs
           test "$(cat /tmp/passed-runs)" -gt 0
