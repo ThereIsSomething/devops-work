@@ -9,7 +9,7 @@ metadata:
   name: web
   namespace: homework-gitops-demo
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels: &id001
       app: web
