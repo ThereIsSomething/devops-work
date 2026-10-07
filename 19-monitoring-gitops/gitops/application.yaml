@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homework-web
+  namespace: homework-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ThereIsSomething/devops-work.git
+    targetRevision: main
+    path: 19-monitoring-gitops/gitops/app
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: homework-gitops-demo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
