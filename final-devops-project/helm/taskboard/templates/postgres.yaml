@@ -1,6 +1,8 @@
 apiVersion: v1
 kind: Service
-metadata: {name: postgres}
+metadata:
+  name: postgres
+  annotations: {argocd.argoproj.io/sync-wave: "-2"}
 spec:
   clusterIP: None
   selector: {app: taskboard-postgres}
@@ -8,7 +10,9 @@ spec:
 ---
 apiVersion: apps/v1
 kind: StatefulSet
-metadata: {name: postgres}
+metadata:
+  name: postgres
+  annotations: {argocd.argoproj.io/sync-wave: "-2"}
 spec:
   serviceName: postgres
   replicas: 1

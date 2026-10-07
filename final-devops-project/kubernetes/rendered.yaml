@@ -31,7 +31,9 @@ spec:
 # Source: taskboard/templates/postgres.yaml
 apiVersion: v1
 kind: Service
-metadata: {name: postgres}
+metadata:
+  name: postgres
+  annotations: {argocd.argoproj.io/sync-wave: "-2"}
 spec:
   clusterIP: None
   selector: {app: taskboard-postgres}
@@ -107,7 +109,9 @@ spec:
 # Source: taskboard/templates/postgres.yaml
 apiVersion: apps/v1
 kind: StatefulSet
-metadata: {name: postgres}
+metadata:
+  name: postgres
+  annotations: {argocd.argoproj.io/sync-wave: "-2"}
 spec:
   serviceName: postgres
   replicas: 1
@@ -147,6 +151,7 @@ kind: Job
 metadata:
   name: taskboard-migrate-1
   annotations:
+    argocd.argoproj.io/sync-wave: "-1"
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
 spec:
