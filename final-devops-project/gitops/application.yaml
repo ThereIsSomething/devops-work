@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: taskboard
+  namespace: homework-gitops
+spec:
+  project: homework
+  source:
+    repoURL: https://github.com/ThereIsSomething/devops-work.git
+    targetRevision: main
+    path: final-devops-project/helm/taskboard
+    helm:
+      releaseName: taskboard
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: homework-final
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions: [CreateNamespace=true]

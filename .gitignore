@@ -15,3 +15,5 @@
 **/.pytest_cache/
 **/secrets.local.yaml
 **/kubeconfig*
+
+**/*.tfplan

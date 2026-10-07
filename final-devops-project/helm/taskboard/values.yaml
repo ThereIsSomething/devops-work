@@ -20,3 +20,5 @@ hpa:
   targetCPU: 60
 postgresImagePullPolicy: IfNotPresent
 postgresImage: postgres:16-alpine
+
+imagePullSecret: ""

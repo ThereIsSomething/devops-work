@@ -7,6 +7,9 @@ spec:
   template:
     metadata: {labels: {app: taskboard-frontend}}
     spec:
+      {{- if .Values.imagePullSecret }}
+      imagePullSecrets: [{name: {{ .Values.imagePullSecret }}}]
+      {{- end }}
       securityContext: {runAsUser: 101, runAsNonRoot: true}
       containers:
         - name: frontend
