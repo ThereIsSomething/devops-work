@@ -4,7 +4,7 @@
 
 Monitoring checks known signals such as CPU, memory, error rate and application health. Observability helps explain an unexpected failure by relating those signals to logs and request context. Metrics are numerical time series; logs are individual events; traces join spans across a request's journey. This demo implements metrics and logs; distributed tracing is described, not implemented.
 
-The [monitoring stack](../final-devops-project/monitoring/README.md) uses Prometheus to scrape TaskBoard and evaluate an application-unavailable alert. Grafana has a provisioned dashboard for health, request rate, process memory and CPU rate. `kubectl top` provides separate Kubernetes resource measurements.
+The [monitoring stack](../demo-app/monitoring/README.md) uses Prometheus to scrape TaskBoard and evaluate an application-unavailable alert. Grafana has a provisioned dashboard for health, request rate, process memory and CPU rate. `kubectl top` provides separate Kubernetes resource measurements.
 
 ## GitOps mini project
 
@@ -27,9 +27,9 @@ References: [Argo CD](https://argo-cd.readthedocs.io/en/stable/), [Prometheus](h
 
 ## Results
 
-Argo CD synchronized the web workload, restored its manually reduced replica count and then applied the committed change from two replicas to three. The command blocks record the Git revision and the resulting 3/3 Deployment. Prometheus also recorded a real TaskBoard-unavailable alert during the database outage; after recovery its target was up and the alert cleared. The final TaskBoard chart has its own Argo Application and replica-repair evidence.
+Argo CD synchronized the web workload, restored its manually reduced replica count and then applied the committed change from two replicas to three. The command blocks record the Git revision and the resulting 3/3 Deployment. Prometheus also recorded a real TaskBoard-unavailable alert during the database outage; after recovery its target was up and the alert cleared. The shared TaskBoard demo also has an Argo Application and replica-repair results.
 
-The monitoring stack was also deployed on Azure AKS. [Cloud metrics and target health](../final-devops-project/monitoring/README.md#azure-results) · [TaskBoard GitOps](../final-devops-project/gitops/README.md).
+The monitoring stack was also deployed on Azure AKS. [Cloud metrics and target health](../demo-app/monitoring/README.md#azure-results) · [TaskBoard GitOps](../demo-app/gitops/README.md).
 
 ### Repairing manual replica drift
 

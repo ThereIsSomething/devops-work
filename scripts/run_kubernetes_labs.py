@@ -105,7 +105,7 @@ def lab15():
   run(['helm','upgrade','guestbook',f'{f}/chart','-n',ns,'--set',f'message=Welcome to my guestbook - version {version}','--wait','--timeout','180s']);http('guestbook')
  run(['helm','history','guestbook','-n',ns]);run(['helm','rollback','guestbook','1','-n',ns,'--wait','--timeout','180s']);http('guestbook');run(['helm','history','guestbook','-n',ns]);run(['helm','uninstall','guestbook','-n',ns]);run(['helm','list','-n',ns])
 for n in map(int,sys.argv[1:] or range(9,16)):
- ns=f'homework-s{n:02}';path=ROOT/folders[n]/'outputs';path.mkdir(exist_ok=True)
+ ns=f'homework-s{n:02}';path=Path('/tmp/devops-homework')/folders[n];path.mkdir(parents=True,exist_ok=True)
  with (path/'run.txt').open('w') as out:
   log=out;record('Captured '+datetime.datetime.now(datetime.timezone.utc).isoformat());run([K,'create','namespace',ns],check=False)
   try:globals()[f'lab{n}']();record('LAB EXECUTION FINISHED')

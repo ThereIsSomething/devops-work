@@ -2,7 +2,7 @@
 
 **Nitish Kumar Bhambu — 24BCS10589**
 
-I used an Ubuntu container for user-management commands so the exercise would not create test accounts on my Fedora laptop. `adduser` is the convenient interactive wrapper commonly used on Ubuntu/Debian; `useradd` is the lower-level tool and often needs explicit options for a home directory and shell. The commands create homeworkstudent with adduser and verifies its UID and home directory.
+I used an Ubuntu container for user-management commands so the exercise would not create test accounts on my Fedora laptop. `adduser` is the convenient interactive wrapper commonly used on Ubuntu/Debian; `useradd` is the lower-level tool and often needs explicit options for a home directory and shell. I created `homeworkstudent` with `adduser`, then checked its UID and home directory.
 
 A hard link is another directory entry for the same inode; removing the original name does not remove data while a hard link remains. It normally cannot cross filesystems or link directories. A symbolic link stores a target path; it can cross filesystems and can point at a directory, but becomes dangling if its target disappears. The exercise compares inodes, removes the original and tests both links.
 

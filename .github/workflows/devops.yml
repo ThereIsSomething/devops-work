@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'final-devops-project/**'
+      - 'demo-app/**'
       - '.github/workflows/devops.yml'
   pull_request:
     branches: [main]
@@ -24,23 +24,23 @@ jobs:
         with:
           python-version: '3.13'
           cache: pip
-          cache-dependency-path: final-devops-project/application/backend/requirements-dev.txt
+          cache-dependency-path: demo-app/application/backend/requirements-dev.txt
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: npm
-          cache-dependency-path: final-devops-project/application/frontend/package-lock.json
+          cache-dependency-path: demo-app/application/frontend/package-lock.json
       - name: Install, test and SAST
-        working-directory: final-devops-project/application/backend
+        working-directory: demo-app/application/backend
         run: |
           pip install -r requirements-dev.txt
           pytest -v --junitxml=pytest.xml
           bandit -r app -ll -ii
       - name: SCA - Python dependencies
-        working-directory: final-devops-project/application/backend
+        working-directory: demo-app/application/backend
         run: pip-audit -r requirements.txt
       - name: Frontend build and dependency audit
-        working-directory: final-devops-project/application/frontend
+        working-directory: demo-app/application/frontend
         run: |
           npm ci
           npm run build
@@ -52,8 +52,8 @@ jobs:
         with:
           name: test-results-and-frontend
           path: |
-            final-devops-project/application/backend/pytest.xml
-            final-devops-project/application/frontend/dist
+            demo-app/application/backend/pytest.xml
+            demo-app/application/frontend/dist
   build-scan-deploy:
     needs: build-test-security
     runs-on: ubuntu-latest
@@ -66,8 +66,8 @@ jobs:
         run: |
           IMAGE_BASE="ghcr.io/${GITHUB_REPOSITORY,,}"
           echo "IMAGE_BASE=$IMAGE_BASE" >> "$GITHUB_ENV"
-          docker build -t "$IMAGE_BASE-backend:$GITHUB_SHA" final-devops-project/application/backend
-          docker build -t "$IMAGE_BASE-frontend:$GITHUB_SHA" final-devops-project/application/frontend
+          docker build -t "$IMAGE_BASE-backend:$GITHUB_SHA" demo-app/application/backend
+          docker build -t "$IMAGE_BASE-frontend:$GITHUB_SHA" demo-app/application/frontend
       - name: Scan both images - HIGH and CRITICAL gate
         run: |
           mkdir -p security-reports
@@ -91,8 +91,8 @@ jobs:
       - name: Deploy with Helm and verify API
         run: |
           kubectl create namespace homework-final
-          kubectl apply -f final-devops-project/kubernetes/secret.example.yaml
-          helm upgrade --install taskboard final-devops-project/helm/taskboard -n homework-final \
+          kubectl apply -f demo-app/kubernetes/secret.example.yaml
+          helm upgrade --install taskboard demo-app/helm/taskboard -n homework-final \
             --set backend.image="$IMAGE_BASE-backend" --set backend.tag="$GITHUB_SHA" \
             --set frontend.image="$IMAGE_BASE-frontend" --set frontend.tag="$GITHUB_SHA" \
             --set storageClass=standard --set ingress.enabled=false --set hpa.enabled=false \

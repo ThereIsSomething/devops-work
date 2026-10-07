@@ -6,7 +6,7 @@ Metrics are numerical measurements over time. Logs describe events, such as an H
 
 ```bash
 kubectl create namespace homework-monitoring
-kubectl -n homework-monitoring apply -f final-devops-project/monitoring/stack.yaml
+kubectl -n homework-monitoring apply -f demo-app/monitoring/stack.yaml
 kubectl -n homework-monitoring port-forward svc/grafana 13001:3000
 # Open http://localhost:13001
 ```

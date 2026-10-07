@@ -113,6 +113,6 @@ def docker_networks():
 
 funcs={1:linux,3:shell,4:networking,5:git,6:docker_apps,7:multistage,8:docker_networks}
 for n in map(int,sys.argv[1:]):
- d=ROOT/folders[n]/'outputs';d.mkdir(exist_ok=True)
+ d=Path(tempfile.gettempdir())/'devops-homework'/folders[n];d.mkdir(parents=True,exist_ok=True)
  with (d/'current-run.txt').open('w') as f:
   log=f;out('Captured '+datetime.datetime.now(datetime.timezone.utc).isoformat());funcs[n]();out('LAB EXECUTION FINISHED')

@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ThereIsSomething/devops-work.git
     targetRevision: main
-    path: final-devops-project/helm/taskboard
+    path: demo-app/helm/taskboard
     helm:
       releaseName: taskboard
   destination:

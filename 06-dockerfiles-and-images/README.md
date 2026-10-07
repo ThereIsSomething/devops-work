@@ -4,7 +4,7 @@
 
 The [Go app](multistage-app/) compiles in a Go builder image, then copies the executable into a scratch runtime image. The final image contains the program rather than the compiler and source tree. The binary is static because scratch has no libc or shell.
 
-The run verifies the exact message **Hello World from Docker multi-stage build**, shows docker ps and the published port **8080**, and records the image size/user. The three required application types—Node.js, Python and Java—are built in Session 6 and verified again in this session's command blocks.
+I checked the message **Hello World from Docker multi-stage build**, shows docker ps and the published port **8080**, and records the image size/user. The three required application types—Node.js, Python and Java—are built in Session 6 and verified again in this session's command blocks.
 
 ```bash
 docker build -t homework-multistage 06-dockerfiles-and-images/multistage-app

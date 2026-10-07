@@ -4,7 +4,7 @@
 
 [sysinfo.sh](sysinfo.sh) stores date, hostname and username in variables, prints disk/process information, prompts with read -p, creates a directory and files, and writes the running processes with `ps -ef > file`. Quoting the paths prevents spaces from splitting arguments. `>` overwrites a file; `>>` appends.
 
-The recorded run supplies my name and temporary report paths through standard input. The script itself still uses the required read -p prompts and can be run interactively.
+The script asks for my name, an output folder and a filename. It saves the process list in that folder.
 
 ```bash
 bash 02-shell-scripting/sysinfo.sh

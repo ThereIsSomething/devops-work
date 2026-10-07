@@ -8,5 +8,5 @@ done
 # Delete Argo Applications before their target namespaces so pruning cannot recreate them.
 scripts/kubectl -n homework-gitops delete application taskboard homework-web --ignore-not-found
 scripts/kubectl delete namespace homework-final homework-monitoring homework-gitops homework-gitops-demo homework-ingress --ignore-not-found --wait=false
-TASKBOARD_DB_PASSWORD=classroom-example-only docker compose -f final-devops-project/docker/compose.yaml down
+TASKBOARD_DB_PASSWORD=classroom-example-only docker compose -f demo-app/docker/compose.yaml down
 # Persistent Compose data is retained. Remove the named homework volume separately only when no longer needed.

@@ -1,26 +1,21 @@
-# Session 17: Complete CI/CD and DevSecOps
+# Session 17: CI/CD and DevSecOps
 
 **Nitish Kumar Bhambu — 24BCS10589**
 
-This session extends the same working TaskBoard app so the pipeline checks something useful rather than a disconnected sample.
+I added security checks to the same [TaskBoard demo](../demo-app/README.md) used in Session 16.
 
 ```text
-Source → tests → SAST → SCA → secret scan → image build → image scans
-                                                        ↓
-                           Helm deployment test → GHCR publication
+Tests → SAST → dependency audit → secret scan → Docker build
+      → image scans → Kubernetes check → GHCR
 ```
 
-The pipeline deliberately verifies deployment before publishing the images. All security gates must pass; a failed gate prevents deployment and publication. This is a small variation on the assignment's ordering, with the same required stages. HIGH and CRITICAL findings block the release.
+Bandit checks the Python source. pip-audit and npm audit check dependencies, Gitleaks checks for secrets, and Trivy scans both images. HIGH or CRITICAL image findings stop the pipeline. Images are published only after the checks pass.
 
-- [Application, Dockerfiles and Kubernetes/Helm implementation](../final-devops-project/README.md)
-- [Executable GitHub Actions workflow](../.github/workflows/devops.yml)
-- [Security tools, thresholds and explanations](../final-devops-project/security/README.md)
-- [Test and security results](../final-devops-project/README.md#test-and-security-results)
+The first image scans found vulnerable runtime packages. I updated those packages and removed unneeded pip tooling from the backend image. Both rebuilt images then passed the same scan gate.
 
-The linked Actions runs show the checks and published images.
+- [Workflow](../.github/workflows/devops.yml)
+- [Security checks and results](../demo-app/security/README.md)
+- [Successful CI run](https://github.com/ThereIsSomething/devops-work/actions/runs/37630785578)
+- [Successful Azure deployment](https://github.com/ThereIsSomething/devops-work/actions/runs/37631537431)
 
-## Hosted execution
-
-[The actual CI run passed](https://github.com/ThereIsSomething/devops-work/actions/runs/37629099243), including tests, frontend build, source and image security checks, the kind/Helm deployment test, HTTP checks and SHA-tagged GHCR publication. [Run details and image tags](../final-devops-project/README.md#cicd-and-devsecops). The separate [Azure deployment workflow](../.github/workflows/azure-deploy.yml) uses GitHub OIDC to deploy a verified commit to AKS.
-
-The Azure release step accepts only an image commit with a successful CI run. It uses OIDC for cloud login, pulls the exact GHCR tags, deploys with Helm and checks process health, database readiness, API data and the Ingress route. The final project's [Azure deployment results](../final-devops-project/README.md#azure-browser-evidence) records its actual hosted run.
+The Azure workflow uses OIDC and deploys the exact image SHA from a successful CI run. It checks application health, database readiness and the Ingress route.

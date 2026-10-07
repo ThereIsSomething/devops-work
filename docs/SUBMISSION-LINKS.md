@@ -4,7 +4,7 @@
 
 Copy the README URL from each row into its matching submission-form field. The links are listed in form order.
 
-Azure was executed in place of the AWS-specific cloud exercises. Confirm that substitution with the instructor before claiming it meets the AWS requirement.
+Sessions 18–19 use Azure for the live exercises. The AWS substitution still needs instructor acceptance.
 
 | Form field | GitHub README link |
 |---|---|
@@ -26,5 +26,4 @@ Azure was executed in place of the AWS-specific cloud exercises. Confirm that su
 | Session 9: Kubernetes Fundamentals | [https://github.com/ThereIsSomething/devops-work/blob/main/08-kubernetes-fundamentals/README.md](https://github.com/ThereIsSomething/devops-work/blob/main/08-kubernetes-fundamentals/README.md) |
 | Session 13: Storage, HPA and Probes | [https://github.com/ThereIsSomething/devops-work/blob/main/12-storage-hpa-probes/README.md](https://github.com/ThereIsSomething/devops-work/blob/main/12-storage-hpa-probes/README.md) |
 | Session 7: Docker Images | [https://github.com/ThereIsSomething/devops-work/blob/main/06-dockerfiles-and-images/README.md](https://github.com/ThereIsSomething/devops-work/blob/main/06-dockerfiles-and-images/README.md) |
-| Session 21: Final DevOps Project | [https://github.com/ThereIsSomething/devops-work/blob/main/final-devops-project/README.md](https://github.com/ThereIsSomething/devops-work/blob/main/final-devops-project/README.md) |
 | Session 16: CI/CD and GitHub Actions | [https://github.com/ThereIsSomething/devops-work/blob/main/15-github-actions/README.md](https://github.com/ThereIsSomething/devops-work/blob/main/15-github-actions/README.md) |

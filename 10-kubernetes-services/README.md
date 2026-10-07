@@ -39,7 +39,7 @@ Results from 7 October 2026. Build and diagnostic output is shortened.
 
 ## Real cloud LoadBalancer verification
 
-The Minikube LoadBalancer Service initially remained Pending because it had no cloud load-balancer controller or active tunnel. The real AKS deployment supplies that controller. Its temporary frontend LoadBalancer, assigned public IP and HTTP response are recorded in the [Azure LoadBalancer and persistence test](../final-devops-project/README.md#azure-browser-evidence). The service is restored to ClusterIP before cloud cleanup.
+The Minikube LoadBalancer Service initially remained Pending because it had no cloud load-balancer controller or active tunnel. AKS supplied the cloud load balancer for the second test. Its temporary frontend LoadBalancer, assigned public IP and HTTP response are recorded in the [Azure LoadBalancer and persistence test](../demo-app/README.md#azure-browser-evidence). I restored the Service to ClusterIP before cleanup.
 
 ### Commands and results
 

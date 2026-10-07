@@ -2,8 +2,8 @@
 """Real Azure lab runner. Local authentication/state stay outside public evidence."""
 import json, os, pathlib, subprocess, sys, time
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-OUT = ROOT / "18-cloud-terraform/outputs"
-OUT.mkdir(exist_ok=True)
+OUT = pathlib.Path("/tmp/devops-homework/azure")
+OUT.mkdir(parents=True,exist_ok=True)
 sub = subprocess.check_output(["az", "account", "show", "--query", "id", "-o", "tsv"], text=True).strip()
 env = dict(os.environ, TF_VAR_subscription_id=sub, TF_IN_AUTOMATION="1")
 rg = "rg-devops-homework"
