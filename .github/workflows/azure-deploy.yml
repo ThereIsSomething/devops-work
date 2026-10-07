@@ -34,6 +34,7 @@ jobs:
           gh api "repos/$GITHUB_REPOSITORY/actions/workflows/devops.yml/runs?head_sha=$IMAGE_TAG&status=success" --jq '.workflow_runs | length' > /tmp/passed-runs
           test "$(cat /tmp/passed-runs)" -gt 0
       - uses: azure/login@v2
+        id: azure-login
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
@@ -88,5 +89,5 @@ jobs:
           kubectl get pods,events -n homework-final || true
           kubectl logs deployment/backend -n homework-final --tail=100 || true
       - name: Restore the original API allowlist
-        if: always()
+        if: always() && steps.azure-login.outcome == 'success'
         run: az aks update -g "$LAB_GROUP" -n "$LAB_CLUSTER" --api-server-authorized-ip-ranges "${{ vars.AZURE_API_CIDR }}" --output none

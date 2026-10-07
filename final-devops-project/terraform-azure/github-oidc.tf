@@ -9,7 +9,7 @@ resource "azurerm_federated_identity_credential" "github_main" {
   parent_id           = azurerm_user_assigned_identity.github.id
   audience            = ["api://AzureADTokenExchange"]
   issuer              = "https://token.actions.githubusercontent.com"
-  subject             = "repo:ThereIsSomething/devops-work:ref:refs/heads/main"
+  subject             = "repo:ThereIsSomething@145218769/devops-work@1355095202:ref:refs/heads/main"
 }
 resource "azurerm_role_assignment" "github_control" {
   scope                = azurerm_kubernetes_cluster.lab.id
