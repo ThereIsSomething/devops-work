@@ -73,10 +73,10 @@ jobs:
           kubectl get pods,svc,pvc,hpa -n homework-final
           kubectl port-forward -n homework-final svc/frontend 13000:80 > /tmp/taskboard-forward.log 2>&1 &
           curl --fail --retry 30 --retry-all-errors --retry-delay 2 http://localhost:13000/health
-          curl --fail http://localhost:13000/ready
-          curl --fail http://localhost:13000/api/tasks
+          kubectl exec -n homework-final deployment/backend -- python -c 'import json,urllib.request; data=json.load(urllib.request.urlopen("http://localhost:8000/ready")); assert data["status"]=="READY"; print(data)' 
+          curl --fail http://localhost:13000/api/tasks | python3 -c 'import json,sys; tasks=json.load(sys.stdin); assert isinstance(tasks,list); print(tasks)' 
           kubectl port-forward -n homework-ingress svc/homework-ingress-traefik 18082:80 > /tmp/ingress-forward.log 2>&1 &
-          curl --fail --retry 20 --retry-all-errors --retry-delay 2 -H 'Host: taskboard.local' http://localhost:18082/ready
+          curl --fail --retry 20 --retry-all-errors --retry-delay 2 -H 'Host: taskboard.local' http://localhost:18082/health
           kubectl create namespace homework-monitoring --dry-run=client -o yaml | kubectl apply -f -
           kubectl apply -n homework-monitoring -f final-devops-project/monitoring/stack.yaml
           kubectl rollout status -n homework-monitoring deployment/prometheus --timeout=180s
