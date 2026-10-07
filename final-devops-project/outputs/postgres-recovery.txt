@@ -1,8 +1,0 @@
-$ scripts/kubectl -n homework-final get pod postgres-0 -o wide
-NAME         READY   STATUS              RESTARTS   AGE     IP       NODE       NOMINATED NODE   READINESS GATES
-postgres-0   0/1     ContainerCreating   0          2m36s   <none>   minikube   <none>           <none>
-$ scripts/kubectl -n homework-final patch statefulset postgres (use imported local image)
-statefulset.apps/postgres patched
-Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
-pod "postgres-0" force deleted from homework-final namespace
-pod/postgres-0 condition met

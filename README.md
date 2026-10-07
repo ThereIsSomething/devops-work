@@ -2,13 +2,13 @@
 
 **Nitish Kumar Bhambu — 24BCS10589**
 
-This repository contains the coursework for Sessions 1–21. Each session has a README with explanations, commands and evidence from actual runs. Terminal transcripts provide command evidence, and the final project also includes a real Azure browser screenshot. Intentional failures and setup problems are retained alongside their fixes; no cloud outputs are mocked.
+This repository contains the coursework for Sessions 1–21. Each session has a README with short notes, commands and results. Command examples use short equivalent forms, with build chatter omitted. The output blocks show the recorded lab results, and the final project includes a screenshot of TaskBoard running on Azure. Troubleshooting sections explain the errors I encountered and how I fixed them.
 
 The local labs cover Linux, shell, networking, Git, Docker, Kubernetes, Helm, troubleshooting, metrics and GitOps. The TaskBoard project has nine passing API tests and a successful hosted pipeline that builds, scans, verifies a Helm deployment and publishes images tagged with the source commit SHA.
 
-**Cloud substitution:** the assignment names AWS S3, AWS infrastructure and EKS. Those AWS configurations are included and validated, but were not applied. The executed cloud exercises use real Azure Blob Storage, a VNet/Ubuntu VM and AKS. Instructor acceptance of Azure is still unknown. **Cleanup verified:** the final Azure inventory contains zero resources and zero resource groups. [Destroy and inventory evidence](final-devops-project/outputs/azure-destroy.txt).
+**Cloud substitution:** the assignment names AWS S3, AWS infrastructure and EKS. Those AWS configurations are included and validated, but were not applied. The executed cloud exercises use real Azure Blob Storage, a VNet/Ubuntu VM and AKS. Instructor acceptance of Azure is still unknown. **Cleanup verified:** the final Azure inventory contains zero resources and zero resource groups. [Cleanup results](final-devops-project/README.md#cloud-cleanup-results).
 
-[Copy the 20 README links in submission-form order](docs/SUBMISSION-LINKS.md) · [Cloud access/setup notes](docs/AZURE-SETUP.md) · [Hosted CI evidence](final-devops-project/outputs/hosted-ci.md)
+[20 README links in submission-form order](docs/SUBMISSION-LINKS.md) · [CI/CD results](final-devops-project/README.md#cicd-and-devsecops)
 
 | Session | Submission README | Evidence |
 |---|---|---|
@@ -35,12 +35,12 @@ The local labs cover Linux, shell, networking, Git, Docker, Kubernetes, Helm, tr
 
 ## Run locally
 
-The recorded environment uses Linux, Docker, Minikube, Helm, Terraform, Azure CLI and GitHub CLI. `scripts/kubectl` wraps the Minikube kubectl client so non-interactive scripts do not depend on a shell alias. Existing non-homework workloads were left alone.
+The recorded environment uses Linux, Docker, Minikube, Helm, Terraform, Azure CLI and GitHub CLI. `kubectl` wraps the Minikube kubectl client so non-interactive scripts do not depend on a shell alias. `kubectl` in the local examples uses my Minikube alias; cloud examples use the AKS kubeconfig.
 
 - `python3 scripts/run_basics.py` runs the Linux/Git/Docker exercises.
 - `python3 scripts/run_kubernetes_labs.py` runs Sessions 9–15 in dedicated namespaces.
 - `scripts/final-local.sh` builds TaskBoard, starts Compose and demonstrates a direct Helm installation. The checked-in GitOps Application can subsequently take ownership of the local release, as documented in the final project.
 - `scripts/install-gitops.sh` installs the Argo CD core mini project.
-- `scripts/cleanup-homework.sh` cleans the owned local homework namespaces and Compose stack. Cloud cleanup is separate and recorded in its Terraform transcripts.
+- `scripts/cleanup-homework.sh` cleans the owned local homework namespaces and Compose stack. Cloud cleanup is separate and shown in the Terraform README command blocks.
 
 The public example database password is only for this disposable classroom application. Real credentials, state, saved plans, local kubeconfigs and environment files are excluded from Git.

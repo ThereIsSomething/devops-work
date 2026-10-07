@@ -20,3 +20,8 @@
 
 **/*.tfvars
 **/*.tfvars.json
+
+# Local command logs; submission evidence is embedded in the READMEs.
+**/outputs/
+**/outputs-controller.txt
+**/validation.txt

@@ -1,3 +1,0 @@
-Azure inventory captured before creating the coursework resources.
-$ az resource list -o json
-[]

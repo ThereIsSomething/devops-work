@@ -6,47 +6,44 @@ A Kubernetes cluster has a control plane and worker nodes. The API server accept
 
 A Pod is the smallest scheduling unit. A Deployment manages ReplicaSets, which maintain a desired number of Pods. A Service gives changing Pods a stable access point. Labels connect these objects.
 
-The exercise follows the basic tutorial flow: deploy, inspect, expose, reach the application, scale, update and roll back. `kubectl get` is a summary; `describe` explains details and events; `logs` reads the application output. The local wrapper `scripts/kubectl` expands to `minikube -p minikube kubectl --`, because an interactive shell alias is not available to Python or CI.
+The exercise follows the basic tutorial flow: deploy, inspect, expose, reach the application, scale, update and roll back. `kubectl get` is a summary; `describe` explains details and events; `logs` reads the application output. On my laptop, `kubectl` is an alias for the Minikube client.
 
 ```bash
-python3 scripts/run_kubernetes_labs.py 9
+minikube status
+kubectl get nodes
+kubectl get pods -n kube-system
 ```
 
 Reference: [Kubernetes basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/).
 
-## Execution evidence
+## Commands and output
 
-Actual local transcripts are included below after the runs finish. A missing or incomplete transcript is not a completed exercise.
+Results from 7 October 2026. Build and diagnostic output is shortened.
 
-<!-- EVIDENCE -->
+### Commands and results
 
-### run.txt
-
-[Complete transcript](outputs/run.txt)
-
-````text
-Captured 2026-10-07T12:49:43.955549+00:00
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' create namespace homework-s09
+```bash
+zephoryx@fedora$ kubectl create namespace homework-s09
 namespace/homework-s09 created
-[exit 0]
-$ minikube status
+
+zephoryx@fedora$ minikube status
 minikube
 type: Control Plane
 host: Running
 kubelet: Running
 apiserver: Running
 kubeconfig: Configured
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 cluster-info
+
+zephoryx@fedora$ kubectl -n homework-s09 cluster-info
 Kubernetes control plane is running at https://192.168.49.2:8443
 
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 get nodes -o wide
+
+zephoryx@fedora$ kubectl -n homework-s09 get nodes -o wide
 NAME       STATUS   ROLES           AGE   VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                  CONTAINER-RUNTIME
 minikube   Ready    control-plane   29d   v1.37.0   192.168.49.2   <none>        Debian GNU/Linux 12 (bookworm)   7.2.8-200.fc44.x86_64 (amd64)   containerd://2.3.4
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 get pods -n kube-system
+
+zephoryx@fedora$ kubectl -n homework-s09 get pods -n kube-system
 NAME                               READY   STATUS    RESTARTS       AGE
 coredns-559f6c778d-46j8r           1/1     Running   8 (16m ago)    29d
 etcd-minikube                      1/1     Running   7 (16m ago)    29d
@@ -57,17 +54,17 @@ kube-proxy-dn285                   1/1     Running   7 (16m ago)    29d
 kube-scheduler-minikube            1/1     Running   7 (16m ago)    29d
 metrics-server-768f9f6999-blwjv    1/1     Running   6 (15m ago)    18d
 storage-provisioner                1/1     Running   21 (15m ago)   29d
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 apply -f 08-kubernetes-fundamentals/app.yaml
+
+zephoryx@fedora$ kubectl -n homework-s09 apply -f 08-kubernetes-fundamentals/app.yaml
 deployment.apps/web created
 service/web created
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 rollout status deployment/web --timeout=180s
+
+zephoryx@fedora$ kubectl -n homework-s09 rollout status deployment/web
 Waiting for deployment "web" rollout to finish: 0 of 2 updated replicas are available...
 Waiting for deployment "web" rollout to finish: 1 of 2 updated replicas are available...
 deployment "web" successfully rolled out
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 get pods,deploy,rs,svc -o wide
+
+zephoryx@fedora$ kubectl -n homework-s09 get pods,deploy,rs,svc -o wide
 NAME                       READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
 pod/web-7b8558696c-58hs5   1/1     Running   0          21s   10.244.0.11   minikube   <none>           <none>
 pod/web-7b8558696c-h74bn   1/1     Running   0          21s   10.244.0.10   minikube   <none>           <none>
@@ -80,61 +77,38 @@ replicaset.apps/web-7b8558696c   2         2         2       21s   web          
 
 NAME          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE   SELECTOR
 service/web   ClusterIP   10.98.226.112   <none>        80/TCP    21s   app=web
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 explain deployment.spec.replicas
+
+zephoryx@fedora$ kubectl -n homework-s09 explain deployment.spec.replicas
 GROUP:      apps
 KIND:       Deployment
 VERSION:    v1
 
 FIELD: replicas <integer>
 
-
 DESCRIPTION:
     Number of desired pods. This is a pointer to distinguish between explicit
     zero and not specified. Defaults to 1.
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 run client --image=busybox:1.37 --restart=Never -- sleep 7200
+
+zephoryx@fedora$ kubectl -n homework-s09 run client --image=busybox:1.37 --restart=Never -- sleep 7200
 pod/client created
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 wait --for=condition=Ready pod/client --timeout=120s
+
+zephoryx@fedora$ kubectl -n homework-s09 wait --for=condition=Ready pod/client
 pod/client condition met
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 exec client -- wget -qO- http://web
-<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
-html { color-scheme: light dark; }
-body { width: 35em; margin: 0 auto;
-font-family: Tahoma, Verdana, Arial, sans-serif; }
-</style>
-</head>
-<body>
+
+zephoryx@fedora$ kubectl -n homework-s09 exec client -- wget -qO- http://web
 <h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.</p>
 
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
-Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
-
-<p><em>Thank you for using nginx.</em></p>
-</body>
-</html>
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 scale deployment/web --replicas=3
+zephoryx@fedora$ kubectl -n homework-s09 scale deployment/web --replicas=3
 deployment.apps/web scaled
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 rollout status deployment/web --timeout=180s
+
+zephoryx@fedora$ kubectl -n homework-s09 rollout status deployment/web
 Waiting for deployment "web" rollout to finish: 2 of 3 updated replicas are available...
 deployment "web" successfully rolled out
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 set image deployment/web web=nginx:1.29-alpine
+
+zephoryx@fedora$ kubectl -n homework-s09 set image deployment/web web=nginx:1.29-alpine
 deployment.apps/web image updated
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 rollout status deployment/web --timeout=180s
+
+zephoryx@fedora$ kubectl -n homework-s09 rollout status deployment/web
 Waiting for deployment "web" rollout to finish: 1 out of 3 new replicas have been updated...
 Waiting for deployment "web" rollout to finish: 1 out of 3 new replicas have been updated...
 Waiting for deployment "web" rollout to finish: 1 out of 3 new replicas have been updated...
@@ -146,18 +120,18 @@ Waiting for deployment "web" rollout to finish: 1 old replicas are pending termi
 Waiting for deployment "web" rollout to finish: 1 old replicas are pending termination...
 Waiting for deployment "web" rollout to finish: 1 old replicas are pending termination...
 deployment "web" successfully rolled out
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 rollout history deployment/web
+
+zephoryx@fedora$ kubectl -n homework-s09 rollout history deployment/web
 deployment.apps/web
 REVISION  CHANGE-CAUSE
 1         <none>
 2         <none>
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 rollout undo deployment/web
+
+zephoryx@fedora$ kubectl -n homework-s09 rollout undo deployment/web
 Warning: resource deployments/web was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
 deployment.apps/web rolled back
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 rollout status deployment/web --timeout=180s
+
+zephoryx@fedora$ kubectl -n homework-s09 rollout status deployment/web
 Waiting for deployment "web" rollout to finish: 1 out of 3 new replicas have been updated...
 Waiting for deployment "web" rollout to finish: 1 out of 3 new replicas have been updated...
 Waiting for deployment "web" rollout to finish: 1 out of 3 new replicas have been updated...
@@ -169,8 +143,8 @@ Waiting for deployment "web" rollout to finish: 1 old replicas are pending termi
 Waiting for deployment "web" rollout to finish: 1 old replicas are pending termination...
 Waiting for deployment "web" rollout to finish: 1 old replicas are pending termination...
 deployment "web" successfully rolled out
-[exit 0]
-$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 get pods,deploy,rs,svc -o wide
+
+zephoryx@fedora$ kubectl -n homework-s09 get pods,deploy,rs,svc -o wide
 NAME                       READY   STATUS        RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
 pod/client                 1/1     Running       0          31s   10.244.0.12   minikube   <none>           <none>
 pod/web-755df94d58-4cbb8   1/1     Terminating   0          24s   10.244.0.14   minikube   <none>           <none>
@@ -187,6 +161,4 @@ replicaset.apps/web-7b8558696c   3         3         3       53s   web          
 
 NAME          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE   SELECTOR
 service/web   ClusterIP   10.98.226.112   <none>        80/TCP    53s   app=web
-[exit 0]
-LAB EXECUTION FINISHED
-````
+```

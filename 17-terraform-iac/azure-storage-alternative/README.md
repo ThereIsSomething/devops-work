@@ -2,7 +2,7 @@
 
 **Nitish Kumar Bhambu — 24BCS10589**
 
-The assignment requests S3. Its AWS source is retained in `../terraform-s3-demo/` and validated, but no AWS apply is claimed. This separate project runs the Terraform lifecycle against Azure Blob Storage using the signed-in Azure account. Whether Azure is accepted in place of AWS is for the instructor to decide.
+The assignment requests S3. Its AWS source is retained in `../terraform-s3-demo/` and validated, but AWS was not applied. This separate project runs the Terraform lifecycle against Azure Blob Storage using the signed-in Azure account. Whether Azure is accepted in place of AWS is for the instructor to decide.
 
 The lab created a private, versioned Standard LRS storage account, a private container and a small text blob. Shared-key access is disabled; the provider uses Entra authentication and the lab identity needs Storage Blob Data Contributor at the resource group. The group was created separately so the cloud exercises could share it.
 
@@ -24,6 +24,6 @@ terraform destroy -var=stage=reviewed
 terraform state list
 ```
 
-The actual run also listed the uploaded blob through Azure CLI. The tag update changed one resource in place. Destroy removed all three managed resources and `terraform state list` was empty. [Full terminal evidence](../outputs/azure-lifecycle.txt).
+The actual run also listed the uploaded blob through Azure CLI. The tag update changed one resource in place. Destroy removed all three managed resources and `terraform state list` was empty. [Create, update and destroy results](../README.md#create-update-and-destroy).
 
 State and saved plans stay outside Git because they can contain sensitive values. The provider lock file is committed for repeatable dependency selection.

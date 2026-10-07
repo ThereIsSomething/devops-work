@@ -1,40 +1,0 @@
-$ curl --fail -H Host:homework.local http://127.0.0.1:18082
-  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
-                                 Dload  Upload  Total   Spent   Left   Speed
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 10 retries 
-Warning: left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 9 retries left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 8 retries left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 7 retries left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 6 retries left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 5 retries left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 4 retries left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 3 retries left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 2 retries left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 1 retry left.
-  0      0   0      0   0      0      0      0                              0
-curl: (22) The requested URL returned error: 404
-
-$ scripts/kubectl -n homework-s12 get ingress
-NAME   CLASS     HOSTS            ADDRESS   PORTS   AGE
-web    traefik   homework.local             80      8m49s

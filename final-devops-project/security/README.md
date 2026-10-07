@@ -20,6 +20,6 @@ References: [Bandit](https://bandit.readthedocs.io/), [pip-audit](https://github
 
 ## Findings fixed during this run
 
-The first image scans failed: the Debian-based backend had 44 HIGH operating-system findings and four HIGH Python packaging-tool findings; the frontend had 43 HIGH Alpine findings. The full before reports are retained in `outputs/`. I moved the backend to Alpine, upgraded the runtime OS packages in both images, and removed pip from the finished backend image after installing its locked dependencies. The application does not need pip at runtime. Both rebuilt application images then passed the same HIGH/CRITICAL gate with zero matching findings. No advisory was ignored to make the gate pass.
+The first image scans failed: the Debian-based backend had 44 HIGH operating-system findings and four HIGH Python packaging-tool findings; the frontend had 43 HIGH Alpine findings. I moved the backend to Alpine, upgraded the runtime OS packages in both images, and removed pip from the finished backend image after installing its locked dependencies. The application does not need pip at runtime. Both rebuilt application images then passed the same HIGH/CRITICAL gate with zero matching findings. No advisory was ignored to make the gate pass.
 
-The [final staged-file secret scan](../outputs/secret-scan-final.txt) covered approximately 870 KB of submission changes and found no leaks. Its commit count is zero because that mode scans the staged diff; the separate hosted history scan also passed.
+The hosted Gitleaks history scan also passed. See the [final project results](../README.md#test-and-security-results) and the linked Actions run for the checks.

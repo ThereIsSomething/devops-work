@@ -12,14 +12,35 @@ A workflow is the YAML automation; a job runs on a runner; steps share that job'
 
 ## Local evidence
 
-API tests, dependency audit and migration output are linked from the final project. Hosted execution needs its real Actions run URL; local pytest success alone is not evidence of a green Actions run.
+The final project README includes API test results and security checks. The hosted runs are linked below.
 
-After publishing, inspect the [Actions page](https://github.com/ThereIsSomething/devops-work/actions) and record the run URL and its conclusion.
+The [Actions page](https://github.com/ThereIsSomething/devops-work/actions) contains the workflow runs and artifacts.
 
 Reference: [Workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions).
 
+## Checking the runs
+
+I checked both runs from my terminal. The output below shows the workflow and job results; annotations are omitted here.
+
+```bash
+zephoryx@fedora$ gh run view 37630785578
+✓ main TaskBoard CI, DevSecOps and deployment verification · 37630785578
+Triggered via push about 1 hour ago
+
+JOBS
+✓ build-test-security in 32s (ID 112824778114)
+✓ build-scan-deploy in 3m6s (ID 112825056983)
+
+zephoryx@fedora$ gh run view 37631537431
+✓ main Deploy verified TaskBoard images to Azure AKS · 37631537431
+Triggered via workflow_dispatch about 1 hour ago
+
+JOBS
+✓ deploy in 7m30s (ID 112826801768)
+```
+
 ## Hosted execution
 
-[The actual CI run passed](https://github.com/ThereIsSomething/devops-work/actions/runs/37629099243), including tests, frontend build, source and image security checks, the kind/Helm deployment test, HTTP checks and SHA-tagged GHCR publication. [Run details, exact image tags and full terminal logs](../final-devops-project/outputs/hosted-ci.md). The separate [Azure deployment workflow](../.github/workflows/azure-deploy.yml) uses GitHub OIDC to deploy a verified commit to AKS.
+[The actual CI run passed](https://github.com/ThereIsSomething/devops-work/actions/runs/37629099243), including tests, frontend build, source and image security checks, the kind/Helm deployment test, HTTP checks and SHA-tagged GHCR publication. [Run details and image tags](../final-devops-project/README.md#cicd-and-devsecops). The separate [Azure deployment workflow](../.github/workflows/azure-deploy.yml) uses GitHub OIDC to deploy a verified commit to AKS.
 
-[The final hosted Azure deployment passed](https://github.com/ThereIsSomething/devops-work/actions/runs/37631537431) using the corrected chart and immutable images from the successful final CI run. [Deployment details](../final-devops-project/outputs/azure-deployment.md).
+[The final hosted Azure deployment passed](https://github.com/ThereIsSomething/devops-work/actions/runs/37631537431) using the corrected chart and immutable images from the successful final CI run. [Deployment details](../final-devops-project/README.md#azure-browser-evidence).

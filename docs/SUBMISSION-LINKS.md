@@ -2,7 +2,7 @@
 
 **Nitish Kumar Bhambu — 24BCS10589**
 
-Copy only the URL from each row into its matching form field. The order below matches the form supplied in the request. Use your own email in the form's email field.
+Copy the README URL from each row into its matching submission-form field. The links are listed in form order.
 
 Azure was executed in place of the AWS-specific cloud exercises. Confirm that substitution with the instructor before claiming it meets the AWS requirement.
 

@@ -1,27 +1,31 @@
-$ terraform init -backend=false -input=false -no-color
+# AWS EKS infrastructure
+
+**Nitish Kumar Bhambu — 24BCS10589**
+
+See the [project README](../README.md) for the architecture. This AWS EKS configuration was validated locally; the live deployment used Azure AKS.
+
+## Local validation
+
+The commands below ran from this Terraform project folder. Validation checks configuration; it does not provision cloud resources.
+
+```bash
+zephoryx@fedora$ terraform init -backend=false
 Initializing provider plugins...
 - Finding hashicorp/aws versions matching "~> 6.0"...
 - Installing hashicorp/aws v6.67.0...
 - Installed hashicorp/aws v6.67.0 (signed by HashiCorp)
 
 Terraform has created a lock file .terraform.lock.hcl to record the provider
-selections it made above. Include this file in your version control repository
-so that Terraform can guarantee to make the same selections by default when
-you run "terraform init" in the future.
-
-Terraform has been successfully initialized!
-
-You may now begin working with Terraform. Try running "terraform plan" to see
+# ... intermediate output omitted ...
 any changes that are required for your infrastructure. All Terraform commands
 should now work.
 
 If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
-[exit 0]
-$ terraform validate -no-color
+
+zephoryx@fedora$ terraform validate
 Success! The configuration is valid.
 
-[exit 0]
-$ terraform fmt -check -diff
-[exit 0]
+zephoryx@fedora$ terraform fmt -check -diff
+```

@@ -17,6 +17,32 @@ terraform plan -destroy -out=tfplan
 terraform apply tfplan
 ```
 
-The final two commands execute a reviewed destroy plan. `terraform destroy` is the interactive shortcut for that destruction workflow. Do not apply or destroy a different person's state. State records resource identities and can include secrets; it is ignored here. References between resource attributes express dependencies, and Terraform orders operations from that graph.
+State tracks the created resources and stays out of Git. Resource references tell Terraform the order to create or remove them.
 
-[Static validation](validation.txt) · [Session notes](../README.md)
+Local static validation is shown below · [Session notes](../README.md)
+
+## Local validation
+
+The commands below ran from this Terraform project folder. Validation checks configuration; it does not provision cloud resources.
+
+```bash
+zephoryx@fedora$ terraform init -backend=false
+Initializing provider plugins...
+- Finding hashicorp/aws versions matching "~> 6.0"...
+- Installing hashicorp/aws v6.67.0...
+- Installed hashicorp/aws v6.67.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+# ... intermediate output omitted ...
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+
+zephoryx@fedora$ terraform validate
+Success! The configuration is valid.
+
+zephoryx@fedora$ terraform fmt -check -diff
+```

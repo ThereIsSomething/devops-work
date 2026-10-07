@@ -25,11 +25,11 @@ KUBECONFIG=/tmp/homework-aks-kubeconfig kubelogin convert-kubeconfig -l azurecli
 KUBECONFIG=/tmp/homework-aks-kubeconfig kubectl get nodes
 ```
 
-[Actual Terraform transcript](../outputs/azure-aks.txt) · [Ready AKS node](../outputs/azure-nodes.txt)
+[AKS deployment and node results](../README.md#aks-node)
 
 ## Hosted deployment identity
 
-The Actions workflow uses OIDC instead of an Azure client secret. Its trust is restricted to this repository's `main` branch. The first login failed because this repository uses GitHub's immutable OIDC subject, with owner/repository IDs. Updating the federated credential to match the issued subject fixed that configuration. See [GitHub's immutable-subject documentation](https://docs.github.com/en/actions/reference/security/oidc) and the [real failed login](../outputs/azure-oidc-failure.txt).
+The Actions workflow uses OIDC instead of an Azure client secret. Its trust is restricted to this repository's `main` branch. The first login failed because this repository uses GitHub's immutable OIDC subject, with owner/repository IDs. Updating the federated credential to match the issued subject fixed that configuration. See [GitHub's immutable-subject documentation](https://docs.github.com/en/actions/reference/security/oidc).
 
 Repository variables hold the client, tenant and subscription identifiers and original API CIDR; they are identifiers rather than credentials. The workflow temporarily adds its runner IP and restores the original allowlist afterward. The built-in GitHub token pulls the private GHCR images during this disposable deployment; it expires and is not a suitable permanent cluster pull credential.
 
@@ -48,3 +48,23 @@ The lab's repository variables are removed during cleanup because its managed id
 The deployment uses the AKS `managed-csi` storage class, the exact published commit tags, the separately created classroom Secret and Traefik. Monitoring is installed in an internal namespace. Cleanup destroys the AKS cluster, managed node resources, OIDC identity and lab group after evidence collection.
 
 References: [AKS Azure RBAC](https://learn.microsoft.com/azure/aks/manage-azure-rbac), [Azure managed identity federation](https://learn.microsoft.com/entra/workload-id/workload-identity-federation).
+
+## Local validation
+
+The commands below ran from this Terraform project folder. Validation checks configuration; it does not provision cloud resources.
+
+```bash
+Initializing provider plugins...
+- Finding hashicorp/azurerm versions matching "~> 4.0"...
+- Installing hashicorp/azurerm v4.81.0...
+- Installed hashicorp/azurerm v4.81.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+# ... intermediate output omitted ...
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+Success! The configuration is valid.
+```

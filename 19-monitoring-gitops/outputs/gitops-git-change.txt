@@ -1,8 +1,0 @@
-$ git log -1 --oneline
-1924ccc Change GitOps web deployment to three replicas
-$ scripts/kubectl get application homework-web -n homework-gitops -o wide
-NAME           SYNC STATUS   HEALTH STATUS   REVISION                                   PROJECT
-homework-web   Synced        Healthy         1924ccc230469d4a03a143cf3e063f72b6aa28b1   homework
-$ scripts/kubectl get deploy web -n homework-gitops-demo
-NAME   READY   UP-TO-DATE   AVAILABLE   AGE
-web    3/3     3            3           4m59s
