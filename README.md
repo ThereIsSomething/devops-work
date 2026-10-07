@@ -2,11 +2,11 @@
 
 **Nitish Kumar Bhambu — 24BCS10589**
 
-These are my notes and lab results for Sessions 1–20. Each folder has the commands, source files and output for that session. Long build logs are shortened.
+These are my notes and lab results for Sessions 1–20. Each folder has the commands, source files and output for that session. Long build logs are not fully included
 
 I used Fedora, Docker, Minikube and Helm for the local exercises. Sessions 16, 17 and 20 share the [TaskBoard demo](demo-app/README.md) for CI/CD, security checks and monitoring.
 
-For Sessions 18–19, I ran the cloud exercises on Azure. The AWS files passed local validation but were not applied, so the Azure substitution still needs instructor acceptance. All Azure resources were deleted after the exercises.
+For Sessions 18–19, I ran the cloud exercises on Azure. The AWS files passed local validation but were not applied.
 
 [README links for the submission form](docs/SUBMISSION-LINKS.md)
 
