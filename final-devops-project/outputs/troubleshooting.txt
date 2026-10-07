@@ -1,0 +1,276 @@
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final run challenge-client --image=busybox:1.37 --restart=Never -- sleep 1800
+pod/challenge-client created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final wait --for=condition=Ready pod/challenge-client --timeout=120s
+pod/challenge-client condition met
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final exec challenge-client -- wget -qO- http://10.244.0.109:8000/health
+{"status":"UP"}[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final patch svc backend --type=merge -p '{"spec":{"selector":{"app":"wrong-backend"}}}'
+service/backend patched
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final get endpointslices -l kubernetes.io/service-name=backend -o yaml
+apiVersion: v1
+items:
+- addressType: IPv4
+  apiVersion: discovery.k8s.io/v1
+  endpoints: null
+  kind: EndpointSlice
+  metadata:
+    creationTimestamp: "2026-10-07T13:02:15Z"
+    generateName: backend-
+    generation: 14
+    labels:
+      app: taskboard-backend
+      app.kubernetes.io/managed-by: Helm
+      endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+      kubernetes.io/service-name: backend
+    name: backend-rvg2c
+    namespace: homework-final
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Service
+      name: backend
+      uid: 6572a1aa-6f3f-4780-bab4-e64c7659201c
+    resourceVersion: "349494"
+    uid: f23bf9ec-43ae-40c5-9e11-b647b91a7160
+  ports: null
+kind: List
+metadata:
+  resourceVersion: ""
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final get pods --show-labels
+NAME                        READY   STATUS      RESTARTS   AGE    LABELS
+backend-8584bc89c8-8p4ml    1/1     Running     0          33s    app=taskboard-backend,pod-template-hash=8584bc89c8
+backend-8584bc89c8-ddktr    1/1     Running     0          39s    app=taskboard-backend,pod-template-hash=8584bc89c8
+challenge-client            1/1     Running     0          1s     run=challenge-client
+frontend-6f65884958-gmm5s   1/1     Running     0          33s    app=taskboard-frontend,pod-template-hash=6f65884958
+frontend-6f65884958-xgw2h   1/1     Running     0          39s    app=taskboard-frontend,pod-template-hash=6f65884958
+postgres-0                  1/1     Running     0          107s   app=taskboard-postgres,apps.kubernetes.io/pod-index=0,controller-revision-hash=postgres-5bbc7f8f,statefulset.kubernetes.io/pod-name=postgres-0
+taskboard-migrate-3-wvnsc   0/1     Completed   0          44s    batch.kubernetes.io/controller-uid=23509de9-a5a3-45d5-a2bb-3eb79360f1af,batch.kubernetes.io/job-name=taskboard-migrate-3,controller-uid=23509de9-a5a3-45d5-a2bb-3eb79360f1af,job-name=taskboard-migrate-3
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final exec challenge-client -- wget -T 3 -qO- http://backend:8000/health
+wget: can't connect to remote host (10.98.164.157): Connection refused
+command terminated with exit code 1
+[exit 1]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final patch svc backend --type=merge -p '{"spec":{"selector":{"app":"taskboard-backend"}}}'
+service/backend patched
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final patch svc backend --type=json -p '[{"op":"replace","path":"/spec/ports/0/targetPort","value":8999}]'
+service/backend patched
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final describe svc backend
+Name:                     backend
+Namespace:                homework-final
+Labels:                   app=taskboard-backend
+                          app.kubernetes.io/managed-by=Helm
+Annotations:              meta.helm.sh/release-name: taskboard
+                          meta.helm.sh/release-namespace: homework-final
+Selector:                 app=taskboard-backend
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.98.164.157
+IPs:                      10.98.164.157
+Port:                     http  8000/TCP
+TargetPort:               8999/TCP
+Endpoints:                10.244.0.107:8999,10.244.0.109:8999
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final exec challenge-client -- wget -T 3 -qO- http://backend:8000/health
+{"status":"UP"}[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final patch svc backend --type=json -p '[{"op":"replace","path":"/spec/ports/0/targetPort","value":"http"}]'
+service/backend patched
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final exec challenge-client -- wget -qO- http://backend:8000/health
+{"status":"UP"}[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final set image deployment/backend backend=homework-taskboard-backend:does-not-exist
+deployment.apps/backend image updated
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final get pods
+NAME                        READY   STATUS             RESTARTS   AGE
+backend-758c4d4c64-n5g2k    0/1     ImagePullBackOff   0          20s
+backend-8584bc89c8-8p4ml    1/1     Running            0          55s
+backend-8584bc89c8-ddktr    1/1     Running            0          61s
+challenge-client            1/1     Running            0          23s
+frontend-6f65884958-gmm5s   1/1     Running            0          55s
+frontend-6f65884958-xgw2h   1/1     Running            0          61s
+postgres-0                  1/1     Running            0          2m9s
+taskboard-migrate-3-wvnsc   0/1     Completed          0          66s
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final get events --sort-by=.metadata.creationTimestamp
+LAST SEEN   TYPE      REASON                         OBJECT                                  MESSAGE
+21m         Normal    Scheduled                      pod/frontend-7f75b9487d-bj4j4           Successfully assigned homework-final/frontend-7f75b9487d-bj4j4 to minikube
+21m         Normal    SuccessfulCreate               replicaset/backend-696b7678f4           Created pod: backend-696b7678f4-9mvsd
+21m         Normal    SuccessfulRescale              horizontalpodautoscaler/backend         New size: 2; reason: Current number of replicas below Spec.MinReplicas
+21m         Normal    ScalingReplicaSet              deployment/backend                      Scaled up replica set backend-696b7678f4 from 0 to 1
+21m         Normal    SuccessfulCreate               statefulset/postgres                    Create Claim data-postgres-0 Pod postgres-0 in StatefulSet postgres success
+21m         Normal    SuccessfulCreate               replicaset/frontend-7f75b9487d          Created pod: frontend-7f75b9487d-pmkpb
+21m         Normal    Scheduled                      pod/frontend-7f75b9487d-pmkpb           Successfully assigned homework-final/frontend-7f75b9487d-pmkpb to minikube
+21m         Normal    ScalingReplicaSet              deployment/frontend                     Scaled up replica set frontend-7f75b9487d from 0 to 2
+21m         Normal    Scheduled                      pod/backend-696b7678f4-9mvsd            Successfully assigned homework-final/backend-696b7678f4-9mvsd to minikube
+21m         Normal    SuccessfulCreate               replicaset/frontend-7f75b9487d          Created pod: frontend-7f75b9487d-bj4j4
+3m11s       Normal    Started                        pod/backend-696b7678f4-9mvsd            Container started
+21m         Normal    SuccessfulCreate               replicaset/backend-696b7678f4           Created pod: backend-696b7678f4-2cwkg
+21m         Normal    SuccessfulCreate               job/taskboard-migrate-1                 Created pod: taskboard-migrate-1-klr2l
+3m11s       Normal    Pulled                         pod/backend-696b7678f4-9mvsd            Container image "homework-taskboard-backend:local" already present on machine and can be accessed by the pod
+21m         Normal    Scheduled                      pod/backend-696b7678f4-2cwkg            Successfully assigned homework-final/backend-696b7678f4-2cwkg to minikube
+3m11s       Normal    Created                        pod/backend-696b7678f4-9mvsd            Container created
+21m         Normal    Scheduled                      pod/postgres-0                          Successfully assigned homework-final/postgres-0 to minikube
+21m         Warning   FailedScheduling               pod/postgres-0                          0/1 nodes are available: pod has unbound immediate PersistentVolumeClaims. not found
+2m9s        Normal    SuccessfulCreate               statefulset/postgres                    Create Pod postgres-0 in StatefulSet postgres successful
+21m         Normal    ProvisioningSucceeded          persistentvolumeclaim/data-postgres-0   Successfully provisioned volume pvc-d0650e7e-069f-4177-8d1e-1e4056220bd9
+21m         Normal    Provisioning                   persistentvolumeclaim/data-postgres-0   External provisioner is provisioning volume for claim "homework-final/data-postgres-0"
+21m         Normal    ExternalProvisioning           persistentvolumeclaim/data-postgres-0   Waiting for a volume to be created either by the external provisioner 'k8s.io/minikube-hostpath' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+21m         Normal    ScalingReplicaSet              deployment/backend                      Scaled up replica set backend-696b7678f4 from 1 to 2
+21m         Normal    Scheduled                      pod/taskboard-migrate-1-klr2l           Successfully assigned homework-final/taskboard-migrate-1-klr2l to minikube
+21m         Normal    Pulled                         pod/frontend-7f75b9487d-pmkpb           Container image "homework-taskboard-frontend:local" already present on machine and can be accessed by the pod
+21m         Normal    Pulling                        pod/postgres-0                          Pulling image "postgres:16-alpine"
+21m         Normal    Created                        pod/frontend-7f75b9487d-pmkpb           Container created
+21m         Normal    Started                        pod/frontend-7f75b9487d-pmkpb           Container started
+21m         Warning   Unhealthy                      pod/frontend-7f75b9487d-bj4j4           Readiness probe failed: Get "http://10.244.0.89:8080/": dial tcp 10.244.0.89:8080: connect: connection refused
+21m         Normal    Started                        pod/frontend-7f75b9487d-bj4j4           Container started
+21m         Normal    Created                        pod/frontend-7f75b9487d-bj4j4           Container created
+21m         Normal    Pulled                         pod/frontend-7f75b9487d-bj4j4           Container image "homework-taskboard-frontend:local" already present on machine and can be accessed by the pod
+21m         Warning   Unhealthy                      pod/frontend-7f75b9487d-pmkpb           Readiness probe failed: Get "http://10.244.0.90:8080/": dial tcp 10.244.0.90:8080: connect: connection refused
+3m11s       Normal    Pulled                         pod/backend-696b7678f4-2cwkg            Container image "homework-taskboard-backend:local" already present on machine and can be accessed by the pod
+14m         Normal    Created                        pod/taskboard-migrate-1-klr2l           Container created
+14m         Normal    Pulled                         pod/taskboard-migrate-1-klr2l           Container image "homework-taskboard-backend:local" already present on machine and can be accessed by the pod
+3m11s       Normal    Created                        pod/backend-696b7678f4-2cwkg            Container created
+14m         Normal    Started                        pod/taskboard-migrate-1-klr2l           Container started
+3m11s       Normal    Started                        pod/backend-696b7678f4-2cwkg            Container started
+21m         Warning   Unhealthy                      pod/backend-696b7678f4-2cwkg            Startup probe failed: Get "http://10.244.0.94:8000/ready": dial tcp 10.244.0.94:8000: connect: connection refused
+21m         Warning   Unhealthy                      pod/backend-696b7678f4-9mvsd            Startup probe failed: Get "http://10.244.0.91:8000/ready": dial tcp 10.244.0.91:8000: connect: connection refused
+35s         Warning   FailedGetResourceMetric        horizontalpodautoscaler/backend         failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+20m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/backend         invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+6m14s       Warning   Unhealthy                      pod/backend-696b7678f4-2cwkg            Startup probe failed: Get "http://10.244.0.94:8000/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+6m14s       Warning   Unhealthy                      pod/backend-696b7678f4-9mvsd            Startup probe failed: Get "http://10.244.0.91:8000/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+13m         Warning   BackOff                        pod/taskboard-migrate-1-klr2l           Back-off restarting failed container migrate in pod taskboard-migrate-1-klr2l_homework-final(20c1d8df-890b-4a75-af43-34e5df799941)
+18m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/backend         invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+6m5s        Warning   FailedGetResourceMetric        horizontalpodautoscaler/backend         failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+3m14s       Normal    Killing                        pod/backend-696b7678f4-9mvsd            Container backend failed startup probe, will be restarted
+3m14s       Normal    Killing                        pod/backend-696b7678f4-2cwkg            Container backend failed startup probe, will be restarted
+14m         Normal    Scheduled                      pod/postgres-0                          Successfully assigned homework-final/postgres-0 to minikube
+14m         Normal    Pulling                        pod/postgres-0                          Pulling image "postgres:16-alpine"
+90s         Normal    Pulled                         pod/taskboard-migrate-2-kfszw           Container image "homework-taskboard-backend:local" already present on machine and can be accessed by the pod
+90s         Normal    Created                        pod/taskboard-migrate-2-kfszw           Container created
+12m         Normal    SuccessfulCreate               job/taskboard-migrate-2                 Created pod: taskboard-migrate-2-kfszw
+90s         Normal    Started                        pod/taskboard-migrate-2-kfszw           Container started
+12m         Normal    Scheduled                      pod/taskboard-migrate-2-kfszw           Successfully assigned homework-final/taskboard-migrate-2-kfszw to minikube
+2m54s       Warning   BackOff                        pod/taskboard-migrate-2-kfszw           Back-off restarting failed container migrate in pod taskboard-migrate-2-kfszw_homework-final(5198fddb-fae2-4a32-a82b-8eb4fc29b5c1)
+12m         Normal    Scheduled                      pod/postgres-0                          Successfully assigned homework-final/postgres-0 to minikube
+10m         Warning   Failed                         pod/postgres-0                          Error: ErrImageNeverPull
+10m         Warning   ErrImageNeverPull              pod/postgres-0                          Container image "postgres:16-alpine" is not present with pull policy of Never
+10m         Normal    Created                        pod/postgres-0                          Container created
+10m         Normal    Pulled                         pod/postgres-0                          Successfully pulled image "postgres:16-alpine" in 3.463s (11m4.241s including waiting). Image size: 116073496 bytes.
+10m         Normal    Started                        pod/postgres-0                          Container started
+10m         Normal    Killing                        pod/postgres-0                          Stopping container postgres
+10m         Warning   Unhealthy                      pod/postgres-0                          Readiness probe failed: /var/run/postgresql:5432 - no response
+10m         Normal    Started                        pod/postgres-0                          Container started
+10m         Normal    Created                        pod/postgres-0                          Container created
+10m         Normal    Pulled                         pod/postgres-0                          Successfully pulled image "postgres:16-alpine" in 1.424s (4m31.761s including waiting). Image size: 116073496 bytes.
+10m         Normal    Killing                        pod/postgres-0                          Stopping container postgres
+10m         Warning   Unhealthy                      pod/postgres-0                          Readiness probe failed: /var/run/postgresql:5432 - no response
+10m         Normal    Pulled                         pod/postgres-0                          Container image "postgres:16-alpine" already present on machine and can be accessed by the pod
+10m         Normal    Created                        pod/postgres-0                          Container created
+10m         Normal    Started                        pod/postgres-0                          Container started
+10m         Warning   Unhealthy                      pod/postgres-0                          Readiness probe failed: /var/run/postgresql:5432 - no response
+8m5s        Warning   Failed                         pod/postgres-0                          Error: ErrImageNeverPull
+10m         Normal    Killing                        pod/postgres-0                          Stopping container postgres
+10m         Normal    SuccessfulDelete               statefulset/postgres                    Delete Pod postgres-0 in StatefulSet postgres successful
+8m5s        Warning   ErrImageNeverPull              pod/postgres-0                          Container image "docker.io/library/postgres:16-alpine" is not present with pull policy of Never
+10m         Normal    Scheduled                      pod/postgres-0                          Successfully assigned homework-final/postgres-0 to minikube
+7m56s       Normal    Scheduled                      pod/postgres-0                          Successfully assigned homework-final/postgres-0 to minikube
+7m14s       Warning   Failed                         pod/postgres-0                          Error: ErrImageNeverPull
+7m14s       Warning   ErrImageNeverPull              pod/postgres-0                          Container image "homework-postgres:local" is not present with pull policy of Never
+7m4s        Normal    Scheduled                      pod/postgres-0                          Successfully assigned homework-final/postgres-0 to minikube
+4m54s       Warning   Failed                         pod/postgres-0                          Error: ErrImageNeverPull
+4m43s       Warning   ErrImageNeverPull              pod/postgres-0                          Container image "homework-postgres:local" is not present with pull policy of Never
+2m9s        Normal    Pulling                        pod/postgres-0                          Pulling image "docker.io/library/postgres:16-alpine"
+2m8s        Normal    Scheduled                      pod/postgres-0                          Successfully assigned homework-final/postgres-0 to minikube
+2m6s        Normal    Created                        pod/postgres-0                          Container created
+2m6s        Normal    Pulled                         pod/postgres-0                          Successfully pulled image "docker.io/library/postgres:16-alpine" in 2.265s (2.265s including waiting). Image size: 116073496 bytes.
+2m6s        Warning   Unhealthy                      pod/postgres-0                          Readiness probe failed: /var/run/postgresql:5432 - no response
+2m6s        Normal    Started                        pod/postgres-0                          Container started
+86s         Normal    Completed                      job/taskboard-migrate-2                 Job completed
+66s         Normal    SuccessfulCreate               job/taskboard-migrate-3                 Created pod: taskboard-migrate-3-wvnsc
+66s         Normal    Scheduled                      pod/taskboard-migrate-3-wvnsc           Successfully assigned homework-final/taskboard-migrate-3-wvnsc to minikube
+66s         Normal    Pulled                         pod/taskboard-migrate-3-wvnsc           Container image "homework-taskboard-backend:local" already present on machine and can be accessed by the pod
+66s         Normal    Created                        pod/taskboard-migrate-3-wvnsc           Container created
+66s         Normal    Started                        pod/taskboard-migrate-3-wvnsc           Container started
+61s         Normal    ScalingReplicaSet              deployment/frontend                     Scaled up replica set frontend-6f65884958 from 0 to 1
+61s         Normal    Completed                      job/taskboard-migrate-3                 Job completed
+60s         Normal    Scheduled                      pod/frontend-6f65884958-xgw2h           Successfully assigned homework-final/frontend-6f65884958-xgw2h to minikube
+61s         Normal    SuccessfulCreate               replicaset/backend-8584bc89c8           Created pod: backend-8584bc89c8-ddktr
+61s         Normal    ScalingReplicaSet              deployment/backend                      Scaled up replica set backend-8584bc89c8 from 0 to 1
+61s         Normal    Created                        pod/backend-8584bc89c8-ddktr            Container created
+61s         Normal    Pulled                         pod/backend-8584bc89c8-ddktr            Container image "homework-taskboard-backend:local" already present on machine and can be accessed by the pod
+60s         Normal    Scheduled                      pod/backend-8584bc89c8-ddktr            Successfully assigned homework-final/backend-8584bc89c8-ddktr to minikube
+61s         Normal    SuccessfulCreate               replicaset/frontend-6f65884958          Created pod: frontend-6f65884958-xgw2h
+60s         Normal    Started                        pod/backend-8584bc89c8-ddktr            Container started
+60s         Normal    Started                        pod/frontend-6f65884958-xgw2h           Container started
+60s         Warning   Unhealthy                      pod/frontend-6f65884958-xgw2h           Readiness probe failed: Get "http://10.244.0.106:8080/": dial tcp 10.244.0.106:8080: connect: connection refused
+60s         Normal    Created                        pod/frontend-6f65884958-xgw2h           Container created
+60s         Normal    Pulled                         pod/frontend-6f65884958-xgw2h           Container image "homework-taskboard-frontend:local" already present on machine and can be accessed by the pod
+55s         Normal    Pulled                         pod/frontend-6f65884958-gmm5s           Container image "homework-taskboard-frontend:local" already present on machine and can be accessed by the pod
+54s         Normal    Scheduled                      pod/backend-8584bc89c8-8p4ml            Successfully assigned homework-final/backend-8584bc89c8-8p4ml to minikube
+55s         Normal    ScalingReplicaSet              deployment/frontend                     Scaled up replica set frontend-6f65884958 from 1 to 2
+55s         Normal    ScalingReplicaSet              deployment/frontend                     Scaled down replica set frontend-7f75b9487d from 2 to 1
+55s         Normal    Started                        pod/backend-8584bc89c8-8p4ml            Container started
+55s         Normal    ScalingReplicaSet              deployment/backend                      Scaled down replica set backend-696b7678f4 from 2 to 1
+55s         Normal    SuccessfulDelete               replicaset/frontend-7f75b9487d          Deleted pod: frontend-7f75b9487d-bj4j4
+55s         Normal    ScalingReplicaSet              deployment/backend                      Scaled up replica set backend-8584bc89c8 from 1 to 2
+55s         Normal    Killing                        pod/backend-696b7678f4-9mvsd            Stopping container backend
+55s         Normal    Killing                        pod/frontend-7f75b9487d-bj4j4           Stopping container frontend
+55s         Normal    SuccessfulDelete               replicaset/backend-696b7678f4           Deleted pod: backend-696b7678f4-9mvsd
+55s         Normal    SuccessfulCreate               replicaset/frontend-6f65884958          Created pod: frontend-6f65884958-gmm5s
+54s         Warning   Unhealthy                      pod/frontend-6f65884958-gmm5s           Readiness probe failed: Get "http://10.244.0.108:8080/": dial tcp 10.244.0.108:8080: connect: connection refused
+55s         Normal    Started                        pod/frontend-6f65884958-gmm5s           Container started
+55s         Normal    Created                        pod/frontend-6f65884958-gmm5s           Container created
+55s         Normal    SuccessfulCreate               replicaset/backend-8584bc89c8           Created pod: backend-8584bc89c8-8p4ml
+54s         Normal    Scheduled                      pod/frontend-6f65884958-gmm5s           Successfully assigned homework-final/frontend-6f65884958-gmm5s to minikube
+55s         Normal    Created                        pod/backend-8584bc89c8-8p4ml            Container created
+55s         Normal    Pulled                         pod/backend-8584bc89c8-8p4ml            Container image "homework-taskboard-backend:local" already present on machine and can be accessed by the pod
+49s         Normal    ScalingReplicaSet              deployment/frontend                     Scaled down replica set frontend-7f75b9487d from 1 to 0
+49s         Normal    SuccessfulDelete               replicaset/backend-696b7678f4           Deleted pod: backend-696b7678f4-2cwkg
+49s         Normal    ScalingReplicaSet              deployment/backend                      Scaled down replica set backend-696b7678f4 from 1 to 0
+49s         Normal    Killing                        pod/frontend-7f75b9487d-pmkpb           Stopping container frontend
+49s         Normal    SuccessfulDelete               replicaset/frontend-7f75b9487d          Deleted pod: frontend-7f75b9487d-pmkpb
+49s         Normal    Killing                        pod/backend-696b7678f4-2cwkg            Stopping container backend
+23s         Normal    Started                        pod/challenge-client                    Container started
+23s         Normal    Created                        pod/challenge-client                    Container created
+23s         Normal    Pulled                         pod/challenge-client                    Container image "busybox:1.37" already present on machine and can be accessed by the pod
+22s         Normal    Scheduled                      pod/challenge-client                    Successfully assigned homework-final/challenge-client to minikube
+3s          Normal    Pulling                        pod/backend-758c4d4c64-n5g2k            Pulling image "homework-taskboard-backend:does-not-exist"
+20s         Normal    ScalingReplicaSet              deployment/backend                      Scaled up replica set backend-758c4d4c64 from 0 to 1
+20s         Normal    Scheduled                      pod/backend-758c4d4c64-n5g2k            Successfully assigned homework-final/backend-758c4d4c64-n5g2k to minikube
+20s         Normal    SuccessfulCreate               replicaset/backend-758c4d4c64           Created pod: backend-758c4d4c64-n5g2k
+2s          Warning   Failed                         pod/backend-758c4d4c64-n5g2k            Error: ErrImagePull
+2s          Warning   Failed                         pod/backend-758c4d4c64-n5g2k            Failed to pull image "homework-taskboard-backend:does-not-exist": failed to pull and unpack image "docker.io/library/homework-taskboard-backend:does-not-exist": failed to resolve reference "docker.io/library/homework-taskboard-backend:does-not-exist": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+18s         Normal    BackOff                        pod/backend-758c4d4c64-n5g2k            Back-off pulling image "homework-taskboard-backend:does-not-exist"
+18s         Warning   Failed                         pod/backend-758c4d4c64-n5g2k            Error: ImagePullBackOff
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final set image deployment/backend backend=homework-taskboard-backend:local
+deployment.apps/backend image updated
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final rollout status deployment/backend --timeout=180s
+deployment "backend" successfully rolled out
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final exec challenge-client -- nslookup backend.homework-final.svc.cluster.local
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+Name:	backend.homework-final.svc.cluster.local
+Address: 10.98.164.157
+
+
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final exec challenge-client -- wget -qO- http://backend:8000/ready
+{"status":"READY"}[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-final delete pod challenge-client
+pod "challenge-client" deleted from homework-final namespace
+[exit 0]

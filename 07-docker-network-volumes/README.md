@@ -68,14 +68,14 @@ font-family: Tahoma, Verdana, Arial, sans-serif; }
 <body>
 <h1>Welcome to nginx!</h1>
 <p>If you see this page, nginx is successfully installed and working.
-Further configuration is required for the web server, reverse proxy, 
+Further configuration is required for the web server, reverse proxy,
 API gateway, load balancer, content cache, or other features.</p>
 
 <p>For online documentation and support please refer to
 <a href="https://nginx.org/">nginx.org</a>.<br/>
 To engage with the community please visit
 <a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
-For enterprise grade support, professional services, additional 
+For enterprise grade support, professional services, additional
 security features and capabilities please refer to
 <a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
 
@@ -103,7 +103,7 @@ $ curl --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 --fail 
 
   0      0   0      0   0      0      0      0                              0
 curl: (56) Recv failure: Connection reset by peer
-Warning: Problem (retrying all errors). Will retry in 1 second. 10 retries 
+Warning: Problem (retrying all errors). Will retry in 1 second. 10 retries
 Warning: left.
 
   0      0   0      0   0      0      0      0                              0

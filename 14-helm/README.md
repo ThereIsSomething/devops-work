@@ -70,54 +70,54 @@ Hang tight while we grab the latest from your chart repositories...
 Update Complete. ⎈Happy Helming!⎈
 [exit 0]
 $ helm search repo traefik/traefik --versions
-NAME                	CHART VERSION	APP VERSION	DESCRIPTION                                       
-traefik/traefik     	41.6.1       	v3.7.13    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.6.0       	v3.7.13    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.5.0       	v3.7.13    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.4.0       	v3.7.12    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.3.0       	v3.7.11    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.2.0       	v3.7.10    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.1.1       	v3.7.9     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.1.0       	v3.7.9     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.0.2       	v3.7.6     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.0.1       	v3.7.5     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	41.0.0       	v3.7.5     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	40.3.0       	v3.7.4     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	40.2.0       	v3.7.1     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	40.1.0       	v3.7.1     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	40.0.1       	v3.7.0     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	40.0.0       	v3.7.0     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.9       	v3.6.15    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.8       	v3.6.13    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.7       	v3.6.12    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.6       	v3.6.11    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.5       	v3.6.10    	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.4       	v3.6.9     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.3       	v3.6.9     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.2       	v3.6.8     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.1       	v3.6.8     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	39.0.0       	v3.6.7     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	38.0.2       	v3.6.6     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	38.0.1       	v3.6.5     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	38.0.0       	v3.6.5     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	37.4.0       	v3.6.2     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	37.3.0       	v3.6.0     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	37.2.0       	v3.5.3     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	37.1.2       	v3.5.3     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	37.1.1       	v3.5.2     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	37.1.0       	v3.5.1     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	37.0.0       	v3.5.0     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	36.3.0       	v3.4.3     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	36.2.0       	v3.4.1     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	36.1.0       	v3.4.1     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	36.0.0       	v3.4.1     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	35.4.0       	v3.4.0     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	35.3.0       	v3.4.0     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	35.2.0       	v3.3.6     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	35.1.0       	v3.3.6     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	35.0.1       	v3.3.6     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	35.0.0       	v3.3.5     	A Traefik based Kubernetes ingress controller     
-traefik/traefik     	34.5.0       	v3.3.4     	A Traefik based Kubernetes ingress controller     
+NAME                	CHART VERSION	APP VERSION	DESCRIPTION
+traefik/traefik     	41.6.1       	v3.7.13    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.6.0       	v3.7.13    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.5.0       	v3.7.13    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.4.0       	v3.7.12    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.3.0       	v3.7.11    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.2.0       	v3.7.10    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.1.1       	v3.7.9     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.1.0       	v3.7.9     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.0.2       	v3.7.6     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.0.1       	v3.7.5     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	41.0.0       	v3.7.5     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	40.3.0       	v3.7.4     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	40.2.0       	v3.7.1     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	40.1.0       	v3.7.1     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	40.0.1       	v3.7.0     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	40.0.0       	v3.7.0     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.9       	v3.6.15    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.8       	v3.6.13    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.7       	v3.6.12    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.6       	v3.6.11    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.5       	v3.6.10    	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.4       	v3.6.9     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.3       	v3.6.9     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.2       	v3.6.8     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.1       	v3.6.8     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	39.0.0       	v3.6.7     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	38.0.2       	v3.6.6     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	38.0.1       	v3.6.5     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	38.0.0       	v3.6.5     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	37.4.0       	v3.6.2     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	37.3.0       	v3.6.0     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	37.2.0       	v3.5.3     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	37.1.2       	v3.5.3     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	37.1.1       	v3.5.2     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	37.1.0       	v3.5.1     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	37.0.0       	v3.5.0     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	36.3.0       	v3.4.3     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	36.2.0       	v3.4.1     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	36.1.0       	v3.4.1     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	36.0.0       	v3.4.1     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	35.4.0       	v3.4.0     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	35.3.0       	v3.4.0     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	35.2.0       	v3.3.6     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	35.1.0       	v3.3.6     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	35.0.1       	v3.3.6     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	35.0.0       	v3.3.5     	A Traefik based Kubernetes ingress controller
+traefik/traefik     	34.5.0       	v3.3.4     	A Traefik based Kubernetes ingress controller
 
 [Excerpt: 590 intermediate lines omitted; complete transcript linked above.]
 
@@ -176,7 +176,7 @@ wget: can't connect to remote host (10.104.209.237): Connection refused
 command terminated with exit code 1
 [exit 1]
 $ helm history guestbook -n homework-s15
-REVISION	UPDATED                 	STATUS    	CHART             	APP VERSION	DESCRIPTION     
+REVISION	UPDATED                 	STATUS    	CHART             	APP VERSION	DESCRIPTION
 1       	Wed Oct  7 18:29:33 2026	superseded	homework-web-0.1.0	1.28       	Install complete
 2       	Wed Oct  7 18:29:38 2026	superseded	homework-web-0.1.0	1.28       	Upgrade complete
 3       	Wed Oct  7 18:29:51 2026	deployed  	homework-web-0.1.0	1.28       	Upgrade complete
@@ -188,7 +188,7 @@ $ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/k
 Welcome to my guestbook - version one
 [exit 0]
 $ helm history guestbook -n homework-s15
-REVISION	UPDATED                 	STATUS    	CHART             	APP VERSION	DESCRIPTION     
+REVISION	UPDATED                 	STATUS    	CHART             	APP VERSION	DESCRIPTION
 1       	Wed Oct  7 18:29:33 2026	superseded	homework-web-0.1.0	1.28       	Install complete
 2       	Wed Oct  7 18:29:38 2026	superseded	homework-web-0.1.0	1.28       	Upgrade complete
 3       	Wed Oct  7 18:29:51 2026	superseded	homework-web-0.1.0	1.28       	Upgrade complete

@@ -1,0 +1,47 @@
+$ scripts/kubectl get applications -n homework-gitops
+NAME           SYNC STATUS   HEALTH STATUS
+homework-web   Synced        Healthy
+taskboard      Synced        Progressing
+
+$ scripts/kubectl delete secret -n homework-final -l owner=helm,name=taskboard
+secret "sh.helm.release.v1.taskboard.v1" deleted from homework-final namespace
+secret "sh.helm.release.v1.taskboard.v2" deleted from homework-final namespace
+secret "sh.helm.release.v1.taskboard.v3" deleted from homework-final namespace
+
+$ scripts/kubectl scale deployment/frontend -n homework-final --replicas=1
+deployment.apps/frontend scaled
+
+$ scripts/kubectl get deployment/frontend -n homework-final
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+frontend   2/2     2            2           31m
+
+$ scripts/kubectl get application taskboard -n homework-gitops -o wide
+NAME        SYNC STATUS   HEALTH STATUS   REVISION                                   PROJECT
+taskboard   Synced        Progressing     9d85fe3d871c2ba5ce87c77e33181978a1112fc0   homework
+
+$ curl --fail -H Host: taskboard.local http://localhost:18082/ready
+<!doctype html><html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>TaskBoard</title>  <script type="module" crossorigin src="/assets/index-BhcRVjeF.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DkMuKOF6.css">
+</head><body><div id="root"></div></body></html>
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+100    343 100    343   0      0  16270      0                              0
+100    343 100    343   0      0  16250      0                              0
+100    343 100    343   0      0  16238      0                              0
+
+
+The frontend serves the SPA for unknown paths; /ready is a backend endpoint. Verify /health through the frontend and /ready directly on the backend.
+$ curl --fail -H Host: taskboard.local http://localhost:18082/health
+{"status":"UP"}  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+100     15 100     15   0      0   4961      0                              0
+100     15 100     15   0      0   4919      0                              0
+100     15 100     15   0      0   4895      0                              0
+
+$ scripts/kubectl exec -n homework-final deployment/backend -- python -c import urllib.request; print(urllib.request.urlopen("http://localhost:8000/ready").read().decode())
+{"status":"READY"}
+

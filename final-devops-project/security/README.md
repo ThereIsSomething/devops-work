@@ -17,3 +17,9 @@ Images are published only after tests, source checks, both image scans and a dep
 A passing scan means the configured checks found no matching issue using the available rules and advisory databases at that time. It does not prove that the application has no vulnerabilities. This classroom API has no user authentication and should not be exposed as a production service.
 
 References: [Bandit](https://bandit.readthedocs.io/), [pip-audit](https://github.com/pypa/pip-audit), [Gitleaks](https://github.com/gitleaks/gitleaks), [Trivy](https://github.com/aquasecurity/trivy).
+
+## Findings fixed during this run
+
+The first image scans failed: the Debian-based backend had 44 HIGH operating-system findings and four HIGH Python packaging-tool findings; the frontend had 43 HIGH Alpine findings. The full before reports are retained in `outputs/`. I moved the backend to Alpine, upgraded the runtime OS packages in both images, and removed pip from the finished backend image after installing its locked dependencies. The application does not need pip at runtime. Both rebuilt application images then passed the same HIGH/CRITICAL gate with zero matching findings. No advisory was ignored to make the gate pass.
+
+The [final staged-file secret scan](../outputs/secret-scan-final.txt) covered approximately 870 KB of submission changes and found no leaks. Its commit count is zero because that mode scans the staged diff; the separate hosted history scan also passed.

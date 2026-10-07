@@ -17,3 +17,6 @@
 **/kubeconfig*
 
 **/*.tfplan
+
+**/*.tfvars
+**/*.tfvars.json

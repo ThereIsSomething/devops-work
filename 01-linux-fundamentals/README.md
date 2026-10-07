@@ -77,7 +77,7 @@ Digest: sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55
 Status: Downloaded newer image for ubuntu:24.04
 debconf: delaying package configuration, since apt-utils is not installed
 Selecting previously unselected package adduser.
-(Reading database ... 
+(Reading database ...
 (Reading database ... 5%
 (Reading database ... 10%
 (Reading database ... 15%
@@ -138,7 +138,7 @@ Linux practice
 Filesystem      Size  Used Avail Use% Mounted on
 overlay         365G  125G  238G  35% /
 UID          PID    PPID  C STIME TTY          TIME CMD
-root           1       0  0 13:00 ?        00:00:00 bash -c apt-get update -qq && apt-get install -y -qq adduser passwd procps && set -eu mkdir -p /tmp/homework-links cd /tmp/homework-links printf 'original data\n' > original ln original hard ln -s original soft ls -li original hard soft rm original cat hard cat soft || true rm hard soft adduser --disabled-password --gecos '' homeworkstudent id homeworkstudent ls -ld /home/homeworkstudent useradd -M lowlevelstudent getent passwd homeworkstudent lowlevelstudent pwd mkdir practice cd practice touch notes.txt printf 'Linux practice\nsecond line\n' > notes.txt cp notes.txt copy.txt mv copy.txt moved.txt cat notes.txt head -n 1 notes.txt tail -n 1 notes.txt wc -l notes.txt grep Linux notes.txt find . -type f chmod 640 notes.txt ls -l printf 'b\na\nb\n' | sort | uniq -c awk 'NR==1 {print $1}' notes.txt sed -n '1p' notes.txt df -h / ps -ef | head -8 tar -czf notes.tar.gz notes.txt tar -tzf notes.tar.gz printenv PATH rm moved.txt notes.txt notes.tar.gz cd .. rmdir practice 
+root           1       0  0 13:00 ?        00:00:00 bash -c apt-get update -qq && apt-get install -y -qq adduser passwd procps && set -eu mkdir -p /tmp/homework-links cd /tmp/homework-links printf 'original data\n' > original ln original hard ln -s original soft ls -li original hard soft rm original cat hard cat soft || true rm hard soft adduser --disabled-password --gecos '' homeworkstudent id homeworkstudent ls -ld /home/homeworkstudent useradd -M lowlevelstudent getent passwd homeworkstudent lowlevelstudent pwd mkdir practice cd practice touch notes.txt printf 'Linux practice\nsecond line\n' > notes.txt cp notes.txt copy.txt mv copy.txt moved.txt cat notes.txt head -n 1 notes.txt tail -n 1 notes.txt wc -l notes.txt grep Linux notes.txt find . -type f chmod 640 notes.txt ls -l printf 'b\na\nb\n' | sort | uniq -c awk 'NR==1 {print $1}' notes.txt sed -n '1p' notes.txt df -h / ps -ef | head -8 tar -czf notes.tar.gz notes.txt tar -tzf notes.tar.gz printenv PATH rm moved.txt notes.txt notes.tar.gz cd .. rmdir practice
 root         234       1  0 13:00 ?        00:00:00 ps -ef
 root         235       1  0 13:00 ?        00:00:00 head -8
 notes.txt

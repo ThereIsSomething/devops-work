@@ -94,7 +94,7 @@ $ git log --oneline --graph --decorate --all
 | * 4234a1e (feature) F3: rewrite app.py to use utils.greet()
 | * 881a9ea F2: add .gitignore  <-- THIS is the one we will cherry-pick
 | * f6eb3ed F1: add utils.py with greet()
-|/  
+|/
 * 82ebc9f C3: document setup in README
 * fc503c2 C2: add app.py
 * 341681a C1: add README

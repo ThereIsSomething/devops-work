@@ -1,5 +1,9 @@
-# GitOps connection
+# TaskBoard GitOps
 
-The runnable GitOps mini project is in [Session 20](../../19-monitoring-gitops/README.md). Argo CD watches a dedicated workload path in this repository, synchronizes it and repairs replica drift. That workload is separate from the manually Helm-managed TaskBoard release; two controllers should not compete for the same desired state.
+Argo CD watches the TaskBoard Helm chart through [application.yaml](application.yaml). The external database Secret was provisioned separately. After the direct Helm exercise, its release-history Secrets were removed and Argo CD became the local workload's owner. Use Git changes for subsequent configuration changes instead of issuing independent Helm upgrades against those same objects.
 
-To move TaskBoard itself to GitOps after GHCR publishing, set the published SHA image tags in a committed Helm values file, configure an Argo CD Application using `path: final-devops-project/helm/taskboard` and that values file, provision its external Secret, and transfer management to Argo CD. The current final deployment remains managed by Helm.
+A migration Job is a Sync hook with BeforeHookCreation and HookSucceeded deletion policies, so each sync can run the idempotent Alembic upgrade without a TTL-deleted Job causing endless drift. Sync waves first wait for PostgreSQL, then run the migration, then apply the application resources. HPA owns backend replica count; the frontend count is declared in chart values.
+
+The real run synchronized the chart from Git and repaired a manual frontend change from two replicas to one. [Terminal evidence](../outputs/gitops.txt). Session 20 separately demonstrates a Git commit changing its web workload from two replicas to three, then verifies the synced commit and replica count.
+
+Argo reports the internal-only Ingress as Progressing because no external load-balancer address is assigned. Synchronization succeeded, the application Pods are ready, and an HTTP request through Traefik verifies `/health`, while a direct backend request verifies `/ready`. No public endpoint is claimed for this local Ingress.

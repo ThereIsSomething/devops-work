@@ -1,0 +1,92 @@
+name: Deploy verified TaskBoard images to Azure AKS
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: Full commit SHA from a successful TaskBoard CI run
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+  packages: read
+  id-token: write
+concurrency:
+  group: homework-azure-deployment
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      LAB_GROUP: rg-devops-homework
+      LAB_CLUSTER: aks-devops-homework
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require a successful image pipeline for this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          IMAGE_TAG: ${{ inputs.image_tag }}
+        run: |
+          echo "Chart/workflow commit: $GITHUB_SHA; application image commit: $IMAGE_TAG"
+          [[ "$IMAGE_TAG" =~ ^[a-f0-9]{40}$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/actions/workflows/devops.yml/runs?head_sha=$IMAGE_TAG&status=success" --jq '.workflow_runs | length' > /tmp/passed-runs
+          test "$(cat /tmp/passed-runs)" -gt 0
+      - uses: azure/login@v2
+        id: azure-login
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Authorize this runner and connect to AKS
+        run: |
+          RUNNER_IP=$(curl -fsS https://api.ipify.org)
+          az aks update -g "$LAB_GROUP" -n "$LAB_CLUSTER" --api-server-authorized-ip-ranges "${{ vars.AZURE_API_CIDR }},$RUNNER_IP/32" --output none
+          VERSION=$(az aks show -g "$LAB_GROUP" -n "$LAB_CLUSTER" --query currentKubernetesVersion -o tsv)
+          sudo az aks install-cli --client-version "$VERSION" --install-location /usr/local/bin/kubectl --kubelogin-install-location /usr/local/bin/kubelogin
+          az aks get-credentials -g "$LAB_GROUP" -n "$LAB_CLUSTER" --overwrite-existing
+          kubelogin convert-kubeconfig -l azurecli
+          kubectl get nodes
+      - name: Deploy immutable images with Helm
+        env:
+          REGISTRY_TOKEN: ${{ github.token }}
+          IMAGE_TAG: ${{ inputs.image_tag }}
+        run: |
+          kubectl create namespace homework-final --dry-run=client -o yaml | kubectl apply -f -
+          kubectl apply -f final-devops-project/kubernetes/secret.example.yaml
+          # The built-in token is short lived; it is used only for this disposable lab.
+          python3 - <<'PY' | kubectl apply -f -
+          import base64,json,os
+          auth=base64.b64encode((os.environ['GITHUB_ACTOR']+':'+os.environ['REGISTRY_TOKEN']).encode()).decode()
+          config=json.dumps({'auths':{'ghcr.io':{'auth':auth}}})
+          print(json.dumps({'apiVersion':'v1','kind':'Secret','metadata':{'name':'ghcr-pull','namespace':'homework-final'},'type':'kubernetes.io/dockerconfigjson','data':{'.dockerconfigjson':base64.b64encode(config.encode()).decode()}}))
+          PY
+          IMAGE_BASE="ghcr.io/${GITHUB_REPOSITORY,,}"
+          helm repo add traefik https://traefik.github.io/charts
+          helm upgrade --install homework-ingress traefik/traefik --namespace homework-ingress --create-namespace \
+            --values 11-ingress-configmaps-secrets/controller-values.yaml --wait --timeout 300s
+          helm upgrade --install taskboard final-devops-project/helm/taskboard -n homework-final \
+            --set backend.image="$IMAGE_BASE-backend" --set backend.tag="$IMAGE_TAG" \
+            --set frontend.image="$IMAGE_BASE-frontend" --set frontend.tag="$IMAGE_TAG" \
+            --set imagePullSecret=ghcr-pull --set storageClass=managed-csi \
+            --set ingress.enabled=true --wait --wait-for-jobs --timeout 600s
+          kubectl get pods,svc,pvc,hpa -n homework-final
+          kubectl port-forward -n homework-final svc/frontend 13000:80 > /tmp/taskboard-forward.log 2>&1 &
+          curl --fail --retry 30 --retry-all-errors --retry-delay 2 http://localhost:13000/health
+          kubectl exec -n homework-final deployment/backend -- python -c 'import json,urllib.request; data=json.load(urllib.request.urlopen("http://localhost:8000/ready")); assert data["status"]=="READY"; print(data)' 
+          curl --fail http://localhost:13000/api/tasks | python3 -c 'import json,sys; tasks=json.load(sys.stdin); assert isinstance(tasks,list); print(tasks)' 
+          kubectl port-forward -n homework-ingress svc/homework-ingress-traefik 18082:80 > /tmp/ingress-forward.log 2>&1 &
+          curl --fail --retry 20 --retry-all-errors --retry-delay 2 -H 'Host: taskboard.local' http://localhost:18082/health
+          kubectl create namespace homework-monitoring --dry-run=client -o yaml | kubectl apply -f -
+          kubectl apply -n homework-monitoring -f final-devops-project/monitoring/stack.yaml
+          kubectl rollout status -n homework-monitoring deployment/prometheus --timeout=180s
+          kubectl rollout status -n homework-monitoring deployment/grafana --timeout=180s
+          kubectl top pods -n homework-final
+      - name: Diagnostics
+        if: failure()
+        run: |
+          kubectl get pods,events -n homework-final || true
+          kubectl logs deployment/backend -n homework-final --tail=100 || true
+      - name: Restore the original API allowlist
+        if: always() && steps.azure-login.outcome == 'success'
+        run: az aks update -g "$LAB_GROUP" -n "$LAB_CLUSTER" --api-server-authorized-ip-ranges "${{ vars.AZURE_API_CIDR }}" --output none

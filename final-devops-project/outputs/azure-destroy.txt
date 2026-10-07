@@ -1,0 +1,313 @@
+
+$ terraform -chdir=final-devops-project/terraform-azure destroy -auto-approve -input=false -no-color
+data.azurerm_client_config.current: Reading...
+data.azurerm_resource_group.lab: Reading...
+data.azurerm_client_config.current: Read complete after 0s [id=Y2xpZW50Q29uZmlncy9jbGllbnRJZD0wNGIwNzc5NS04ZGRiLTQ2MWEtYmJlZS0wMmY5ZTFiZjdiNDY7b2JqZWN0SWQ9NWU1NzBmNGUtNjEzOC00Nzk1LWIyMWUtNzE5Nzg3MmNjMzM1O3N1YnNjcmlwdGlvbklkPWQyZmI4MGZjLWRhODctNGU0MC04ZTk1LTQ4NjAwYzA0OWM4Njt0ZW5hbnRJZD1hNzhhMDUxMy1mMTdiLTQ1MzUtYTc3OC0xMWU3ZmIwYjc4Y2Y=]
+data.azurerm_resource_group.lab: Read complete after 0s [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework]
+azurerm_user_assigned_identity.github: Refreshing state... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-homework-github]
+azurerm_kubernetes_cluster.lab: Refreshing state... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework]
+azurerm_federated_identity_credential.github_main: Refreshing state... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-homework-github/federatedIdentityCredentials/github-main]
+azurerm_role_assignment.cluster_admin: Refreshing state... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework/providers/Microsoft.Authorization/roleAssignments/1ffa12b0-d51c-5b98-ff02-ad39decc3844]
+azurerm_role_assignment.github_kubernetes: Refreshing state... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework/providers/Microsoft.Authorization/roleAssignments/845b6f13-dad5-5e71-7986-8f02951c6fbb]
+azurerm_role_assignment.github_control: Refreshing state... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework/providers/Microsoft.Authorization/roleAssignments/d0c28a66-11aa-c813-cfed-8697d5bd82f6]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # azurerm_federated_identity_credential.github_main will be destroyed
+  - resource "azurerm_federated_identity_credential" "github_main" {
+      - audience                  = [
+          - "api://AzureADTokenExchange",
+        ] -> null
+      - id                        = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-homework-github/federatedIdentityCredentials/github-main" -> null
+      - issuer                    = "https://token.actions.githubusercontent.com" -> null
+      - name                      = "github-main" -> null
+      - parent_id                 = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-homework-github" -> null
+      - resource_group_name       = "rg-devops-homework" -> null
+      - subject                   = "repo:ThereIsSomething@145218769/devops-work@1355095202:ref:refs/heads/main" -> null
+      - user_assigned_identity_id = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-homework-github" -> null
+    }
+
+  # azurerm_kubernetes_cluster.lab will be destroyed
+  - resource "azurerm_kubernetes_cluster" "lab" {
+      - ai_toolchain_operator_enabled       = false -> null
+      - azure_policy_enabled                = false -> null
+      - cost_analysis_enabled               = false -> null
+      - current_kubernetes_version          = "1.35.8" -> null
+      - custom_ca_trust_certificates_base64 = [] -> null
+      - dns_prefix                          = "nitish-homework" -> null
+      - fqdn                                = "nitish-homework-3bwpm32f.hcp.centralindia.azmk8s.io" -> null
+      - http_application_routing_enabled    = false -> null
+      - id                                  = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework" -> null
+      - kube_admin_config                   = (sensitive value) -> null
+      - kube_config                         = (sensitive value) -> null
+      - kube_config_raw                     = (sensitive value) -> null
+      - kubernetes_version                  = "1.35" -> null
+      - local_account_disabled              = true -> null
+      - location                            = "centralindia" -> null
+      - name                                = "aks-devops-homework" -> null
+      - node_os_upgrade_channel             = "NodeImage" -> null
+      - node_resource_group                 = "MC_rg-devops-homework_aks-devops-homework_centralindia" -> null
+      - node_resource_group_id              = "/subscriptions/<subscription-id>/resourceGroups/MC_rg-devops-homework_aks-devops-homework_centralindia" -> null
+      - oidc_issuer_enabled                 = true -> null
+      - oidc_issuer_url                     = "https://centralindia.oic.prod-aks.azure.com/a78a0513-f17b-4535-a778-11e7fb0b78cf/2ac2af1d-7086-4c0f-aade-dadb51a30bb3/" -> null
+      - open_service_mesh_enabled           = false -> null
+      - portal_fqdn                         = "nitish-homework-3bwpm32f.portal.hcp.centralindia.azmk8s.io" -> null
+      - private_cluster_enabled             = false -> null
+      - private_cluster_public_fqdn_enabled = false -> null
+      - resource_group_name                 = "rg-devops-homework" -> null
+      - role_based_access_control_enabled   = true -> null
+      - run_command_enabled                 = true -> null
+      - sku_tier                            = "Free" -> null
+      - support_plan                        = "KubernetesOfficial" -> null
+      - tags                                = {} -> null
+      - workload_identity_enabled           = false -> null
+        # (8 unchanged attributes hidden)
+
+      - api_server_access_profile {
+          - authorized_ip_ranges                = [
+              - "14.194.79.194/32",
+            ] -> null
+          - virtual_network_integration_enabled = false -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - azure_active_directory_role_based_access_control {
+          - admin_group_object_ids = [] -> null
+          - azure_rbac_enabled     = true -> null
+          - tenant_id              = "a78a0513-f17b-4535-a778-11e7fb0b78cf" -> null
+        }
+
+      - bootstrap_profile {
+          - artifact_source       = "Direct" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - default_node_pool {
+          - auto_scaling_enabled          = false -> null
+          - fips_enabled                  = false -> null
+          - host_encryption_enabled       = false -> null
+          - kubelet_disk_type             = "OS" -> null
+          - max_count                     = 0 -> null
+          - max_pods                      = 250 -> null
+          - min_count                     = 0 -> null
+          - name                          = "system" -> null
+          - node_count                    = 1 -> null
+          - node_labels                   = {} -> null
+          - node_public_ip_enabled        = false -> null
+          - only_critical_addons_enabled  = false -> null
+          - orchestrator_version          = "1.35" -> null
+          - os_disk_size_gb               = 128 -> null
+          - os_disk_type                  = "Managed" -> null
+          - os_sku                        = "Ubuntu" -> null
+          - scale_down_mode               = "Delete" -> null
+          - tags                          = {} -> null
+          - type                          = "VirtualMachineScaleSets" -> null
+          - ultra_ssd_enabled             = false -> null
+          - vm_size                       = "Standard_D2s_v3" -> null
+          - zones                         = [] -> null
+            # (11 unchanged attributes hidden)
+
+          - upgrade_settings {
+              - drain_timeout_in_minutes      = 0 -> null
+              - max_surge                     = "10%" -> null
+              - node_soak_duration_in_minutes = 0 -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+
+      - identity {
+          - identity_ids = [] -> null
+          - principal_id = "63a47c13-1d2b-4bc5-9d4d-19670b723a33" -> null
+          - tenant_id    = "a78a0513-f17b-4535-a778-11e7fb0b78cf" -> null
+          - type         = "SystemAssigned" -> null
+        }
+
+      - kubelet_identity {
+          - client_id                 = "f698bfd0-7f26-4f19-beab-d08cb6329aa7" -> null
+          - object_id                 = "0eca5d7e-c3a6-4cdf-8236-ffca1998fbfb" -> null
+          - user_assigned_identity_id = "/subscriptions/<subscription-id>/resourceGroups/MC_rg-devops-homework_aks-devops-homework_centralindia/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aks-devops-homework-agentpool" -> null
+        }
+
+      - network_profile {
+          - dns_service_ip      = "10.0.0.10" -> null
+          - ip_versions         = [
+              - "IPv4",
+            ] -> null
+          - load_balancer_sku   = "standard" -> null
+          - network_data_plane  = "azure" -> null
+          - network_plugin      = "azure" -> null
+          - network_plugin_mode = "overlay" -> null
+          - outbound_type       = "loadBalancer" -> null
+          - pod_cidr            = "10.244.0.0/16" -> null
+          - pod_cidrs           = [
+              - "10.244.0.0/16",
+            ] -> null
+          - service_cidr        = "10.0.0.0/16" -> null
+          - service_cidrs       = [
+              - "10.0.0.0/16",
+            ] -> null
+            # (2 unchanged attributes hidden)
+
+          - load_balancer_profile {
+              - backend_pool_type           = "NodeIPConfiguration" -> null
+              - effective_outbound_ips      = [
+                  - "/subscriptions/<subscription-id>/resourceGroups/MC_rg-devops-homework_aks-devops-homework_centralindia/providers/Microsoft.Network/publicIPAddresses/22bd22de-ae81-4f86-bfde-2bb619ec455b",
+                ] -> null
+              - idle_timeout_in_minutes     = 0 -> null
+              - managed_outbound_ip_count   = 1 -> null
+              - managed_outbound_ipv6_count = 0 -> null
+              - outbound_ip_address_ids     = [] -> null
+              - outbound_ip_prefix_ids      = [] -> null
+              - outbound_ports_allocated    = 0 -> null
+            }
+        }
+
+      - node_provisioning_profile {
+          - mode               = "Manual" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - windows_profile {
+          - admin_username = "azureuser" -> null
+            # (2 unchanged attributes hidden)
+        }
+    }
+
+  # azurerm_role_assignment.cluster_admin will be destroyed
+  - resource "azurerm_role_assignment" "cluster_admin" {
+      - id                                     = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework/providers/Microsoft.Authorization/roleAssignments/1ffa12b0-d51c-5b98-ff02-ad39decc3844" -> null
+      - name                                   = "1ffa12b0-d51c-5b98-ff02-ad39decc3844" -> null
+      - principal_id                           = "5e570f4e-6138-4795-b21e-7197872cc335" -> null
+      - principal_type                         = "User" -> null
+      - role_definition_id                     = "/subscriptions/<subscription-id>/providers/Microsoft.Authorization/roleDefinitions/b1ff04bb-8a4e-4dc4-8eb5-8693973ce19b" -> null
+      - role_definition_name                   = "Azure Kubernetes Service RBAC Cluster Admin" -> null
+      - scope                                  = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # azurerm_role_assignment.github_control will be destroyed
+  - resource "azurerm_role_assignment" "github_control" {
+      - id                                     = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework/providers/Microsoft.Authorization/roleAssignments/d0c28a66-11aa-c813-cfed-8697d5bd82f6" -> null
+      - name                                   = "d0c28a66-11aa-c813-cfed-8697d5bd82f6" -> null
+      - principal_id                           = "66fdaec7-f439-41d4-820c-9556be938657" -> null
+      - principal_type                         = "ServicePrincipal" -> null
+      - role_definition_id                     = "/subscriptions/<subscription-id>/providers/Microsoft.Authorization/roleDefinitions/ed7f3fbd-7b88-4dd4-9017-9adb7ce333f8" -> null
+      - role_definition_name                   = "Azure Kubernetes Service Contributor Role" -> null
+      - scope                                  = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # azurerm_role_assignment.github_kubernetes will be destroyed
+  - resource "azurerm_role_assignment" "github_kubernetes" {
+      - id                                     = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework/providers/Microsoft.Authorization/roleAssignments/845b6f13-dad5-5e71-7986-8f02951c6fbb" -> null
+      - name                                   = "845b6f13-dad5-5e71-7986-8f02951c6fbb" -> null
+      - principal_id                           = "66fdaec7-f439-41d4-820c-9556be938657" -> null
+      - principal_type                         = "ServicePrincipal" -> null
+      - role_definition_id                     = "/subscriptions/<subscription-id>/providers/Microsoft.Authorization/roleDefinitions/b1ff04bb-8a4e-4dc4-8eb5-8693973ce19b" -> null
+      - role_definition_name                   = "Azure Kubernetes Service RBAC Cluster Admin" -> null
+      - scope                                  = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # azurerm_user_assigned_identity.github will be destroyed
+  - resource "azurerm_user_assigned_identity" "github" {
+      - client_id           = "dfc00fcd-e752-49a7-a34d-cba0f51ff720" -> null
+      - id                  = "/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-homework-github" -> null
+      - location            = "centralindia" -> null
+      - name                = "id-homework-github" -> null
+      - principal_id        = "66fdaec7-f439-41d4-820c-9556be938657" -> null
+      - resource_group_name = "rg-devops-homework" -> null
+      - tags                = {} -> null
+      - tenant_id           = "a78a0513-f17b-4535-a778-11e7fb0b78cf" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+Plan: 0 to add, 0 to change, 6 to destroy.
+
+Changes to Outputs:
+  - cluster_name     = "aks-devops-homework" -> null
+  - github_client_id = "dfc00fcd-e752-49a7-a34d-cba0f51ff720" -> null
+  - resource_group   = "rg-devops-homework" -> null
+  - tenant_id        = "a78a0513-f17b-4535-a778-11e7fb0b78cf" -> null
+azurerm_role_assignment.github_kubernetes: Destroying... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework/providers/Microsoft.Authorization/roleAssignments/845b6f13-dad5-5e71-7986-8f02951c6fbb]
+azurerm_role_assignment.cluster_admin: Destroying... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework/providers/Microsoft.Authorization/roleAssignments/1ffa12b0-d51c-5b98-ff02-ad39decc3844]
+azurerm_federated_identity_credential.github_main: Destroying... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-homework-github/federatedIdentityCredentials/github-main]
+azurerm_role_assignment.github_control: Destroying... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework/providers/Microsoft.Authorization/roleAssignments/d0c28a66-11aa-c813-cfed-8697d5bd82f6]
+azurerm_federated_identity_credential.github_main: Destruction complete after 2s
+azurerm_role_assignment.github_kubernetes: Destruction complete after 3s
+azurerm_role_assignment.github_control: Destruction complete after 3s
+azurerm_user_assigned_identity.github: Destroying... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-homework-github]
+azurerm_role_assignment.cluster_admin: Destruction complete after 6s
+azurerm_kubernetes_cluster.lab: Destroying... [id=/subscriptions/<subscription-id>/resourceGroups/rg-devops-homework/providers/Microsoft.ContainerService/managedClusters/aks-devops-homework]
+azurerm_user_assigned_identity.github: Destruction complete after 6s
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 00m10s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 00m20s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 00m30s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 00m40s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 00m50s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 01m00s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 01m10s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 01m20s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 01m30s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 01m40s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 01m50s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 02m00s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 02m10s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 02m20s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 02m30s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 02m40s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 02m50s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 03m00s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 03m10s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 03m20s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 03m30s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 03m40s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 03m50s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 04m00s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 04m10s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 04m20s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 04m30s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 04m40s elapsed]
+azurerm_kubernetes_cluster.lab: Still destroying... [id=/subscriptions/<subscription-id>...ce/managedClusters/aks-devops-homework, 04m50s elapsed]
+azurerm_kubernetes_cluster.lab: Destruction complete after 4m58s
+
+Destroy complete! Resources: 6 destroyed.
+[exit 0]
+
+$ terraform -chdir=final-devops-project/terraform-azure state list
+[exit 0]
+
+$ az group delete --name rg-devops-homework --yes
+[exit 0]
+
+$ az resource list --query [].{name:name,type:type,resourceGroup:resourceGroup} -o json
+[
+  {
+    "name": "NetworkWatcher_centralindia",
+    "resourceGroup": "NetworkWatcherRG",
+    "type": "Microsoft.Network/networkWatchers"
+  }
+]
+[exit 0]
+
+$ az group list --query [].name -o json
+[
+  "NetworkWatcherRG"
+]
+[exit 0]
+
+$ gh variable delete AZURE_CLIENT_ID
+[exit 0]
+
+$ gh variable delete AZURE_TENANT_ID
+[exit 0]
+
+$ gh variable delete AZURE_SUBSCRIPTION_ID
+[exit 0]
+
+$ gh variable delete AZURE_API_CIDR
+[exit 0]

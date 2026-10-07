@@ -4,11 +4,11 @@
 
 This demo uses the TaskBoard app in [the final project](../final-devops-project/README.md), adapted from the instructor's application. The executable [workflow](../.github/workflows/devops.yml) is in the repository root so GitHub can discover it.
 
-CI checks each proposed change: install locked dependencies, run nine API tests, build the React frontend and run security checks. CD takes a passing build to an environment; here Helm deploys it into a temporary kind cluster and HTTP verifies the result. That cluster is deleted after the run. It demonstrates deployment automation, but it is not a persistent cloud deployment.
+CI checks each proposed change: install locked dependencies, run nine API tests, build the React frontend and run security checks. CD takes a passing build to an environment; here Helm deploys it into a temporary kind cluster and HTTP verifies the result. That cluster is deleted after the run. A separate workflow then deploys verified image tags to the real AKS lab cluster.
 
 A workflow is the YAML automation; a job runs on a runner; steps share that job's filesystem. `needs` makes the deployment job wait for the test/security job. Each job gets a fresh Ubuntu runner, so images are built in the job that scans, deploys and pushes them. Test reports, frontend build output and scan reports are stored as workflow artifacts.
 
-`GITHUB_TOKEN` is supplied by Actions and used with packages:write for GHCR. There is no laptop kubeconfig Secret because the runner creates its own temporary cluster. Real cloud CD would use a reachable cluster and a scoped workload identity. Images are tagged with the Git commit SHA so a release can be traced back to source.
+`GITHUB_TOKEN` is supplied by Actions and used with packages:write for GHCR. There is no laptop kubeconfig Secret because the runner creates its own temporary cluster. The Azure CD workflow uses the real AKS API and a scoped OIDC workload identity. Images are tagged with the Git commit SHA so a release can be traced back to source.
 
 ## Local evidence
 
@@ -17,3 +17,9 @@ API tests, dependency audit and migration output are linked from the final proje
 After publishing, inspect the [Actions page](https://github.com/ThereIsSomething/devops-work/actions) and record the run URL and its conclusion.
 
 Reference: [Workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions).
+
+## Hosted execution
+
+[The actual CI run passed](https://github.com/ThereIsSomething/devops-work/actions/runs/37629099243), including tests, frontend build, source and image security checks, the kind/Helm deployment test, HTTP checks and SHA-tagged GHCR publication. [Run details, exact image tags and full terminal logs](../final-devops-project/outputs/hosted-ci.md). The separate [Azure deployment workflow](../.github/workflows/azure-deploy.yml) uses GitHub OIDC to deploy a verified commit to AKS.
+
+[The final hosted Azure deployment passed](https://github.com/ThereIsSomething/devops-work/actions/runs/37631537431) using the corrected chart and immutable images from the successful final CI run. [Deployment details](../final-devops-project/outputs/azure-deployment.md).

@@ -91,7 +91,7 @@ $ curl --retry 30 --retry-all-errors --retry-connrefused --retry-delay 1 --fail 
 
   0      0   0      0   0      0      0      0                              0
 curl: (56) Recv failure: Connection reset by peer
-Warning: Problem (retrying all errors). Will retry in 1 second. 30 retries 
+Warning: Problem (retrying all errors). Will retry in 1 second. 30 retries
 Warning: left.
 
 [Excerpt: 961 intermediate lines omitted; complete transcript linked above.]
@@ -116,7 +116,7 @@ $ curl --retry 30 --retry-all-errors --retry-connrefused --retry-delay 1 --fail 
 
   0      0   0      0   0      0      0      0                              0
 curl: (56) Recv failure: Connection reset by peer
-Warning: Problem (retrying all errors). Will retry in 1 second. 30 retries 
+Warning: Problem (retrying all errors). Will retry in 1 second. 30 retries
 Warning: left.
 
   0      0   0      0   0      0      0      0                              0

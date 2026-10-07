@@ -37,16 +37,13 @@ gh auth status
 
 Check that the existing repository `ThereIsSomething/devops-work` is public and that Actions is enabled. The workflows belong in the repository-root `.github/workflows/`; nested workflow folders alone do not execute. `GITHUB_TOKEN` is supplied automatically to Actions. Workflow package permissions allow GHCR publishing without a separate personal token.
 
-A GitHub-hosted runner cannot reach this laptop's private Minikube API just because a kubeconfig is uploaded. The provided CI uses an ephemeral kind cluster for deployment verification. A persistent deployment requires a reachable cloud cluster or a deliberately configured runner, and must not expose an unrestricted Kubernetes API.
+A GitHub-hosted runner cannot reach this laptop's private Minikube API just because a kubeconfig is uploaded. The CI uses an ephemeral kind cluster for deployment verification. The separate Azure CD workflow then deploys verified image tags to AKS using a federated managed identity and an IP allowlist. The coursework cloud resources and federation are removed after evidence collection.
 
-## What is still needed from the student
+## Current setup and remaining student action
 
-- Confirm the correct name and enrollment number; the old material contains two identities.
-- Confirm whether Azure substitutions are accepted, or obtain an AWS lab account with temporary/SSO credentials.
-- Complete cloud and GitHub browser authentication locally.
-- Choose an affordable cloud region and resource budget before cloud provisioning.
-- After a real workflow run, retain its URL and actual output. A workflow YAML file is not evidence of a successful hosted execution.
-- Submit each session's README GitHub URL using the submission-links document after the changes are pushed.
+The submission identity is Nitish Kumar Bhambu, 24BCS10589. Azure CLI and GitHub CLI are authenticated locally, Git pushes work over SSH, and Docker Hub login is configured. The labs use a dedicated resource group in Central India, which is one of the student subscription's allowed regions. The subscription began with zero resources and was verified empty again after cleanup.
+
+The remaining academic decision is whether the instructor accepts Azure for the AWS-specific exercises. Otherwise an AWS lab account is needed to run those exact provider-specific tasks. The AWS source files are retained and validated, but no AWS apply is claimed. Submit each README URL listed in [SUBMISSION-LINKS.md](SUBMISSION-LINKS.md).
 
 ## References
 

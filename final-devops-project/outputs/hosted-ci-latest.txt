@@ -1,0 +1,1258 @@
+build-test-security	Set up job	﻿2026-10-07T13:31:02.6736119Z Current runner version: '2.337.0'
+build-test-security	Set up job	2026-10-07T13:31:02.6767779Z ##[group]Runner Image Provisioner
+build-test-security	Set up job	2026-10-07T13:31:02.6768788Z Hosted Compute Agent
+build-test-security	Set up job	2026-10-07T13:31:02.6769390Z Version: 20260901.588
+build-test-security	Set up job	2026-10-07T13:31:02.6770066Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+build-test-security	Set up job	2026-10-07T13:31:02.6770829Z Build Date: 2026-09-01T19:56:44Z
+build-test-security	Set up job	2026-10-07T13:31:02.6771585Z Worker ID: {8acd540d-56be-4774-bffa-3ad4f6fa98a3}
+build-test-security	Set up job	2026-10-07T13:31:02.6772419Z Azure Region: northcentralus
+build-test-security	Set up job	2026-10-07T13:31:02.6773041Z ##[endgroup]
+build-test-security	Set up job	2026-10-07T13:31:02.6774577Z ##[group]Operating System
+build-test-security	Set up job	2026-10-07T13:31:02.6775605Z Ubuntu
+build-test-security	Set up job	2026-10-07T13:31:02.6776167Z 24.04.5
+build-test-security	Set up job	2026-10-07T13:31:02.6776815Z LTS
+build-test-security	Set up job	2026-10-07T13:31:02.6777335Z ##[endgroup]
+build-test-security	Set up job	2026-10-07T13:31:02.6777876Z ##[group]Runner Image
+build-test-security	Set up job	2026-10-07T13:31:02.6778558Z Image: ubuntu-24.04
+build-test-security	Set up job	2026-10-07T13:31:02.6779176Z Version: 20260927.320.1
+build-test-security	Set up job	2026-10-07T13:31:02.6780695Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+build-test-security	Set up job	2026-10-07T13:31:02.6782408Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+build-test-security	Set up job	2026-10-07T13:31:02.6783500Z ##[endgroup]
+build-test-security	Set up job	2026-10-07T13:31:02.6784607Z ##[group]GITHUB_TOKEN Permissions
+build-test-security	Set up job	2026-10-07T13:31:02.6787692Z Contents: read
+build-test-security	Set up job	2026-10-07T13:31:02.6788323Z Metadata: read
+build-test-security	Set up job	2026-10-07T13:31:02.6788978Z ##[endgroup]
+build-test-security	Set up job	2026-10-07T13:31:02.6791150Z Secret source: Actions
+build-test-security	Set up job	2026-10-07T13:31:02.6792251Z Cache mode: write
+build-test-security	Set up job	2026-10-07T13:31:02.6793269Z Prepare workflow directory
+build-test-security	Set up job	2026-10-07T13:31:02.7213280Z Prepare all required actions
+build-test-security	Set up job	2026-10-07T13:31:02.7282776Z Getting action download info
+build-test-security	Set up job	2026-10-07T13:31:03.0243093Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+build-test-security	Set up job	2026-10-07T13:31:03.1405786Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+build-test-security	Set up job	2026-10-07T13:31:03.2227188Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+build-test-security	Set up job	2026-10-07T13:31:03.3099714Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+build-test-security	Set up job	2026-10-07T13:31:03.5313744Z Complete job name: build-test-security
+build-test-security	Run actions/checkout@v4	﻿2026-10-07T13:31:03.6098764Z ##[group]Run actions/checkout@v4
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6099646Z with:
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6100066Z   fetch-depth: 0
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6100548Z   repository: ThereIsSomething/devops-work
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6105125Z   token: ***
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6105571Z   ssh-strict: true
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6106007Z   ssh-user: git
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6106464Z   persist-credentials: true
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6106948Z   clean: true
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6107385Z   sparse-checkout-cone-mode: true
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6107907Z   fetch-tags: false
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6108343Z   show-progress: true
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6108784Z   lfs: false
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6109183Z   submodules: false
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6109635Z   set-safe-directory: true
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6110128Z   allow-unsafe-pr-checkout: false
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.6110936Z ##[endgroup]
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7181340Z Syncing repository: ThereIsSomething/devops-work
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7185492Z ##[group]Getting Git version info
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7187154Z Working directory is '/home/runner/work/devops-work/devops-work'
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7189648Z [command]/usr/bin/git version
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7295376Z git version 2.55.0
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7326594Z ##[endgroup]
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7345326Z Temporarily overriding HOME='/home/runner/work/_temp/dd1019d4-2a89-4723-9057-f498a651060d' before making global git config changes
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7348256Z Adding repository directory to the temporary git global config as a safe directory
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7351627Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-work/devops-work
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7426159Z Deleting the contents of '/home/runner/work/devops-work/devops-work'
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7431512Z ##[group]Initializing the repository
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7437775Z [command]/usr/bin/git init /home/runner/work/devops-work/devops-work
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7592352Z hint: Using 'master' as the name for the initial branch. This default branch name
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7605268Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7606441Z hint: to use in all of your new repositories, which will suppress this warning,
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7607257Z hint: call:
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7607696Z hint:
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7608254Z hint: 	git config --global init.defaultBranch <name>
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7608920Z hint:
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7609549Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7610572Z hint: 'development'. The just-created branch can be renamed via this command:
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7611375Z hint:
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7611819Z hint: 	git branch -m <name>
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7612330Z hint:
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7613003Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7614209Z Initialized empty Git repository in /home/runner/work/devops-work/devops-work/.git/
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7617580Z [command]/usr/bin/git remote add origin https://github.com/ThereIsSomething/devops-work
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7670734Z ##[endgroup]
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7672545Z ##[group]Disabling automatic garbage collection
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7675413Z [command]/usr/bin/git config --local gc.auto 0
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7716869Z ##[endgroup]
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7718409Z ##[group]Setting up auth
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7725538Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.7761738Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.8160785Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.8202533Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.8445333Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.8483659Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.8716962Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.8758195Z ##[endgroup]
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.8759245Z ##[group]Fetching the repository
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:03.8769336Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7871629Z From https://github.com/ThereIsSomething/devops-work
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7873050Z  * [new branch]      main       -> origin/main
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7889039Z [command]/usr/bin/git branch --list --remote origin/main
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7921508Z   origin/main
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7938112Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7966735Z 9d85fe3d871c2ba5ce87c77e33181978a1112fc0
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7978729Z ##[endgroup]
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7980168Z ##[group]Determining the checkout info
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7981590Z ##[endgroup]
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.7982698Z [command]/usr/bin/git sparse-checkout disable
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.8046244Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.8082019Z ##[group]Checking out the ref
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.8085661Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.8305643Z Switched to a new branch 'main'
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.8311328Z branch 'main' set up to track 'origin/main'.
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.8319760Z ##[endgroup]
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.8367876Z [command]/usr/bin/git log -1 --format=%H
+build-test-security	Run actions/checkout@v4	2026-10-07T13:31:04.8395909Z 9d85fe3d871c2ba5ce87c77e33181978a1112fc0
+build-test-security	Run actions/setup-python@v5	﻿2026-10-07T13:31:04.8842851Z ##[group]Run actions/setup-python@v5
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8844226Z with:
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8845503Z   python-version: 3.13
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8846614Z   cache: pip
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8848349Z   cache-dependency-path: final-devops-project/application/backend/requirements-dev.txt
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8850522Z   check-latest: false
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8861685Z   token: ***
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8862742Z   update-environment: true
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8863938Z   allow-prereleases: false
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8865229Z   freethreaded: false
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:04.8866305Z ##[endgroup]
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:05.0235513Z ##[group]Installed versions
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:05.0327782Z (node:2298) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:05.0332411Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:05.0335403Z Successfully set up CPython (3.13.15)
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:05.0337843Z ##[endgroup]
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:05.0677330Z [command]/opt/hostedtoolcache/Python/3.13.15/x64/bin/pip cache dir
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:05.3719232Z /home/runner/.cache/pip
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:05.5298444Z Cache hit for: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.15-pip-00433ce538e8ab2668d83a49506b1d55d64024756f8d15a9d19c1248cde8109c
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:05.5400977Z (node:2298) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:06.1996632Z Received 31612836 of 31612836 (100.0%), 55.4 MBs/sec
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:06.1999021Z Cache Size: ~30 MB (31612836 B)
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:06.2032327Z [command]/usr/bin/tar -xf /home/runner/work/_temp/8642c4f9-f81c-40ec-83fa-e1f360a8eecf/cache.tzst -P -C /home/runner/work/devops-work/devops-work --use-compress-program unzstd
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:06.2940253Z Cache restored successfully
+build-test-security	Run actions/setup-python@v5	2026-10-07T13:31:06.2960817Z Cache restored from key: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.15-pip-00433ce538e8ab2668d83a49506b1d55d64024756f8d15a9d19c1248cde8109c
+build-test-security	Run actions/setup-node@v4	﻿2026-10-07T13:31:06.3188776Z ##[group]Run actions/setup-node@v4
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3189096Z with:
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3189312Z   node-version: 24
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3189526Z   cache: npm
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3189909Z   cache-dependency-path: final-devops-project/application/frontend/package-lock.json
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3190369Z   always-auth: false
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3190605Z   check-latest: false
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3193869Z   token: ***
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3194143Z env:
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3194416Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3195197Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3195660Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3196068Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3196485Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3196887Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.3197261Z ##[endgroup]
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.4690896Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.4694446Z (node:2331) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.4695953Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.4697354Z ##[group]Environment details
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.9043772Z node: v24.21.0
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.9044206Z npm: 11.19.0
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.9044455Z yarn: 1.22.22
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.9045542Z ##[endgroup]
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:06.9072099Z [command]/opt/hostedtoolcache/node/24.21.0/x64/bin/npm config get cache
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:07.0200371Z /home/runner/.npm
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:07.1577844Z Cache hit for: node-cache-Linux-x64-npm-b7ed99e133574242e861ff04d7ea003b77ef8715b0fec647cc5f57bc19d15f8e
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:07.1691182Z (node:2331) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:07.7414378Z Received 26342156 of 26342156 (100.0%), 51.4 MBs/sec
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:07.7415720Z Cache Size: ~25 MB (26342156 B)
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:07.7447892Z [command]/usr/bin/tar -xf /home/runner/work/_temp/8b704d96-bca7-47f5-a2f3-618c23267e13/cache.tzst -P -C /home/runner/work/devops-work/devops-work --use-compress-program unzstd
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:07.7872100Z Cache restored successfully
+build-test-security	Run actions/setup-node@v4	2026-10-07T13:31:07.7888757Z Cache restored from key: node-cache-Linux-x64-npm-b7ed99e133574242e861ff04d7ea003b77ef8715b0fec647cc5f57bc19d15f8e
+build-test-security	Install, test and SAST	﻿2026-10-07T13:31:07.8090434Z ##[group]Run pip install -r requirements-dev.txt
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8090939Z ^[[36;1mpip install -r requirements-dev.txt^[[0m
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8091344Z ^[[36;1mpytest -v --junitxml=pytest.xml^[[0m
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8091698Z ^[[36;1mbandit -r app -ll -ii^[[0m
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8393370Z shell: /usr/bin/bash -e {0}
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8393810Z env:
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8394247Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8395193Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8395913Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8396560Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8397151Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8397676Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+build-test-security	Install, test and SAST	2026-10-07T13:31:07.8398170Z ##[endgroup]
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4507312Z Collecting alembic==1.20.0 (from -r requirements-dev.txt (line 7))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4514005Z   Using cached alembic-1.20.0-py3-none-any.whl.metadata (7.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4568070Z Collecting annotated-doc==0.0.5 (from -r requirements-dev.txt (line 9))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4579738Z   Using cached annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4623801Z Collecting annotated-types==0.8.0 (from -r requirements-dev.txt (line 11))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4635537Z   Using cached annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4740225Z Collecting anyio==4.15.1 (from -r requirements-dev.txt (line 13))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4752399Z   Using cached anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4832804Z Collecting bandit==1.9.4 (from -r requirements-dev.txt (line 18))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4845050Z   Using cached bandit-1.9.4-py3-none-any.whl.metadata (7.1 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4919220Z Collecting boolean-py==5.0 (from -r requirements-dev.txt (line 20))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.4931311Z   Using cached boolean_py-5.0-py3-none-any.whl.metadata (2.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.5000635Z Collecting cachecontrol==0.14.4 (from cachecontrol[filecache]==0.14.4->-r requirements-dev.txt (line 22))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.5012623Z   Using cached cachecontrol-0.14.4-py3-none-any.whl.metadata (3.1 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.5113915Z Collecting certifi==2026.7.22 (from -r requirements-dev.txt (line 26))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.5126422Z   Using cached certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6234174Z Collecting charset-normalizer==3.5.2 (from -r requirements-dev.txt (line 31))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6248892Z   Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6359583Z Collecting click==8.5.0 (from -r requirements-dev.txt (line 33))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6371118Z   Using cached click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6534112Z Collecting cyclonedx-python-lib==11.12.0 (from -r requirements-dev.txt (line 35))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6546501Z   Using cached cyclonedx_python_lib-11.12.0-py3-none-any.whl.metadata (6.9 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6598440Z Collecting defusedxml==0.7.1 (from -r requirements-dev.txt (line 37))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6610270Z   Using cached defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6906140Z Collecting fastapi==0.142.2 (from -r requirements-dev.txt (line 39))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.6919299Z   Using cached fastapi-0.142.2-py3-none-any.whl.metadata (27 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7087126Z Collecting filelock==4.0.12 (from -r requirements-dev.txt (line 41))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7098917Z   Using cached filelock-4.0.12-py3-none-any.whl.metadata (2.0 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7141169Z Collecting h11==0.16.0 (from -r requirements-dev.txt (line 43))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7152725Z   Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7232631Z Collecting httpcore==1.0.9 (from -r requirements-dev.txt (line 47))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7244030Z   Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7475137Z Collecting httptools==0.8.0 (from -r requirements-dev.txt (line 49))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7487313Z   Using cached httptools-0.8.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7574468Z Collecting httpx==0.28.1 (from -r requirements-dev.txt (line 51))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7585999Z   Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7656996Z Collecting idna==3.20 (from -r requirements-dev.txt (line 53))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7668090Z   Using cached idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7712899Z Collecting iniconfig==2.3.1 (from -r requirements-dev.txt (line 58))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7724609Z   Using cached iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7792316Z Collecting license-expression==30.4.4 (from -r requirements-dev.txt (line 60))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7803852Z   Using cached license_expression-30.4.4-py3-none-any.whl.metadata (11 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7887363Z Collecting mako==1.4.3 (from -r requirements-dev.txt (line 62))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7898904Z   Using cached mako-1.4.3-py3-none-any.whl.metadata (2.9 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7970730Z Collecting markdown-it-py==4.2.0 (from -r requirements-dev.txt (line 64))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.7982192Z   Using cached markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.8465094Z Collecting markupsafe==3.0.4 (from -r requirements-dev.txt (line 66))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.8478160Z   Using cached markupsafe-3.0.4-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.8513552Z Collecting mdurl==0.1.2 (from -r requirements-dev.txt (line 68))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.8525197Z   Using cached mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9199478Z Collecting msgpack==1.2.3 (from -r requirements-dev.txt (line 70))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9213954Z   Using cached msgpack-1.2.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9319982Z Collecting opentelemetry-api==1.45.1 (from -r requirements-dev.txt (line 72))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9332018Z   Using cached opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9410036Z Collecting packageurl-python==0.17.6 (from -r requirements-dev.txt (line 74))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9421111Z   Using cached packageurl_python-0.17.6-py3-none-any.whl.metadata (5.1 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9508518Z Collecting packaging==26.3 (from -r requirements-dev.txt (line 76))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9520824Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9585638Z Collecting pip-api==0.0.35 (from -r requirements-dev.txt (line 81))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9599208Z   Using cached pip_api-0.0.35-py3-none-any.whl.metadata (17 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9710259Z Collecting pip-audit==2.10.1 (from -r requirements-dev.txt (line 83))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9723341Z   Using cached pip_audit-2.10.1-py3-none-any.whl.metadata (28 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9792253Z Collecting pip-requirements-parser==32.0.1 (from -r requirements-dev.txt (line 85))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9803810Z   Using cached pip_requirements_parser-32.0.1-py3-none-any.whl.metadata (9.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9920836Z Collecting platformdirs==4.12.3 (from -r requirements-dev.txt (line 87))
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9932330Z   Using cached platformdirs-4.12.3-py3-none-any.whl.metadata (5.5 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:08.9990796Z Collecting pluggy==1.6.0 (from -r requirements-dev.txt (line 89))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.0002978Z   Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.0077220Z Collecting prometheus-client==0.26.0 (from -r requirements-dev.txt (line 91))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.0089162Z   Using cached prometheus_client-0.26.0-py3-none-any.whl.metadata (2.1 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.0170312Z Collecting prometheus-fastapi-instrumentator==8.1.0 (from -r requirements-dev.txt (line 93))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.0182244Z   Using cached prometheus_fastapi_instrumentator-8.1.0-py3-none-any.whl.metadata (13 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.0278526Z Collecting psycopg==3.3.6 (from psycopg[binary]==3.3.6->-r requirements-dev.txt (line 95))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.0290251Z   Using cached psycopg-3.3.6-py3-none-any.whl.metadata (4.4 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.1795759Z Collecting psycopg-binary==3.3.6 (from -r requirements-dev.txt (line 97))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.1810099Z   Using cached psycopg_binary-3.3.6-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.7 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.1893131Z Collecting py-serializable==2.1.0 (from -r requirements-dev.txt (line 99))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.1903923Z   Using cached py_serializable-2.1.0-py3-none-any.whl.metadata (4.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.2767544Z Collecting pydantic==2.13.5 (from -r requirements-dev.txt (line 101))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.2781219Z   Using cached pydantic-2.13.5-py3-none-any.whl.metadata (110 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9235368Z Collecting pydantic-core==2.46.5 (from -r requirements-dev.txt (line 105))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9249149Z   Using cached pydantic_core-2.46.5-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9323874Z Collecting pydantic-settings==2.15.0 (from -r requirements-dev.txt (line 107))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9334548Z   Using cached pydantic_settings-2.15.0-py3-none-any.whl.metadata (3.9 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9436412Z Collecting pygments==2.21.0 (from -r requirements-dev.txt (line 109))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9447546Z   Using cached pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9588854Z Collecting pyparsing==3.3.3 (from -r requirements-dev.txt (line 113))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9600960Z   Using cached pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9779988Z Collecting pytest==9.1.1 (from -r requirements-dev.txt (line 115))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9791290Z   Using cached pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9877290Z Collecting python-dotenv==1.2.4 (from -r requirements-dev.txt (line 117))
+build-test-security	Install, test and SAST	2026-10-07T13:31:09.9888765Z   Using cached python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.0173050Z Collecting pyyaml==6.0.3 (from -r requirements-dev.txt (line 121))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.0184327Z   Using cached pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.0305214Z Collecting requests==2.34.2 (from -r requirements-dev.txt (line 125))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.0316676Z   Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.0514924Z Collecting rich==15.0.0 (from -r requirements-dev.txt (line 129))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.0526513Z   Using cached rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.0596563Z Collecting sortedcontainers==2.4.0 (from -r requirements-dev.txt (line 133))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.0608892Z   Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3186201Z Collecting sqlalchemy==2.1.3 (from -r requirements-dev.txt (line 135))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3200770Z   Using cached sqlalchemy-2.1.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.7 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3391091Z Collecting starlette==1.7.0 (from -r requirements-dev.txt (line 139))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3403452Z   Using cached starlette-1.7.0-py3-none-any.whl.metadata (6.6 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3509349Z Collecting stevedore==5.9.1 (from -r requirements-dev.txt (line 143))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3521093Z   Using cached stevedore-5.9.1-py3-none-any.whl.metadata (2.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3682065Z Collecting tomli==2.5.0 (from -r requirements-dev.txt (line 145))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3694036Z   Using cached tomli-2.5.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3736196Z Collecting tomli-w==1.2.0 (from -r requirements-dev.txt (line 147))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3746981Z   Using cached tomli_w-1.2.0-py3-none-any.whl.metadata (5.7 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3827488Z Collecting typing-extensions==4.16.0 (from -r requirements-dev.txt (line 149))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3838811Z   Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3879519Z Collecting typing-inspection==0.4.4 (from -r requirements-dev.txt (line 159))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.3890856Z   Using cached typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.4002225Z Collecting urllib3==2.8.0 (from -r requirements-dev.txt (line 164))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.4013648Z   Using cached urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.4161167Z Collecting uvicorn==0.54.0 (from uvicorn[standard]==0.54.0->-r requirements-dev.txt (line 166))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.4172427Z   Using cached uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.4501960Z Collecting uvloop==0.23.0 (from -r requirements-dev.txt (line 168))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.4514410Z   Using cached uvloop-0.23.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.5210987Z Collecting watchfiles==1.3.0 (from -r requirements-dev.txt (line 170))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.5225121Z   Using cached watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.6270817Z Collecting websockets==17.2 (from -r requirements-dev.txt (line 172))
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.6285930Z   Using cached websockets-17.2-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.6675591Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.13.15/x64/lib/python3.13/site-packages (from pip-api==0.0.35->-r requirements-dev.txt (line 81)) (26.2.1)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7199831Z Using cached alembic-1.20.0-py3-none-any.whl (268 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7212530Z Using cached annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7224345Z Using cached annotated_types-0.8.0-py3-none-any.whl (13 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7236286Z Using cached anyio-4.15.1-py3-none-any.whl (132 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7248202Z Using cached bandit-1.9.4-py3-none-any.whl (134 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7260062Z Using cached boolean_py-5.0-py3-none-any.whl (26 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7271830Z Using cached cachecontrol-0.14.4-py3-none-any.whl (22 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7284307Z Using cached msgpack-1.2.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (466 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7297465Z Using cached certifi-2026.7.22-py3-none-any.whl (136 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7310154Z Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (254 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7322168Z Using cached click-8.5.0-py3-none-any.whl (125 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7334555Z Using cached cyclonedx_python_lib-11.12.0-py3-none-any.whl (529 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7347857Z Using cached license_expression-30.4.4-py3-none-any.whl (120 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7359732Z Using cached packageurl_python-0.17.6-py3-none-any.whl (36 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7371451Z Using cached py_serializable-2.1.0-py3-none-any.whl (23 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7382984Z Using cached defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7394664Z Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7406302Z Using cached fastapi-0.142.2-py3-none-any.whl (144 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7418198Z Using cached filelock-4.0.12-py3-none-any.whl (111 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7430302Z Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7441960Z Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7455052Z Using cached httptools-0.8.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (486 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7468014Z Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7479768Z Using cached idna-3.20-py3-none-any.whl (69 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7491749Z Using cached iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7503191Z Using cached mako-1.4.3-py3-none-any.whl (80 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7514989Z Using cached markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7526955Z Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7539166Z Using cached markupsafe-3.0.4-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (23 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7550552Z Using cached opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7579186Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7580985Z Using cached pip_api-0.0.35-py3-none-any.whl (123 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7593386Z Using cached pip_audit-2.10.1-py3-none-any.whl (62 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7605666Z Using cached pip_requirements_parser-32.0.1-py3-none-any.whl (35 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7616895Z Using cached platformdirs-4.12.3-py3-none-any.whl (32 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7628133Z Using cached pluggy-1.6.0-py3-none-any.whl (20 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7639619Z Using cached prometheus_client-0.26.0-py3-none-any.whl (64 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7651308Z Using cached prometheus_fastapi_instrumentator-8.1.0-py3-none-any.whl (19 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7662306Z Using cached starlette-1.7.0-py3-none-any.whl (78 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7673512Z Using cached psycopg-3.3.6-py3-none-any.whl (215 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7685652Z Using cached psycopg_binary-3.3.6-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.2 MB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7715242Z Using cached pydantic-2.13.5-py3-none-any.whl (472 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7728598Z Using cached pydantic_core-2.46.5-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7746803Z Using cached pydantic_settings-2.15.0-py3-none-any.whl (69 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7758194Z Using cached pygments-2.21.0-py3-none-any.whl (1.3 MB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7773870Z Using cached pyparsing-3.3.3-py3-none-any.whl (126 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7785386Z Using cached pytest-9.1.1-py3-none-any.whl (386 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7798100Z Using cached python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7810094Z Using cached pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (801 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7823484Z Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7834811Z Using cached urllib3-2.8.0-py3-none-any.whl (135 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7846557Z Using cached rich-15.0.0-py3-none-any.whl (310 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7859978Z Using cached sqlalchemy-2.1.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.6 MB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7887662Z Using cached stevedore-5.9.1-py3-none-any.whl (54 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7899907Z Using cached tomli-2.5.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (283 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7911802Z Using cached tomli_w-1.2.0-py3-none-any.whl (6.7 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7923290Z Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7934726Z Using cached typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7946227Z Using cached uvicorn-0.54.0-py3-none-any.whl (87 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7958308Z Using cached uvloop-0.23.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.5 MB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7986520Z Using cached watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:10.7999740Z Using cached websockets-17.2-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (225 kB)
+build-test-security	Install, test and SAST	2026-10-07T13:31:11.0901175Z Installing collected packages: sortedcontainers, boolean-py, websockets, uvloop, urllib3, typing-extensions, tomli-w, tomli, stevedore, pyyaml, python-dotenv, pyparsing, pygments, psycopg-binary, psycopg, prometheus-client, pluggy, platformdirs, pip-api, packaging, packageurl-python, msgpack, mdurl, markupsafe, license-expression, iniconfig, idna, httptools, h11, filelock, defusedxml, click, charset-normalizer, certifi, annotated-types, annotated-doc, uvicorn, typing-inspection, sqlalchemy, requests, pytest, pydantic-core, py-serializable, pip-requirements-parser, opentelemetry-api, markdown-it-py, mako, httpcore, anyio, watchfiles, starlette, rich, pydantic, httpx, cyclonedx-python-lib, cachecontrol, alembic, pydantic-settings, prometheus-fastapi-instrumentator, fastapi, bandit, pip-audit
+build-test-security	Install, test and SAST	2026-10-07T13:31:16.7289181Z 
+build-test-security	Install, test and SAST	2026-10-07T13:31:16.7357225Z Successfully installed alembic-1.20.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 bandit-1.9.4 boolean-py-5.0 cachecontrol-0.14.4 certifi-2026.7.22 charset-normalizer-3.5.2 click-8.5.0 cyclonedx-python-lib-11.12.0 defusedxml-0.7.1 fastapi-0.142.2 filelock-4.0.12 h11-0.16.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 idna-3.20 iniconfig-2.3.1 license-expression-30.4.4 mako-1.4.3 markdown-it-py-4.2.0 markupsafe-3.0.4 mdurl-0.1.2 msgpack-1.2.3 opentelemetry-api-1.45.1 packageurl-python-0.17.6 packaging-26.3 pip-api-0.0.35 pip-audit-2.10.1 pip-requirements-parser-32.0.1 platformdirs-4.12.3 pluggy-1.6.0 prometheus-client-0.26.0 prometheus-fastapi-instrumentator-8.1.0 psycopg-3.3.6 psycopg-binary-3.3.6 py-serializable-2.1.0 pydantic-2.13.5 pydantic-core-2.46.5 pydantic-settings-2.15.0 pygments-2.21.0 pyparsing-3.3.3 pytest-9.1.1 python-dotenv-1.2.4 pyyaml-6.0.3 requests-2.34.2 rich-15.0.0 sortedcontainers-2.4.0 sqlalchemy-2.1.3 starlette-1.7.0 stevedore-5.9.1 tomli-2.5.0 tomli-w-1.2.0 typing-extensions-4.16.0 typing-inspection-0.4.4 urllib3-2.8.0 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.2
+build-test-security	Install, test and SAST	2026-10-07T13:31:17.4818197Z ============================= test session starts ==============================
+build-test-security	Install, test and SAST	2026-10-07T13:31:17.4819879Z platform linux -- Python 3.13.15, pytest-9.1.1, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.13.15/x64/bin/python
+build-test-security	Install, test and SAST	2026-10-07T13:31:17.4820886Z cachedir: .pytest_cache
+build-test-security	Install, test and SAST	2026-10-07T13:31:17.4821867Z rootdir: /home/runner/work/devops-work/devops-work/final-devops-project/application/backend
+build-test-security	Install, test and SAST	2026-10-07T13:31:17.4822889Z configfile: pytest.ini
+build-test-security	Install, test and SAST	2026-10-07T13:31:17.4823531Z plugins: platformdirs-4.12.3, anyio-4.15.1
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.2619539Z collecting ... collected 9 items
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.2620021Z 
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.2770797Z tests/test_api.py::test_health PASSED                                    [ 11%]
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.2855608Z tests/test_api.py::test_ready_queries_database PASSED                    [ 22%]
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.2926098Z tests/test_api.py::test_empty_tasks PASSED                               [ 33%]
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.3047611Z tests/test_api.py::test_create_and_get PASSED                            [ 44%]
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.3189365Z tests/test_api.py::test_update_and_statistics PASSED                     [ 55%]
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.3351026Z tests/test_api.py::test_delete PASSED                                    [ 66%]
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.3418255Z tests/test_api.py::test_missing_update PASSED                            [ 77%]
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.3485786Z tests/test_api.py::test_invalid_title_and_status PASSED                  [ 88%]
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4185701Z tests/test_api.py::test_metrics PASSED                                   [100%]
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4187261Z 
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4188391Z =============================== warnings summary ===============================
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4191398Z ../../../../../../../../opt/hostedtoolcache/Python/3.13.15/x64/lib/python3.13/site-packages/fastapi/testclient.py:1
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4194091Z   /opt/hostedtoolcache/Python/3.13.15/x64/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4196478Z     from starlette.testclient import TestClient as TestClient  # noqa
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4197128Z 
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4197761Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4199567Z - generated xml file: /home/runner/work/devops-work/devops-work/final-devops-project/application/backend/pytest.xml -
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.4201517Z ========================= 9 passed, 1 warning in 0.89s =========================
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.6940174Z [main]	INFO	profile include tests: None
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.6941155Z [main]	INFO	profile exclude tests: None
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.6941892Z [main]	INFO	cli include tests: None
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.6942530Z [main]	INFO	cli exclude tests: None
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.6943436Z [main]	INFO	running on Python 3.13.15
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7141553Z Run started:2026-10-07 13:31:18.713878+00:00
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7142245Z 
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7142587Z Test results:
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7143305Z 	No issues identified.
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7143779Z 
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7144059Z Code scanned:
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7145062Z 	Total lines of code: 118
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7145668Z 	Total lines skipped (#nosec): 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7146588Z 	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7147237Z 
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7147385Z Run metrics:
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7147755Z 	Total issues (by severity):
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7148168Z 		Undefined: 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7148498Z 		Low: 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7148817Z 		Medium: 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7149129Z 		High: 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7149508Z 	Total issues (by confidence):
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7149919Z 		Undefined: 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7150244Z 		Low: 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7150555Z 		Medium: 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7150863Z 		High: 0
+build-test-security	Install, test and SAST	2026-10-07T13:31:18.7151220Z Files skipped (0):
+build-test-security	SCA - Python dependencies	﻿2026-10-07T13:31:18.7406871Z ##[group]Run pip-audit -r requirements.txt
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7407331Z ^[[36;1mpip-audit -r requirements.txt^[[0m
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7475223Z shell: /usr/bin/bash -e {0}
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7475580Z env:
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7475961Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7476617Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7477262Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7477835Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7478426Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7479004Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:18.7479491Z ##[endgroup]
+build-test-security	SCA - Python dependencies	2026-10-07T13:31:25.6116957Z No known vulnerabilities found
+build-test-security	Frontend build and dependency audit	﻿2026-10-07T13:31:25.6640564Z ##[group]Run npm ci
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6640907Z ^[[36;1mnpm ci^[[0m
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6641164Z ^[[36;1mnpm run build^[[0m
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6641467Z ^[[36;1mnpm audit --audit-level=high^[[0m
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6707416Z shell: /usr/bin/bash -e {0}
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6707749Z env:
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6708100Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6708693Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6709285Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6709805Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6710512Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6711039Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:25.6711471Z ##[endgroup]
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:26.8713107Z 
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:26.8714023Z added 21 packages, and audited 22 packages in 1s
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:26.8714929Z 
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:26.8715431Z 9 packages are looking for funding
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:26.8716187Z   run `npm fund` for details
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:26.8726128Z 
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:26.8726552Z found 0 vulnerabilities
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.2964981Z 
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.2966032Z > taskboard-frontend@1.0.0 build
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.2966575Z > vite build
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.2966780Z 
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.8435894Z ^[[36mvite v8.3.3 ^[[32mbuilding client environment for production...^[[36m^[[39m
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.8537693Z transforming...
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.9106413Z ✓ 15 modules transformed.
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.9312410Z rendering chunks...
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.9645052Z computing gzip size...
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.9685350Z dist/index.html                   0.34 kB │ gzip:  0.25 kB
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.9686661Z dist/assets/index-DkMuKOF6.css    6.40 kB │ gzip:  2.04 kB
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.9687846Z dist/assets/index-BhcRVjeF.js   226.96 kB │ gzip: 70.81 kB
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.9688442Z 
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:27.9689983Z ^[[32m✓ built in 124ms^[[39m
+build-test-security	Frontend build and dependency audit	2026-10-07T13:31:28.3920776Z found 0 vulnerabilities
+build-test-security	Secret scan - repository history	﻿2026-10-07T13:31:28.4048361Z ##[group]Run docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.30.1 git /repo --redact --verbose
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4049172Z ^[[36;1mdocker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.30.1 git /repo --redact --verbose^[[0m
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4117733Z shell: /usr/bin/bash -e {0}
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4118026Z env:
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4118329Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4118845Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4119383Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4119920Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4120442Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4120925Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.4121342Z ##[endgroup]
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.5288380Z Unable to find image 'zricethezav/gitleaks:v8.30.1' locally
+build-test-security	Secret scan - repository history	2026-10-07T13:31:28.9466997Z v8.30.1: Pulling from zricethezav/gitleaks
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.0750094Z d49a2dee86fb: Pulling fs layer
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.0751770Z d92b655ae8e2: Pulling fs layer
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.0753085Z 61fdfd7c0175: Pulling fs layer
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.0754014Z a43ab0c74cc4: Pulling fs layer
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.0754605Z a43ab0c74cc4: Waiting
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.1871477Z d49a2dee86fb: Verifying Checksum
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.1875874Z d49a2dee86fb: Download complete
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.1975409Z d92b655ae8e2: Verifying Checksum
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.1976282Z d92b655ae8e2: Download complete
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.2142342Z 61fdfd7c0175: Verifying Checksum
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.2142962Z 61fdfd7c0175: Download complete
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.2585460Z a43ab0c74cc4: Verifying Checksum
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.2586231Z a43ab0c74cc4: Download complete
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.3099315Z d49a2dee86fb: Pull complete
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.5521143Z d92b655ae8e2: Pull complete
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.6786150Z 61fdfd7c0175: Pull complete
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.6873539Z a43ab0c74cc4: Pull complete
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.6910750Z Digest: sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.6921934Z Status: Downloaded newer image for zricethezav/gitleaks:v8.30.1
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.8774312Z 
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.8775297Z     ○
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.8775701Z     │╲
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.8775994Z     │ ○
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.8776268Z     ○ ░
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.8776772Z     ░    gitleaks
+build-test-security	Secret scan - repository history	2026-10-07T13:31:29.8777051Z 
+build-test-security	Secret scan - repository history	2026-10-07T13:31:30.9958528Z ^[[90m1:31PM^[[0m ^[[32mINF^[[0m ^[[1m5 commits scanned.^[[0m
+build-test-security	Secret scan - repository history	2026-10-07T13:31:30.9960099Z ^[[90m1:31PM^[[0m ^[[32mINF^[[0m ^[[1mscanned ~1884132 bytes (1.88 MB) in 1.12s^[[0m
+build-test-security	Secret scan - repository history	2026-10-07T13:31:30.9961073Z ^[[90m1:31PM^[[0m ^[[32mINF^[[0m ^[[1mno leaks found^[[0m
+build-test-security	Run actions/upload-artifact@v4	﻿2026-10-07T13:31:31.0824308Z ##[group]Run actions/upload-artifact@v4
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0824633Z with:
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0825436Z   name: test-results-and-frontend
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0825994Z   path: final-devops-project/application/backend/pytest.xml
+build-test-security	Run actions/upload-artifact@v4	final-devops-project/application/frontend/dist
+build-test-security	Run actions/upload-artifact@v4	
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0826565Z   if-no-files-found: warn
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0826821Z   compression-level: 6
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0827048Z   overwrite: false
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0827273Z   include-hidden-files: false
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0827517Z env:
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0827780Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0828236Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0828674Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0829096Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0829499Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0829902Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.0830280Z ##[endgroup]
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.2528370Z (node:2729) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.2529476Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.2605477Z Multiple search paths detected. Calculating the least common ancestor of all paths
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.2636241Z The least common ancestor is /home/runner/work/devops-work/devops-work/final-devops-project/application. This will be the root directory of the artifact
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.2637745Z With the provided path, there will be 4 files uploaded
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.2638729Z Artifact name is valid!
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.2639240Z Root directory input is valid!
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.5321405Z Beginning upload of artifact content to blob storage
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.5654897Z (node:2729) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.6853802Z Uploaded bytes 73230
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.7153354Z Finished uploading artifact content to blob storage!
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.7155633Z SHA256 digest of uploaded artifact zip is 4292a2424fd331b014698cf2a4a79380bdd6f91277e9e63cc748f6a03ae56c83
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.7157296Z Finalizing artifact upload
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.9586347Z Artifact test-results-and-frontend.zip successfully finalized. Artifact ID 11484634585
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.9588237Z Artifact test-results-and-frontend has been successfully uploaded! Final size is 73230 bytes. Artifact ID is 11484634585
+build-test-security	Run actions/upload-artifact@v4	2026-10-07T13:31:31.9595436Z Artifact download URL: https://github.com/ThereIsSomething/devops-work/actions/runs/37629099243/artifacts/11484634585
+build-test-security	Post Run actions/setup-node@v4	﻿2026-10-07T13:31:31.9795491Z Post job cleanup.
+build-test-security	Post Run actions/setup-node@v4	2026-10-07T13:31:32.1070018Z (node:2742) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build-test-security	Post Run actions/setup-node@v4	2026-10-07T13:31:32.1071559Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build-test-security	Post Run actions/setup-node@v4	2026-10-07T13:31:32.1074939Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-b7ed99e133574242e861ff04d7ea003b77ef8715b0fec647cc5f57bc19d15f8e, not saving cache.
+build-test-security	Post Run actions/setup-python@v5	﻿2026-10-07T13:31:32.1202524Z Post job cleanup.
+build-test-security	Post Run actions/setup-python@v5	2026-10-07T13:31:32.2431484Z Cache hit occurred on the primary key setup-python-Linux-x64-24.04-Ubuntu-python-3.13.15-pip-00433ce538e8ab2668d83a49506b1d55d64024756f8d15a9d19c1248cde8109c, not saving cache.
+build-test-security	Post Run actions/setup-python@v5	2026-10-07T13:31:32.2434158Z (node:2750) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build-test-security	Post Run actions/setup-python@v5	2026-10-07T13:31:32.2435770Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build-test-security	Post Run actions/checkout@v4	﻿2026-10-07T13:31:32.2587579Z Post job cleanup.
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.3532051Z [command]/usr/bin/git version
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.3586519Z git version 2.55.0
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.3641903Z Temporarily overriding HOME='/home/runner/work/_temp/68adb58f-3ba0-4449-a29e-eb8f3edc35c7' before making global git config changes
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.3643720Z Adding repository directory to the temporary git global config as a safe directory
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.3650078Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-work/devops-work
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.3700712Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.3742859Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.4011670Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.4047053Z http.https://github.com/.extraheader
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.4070007Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.4112145Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.4373204Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build-test-security	Post Run actions/checkout@v4	2026-10-07T13:31:32.4411024Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build-test-security	Complete job	﻿2026-10-07T13:31:32.4818062Z Cleaning up orphan processes
+build-test-security	Complete job	2026-10-07T13:31:32.5292566Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+build-scan-deploy	Set up job	﻿2026-10-07T13:31:38.3230876Z Current runner version: '2.337.0'
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3248120Z ##[group]Runner Image Provisioner
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3248796Z Hosted Compute Agent
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3249190Z Version: 20260901.588
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3249669Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3250180Z Build Date: 2026-09-01T19:56:44Z
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3250644Z Worker ID: {824dd936-2afd-4e26-9467-70185fe1e0e6}
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3251141Z Azure Region: centralus
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3251542Z ##[endgroup]
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3252514Z ##[group]Operating System
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3252954Z Ubuntu
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3253315Z 24.04.5
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3253678Z LTS
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3254089Z ##[endgroup]
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3254541Z ##[group]Runner Image
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3254943Z Image: ubuntu-24.04
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3255955Z Version: 20260927.320.1
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3256742Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3257952Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3258593Z ##[endgroup]
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3259493Z ##[group]GITHUB_TOKEN Permissions
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3261234Z Contents: read
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3261627Z Metadata: read
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3262059Z Packages: write
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3262431Z ##[endgroup]
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3263934Z Secret source: Actions
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3264536Z Cache mode: write
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3265322Z Prepare workflow directory
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3528799Z Prepare all required actions
+build-scan-deploy	Set up job	2026-10-07T13:31:38.3563694Z Getting action download info
+build-scan-deploy	Set up job	2026-10-07T13:31:38.6149621Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+build-scan-deploy	Set up job	2026-10-07T13:31:38.7044465Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+build-scan-deploy	Set up job	2026-10-07T13:31:38.8936058Z Complete job name: build-scan-deploy
+build-scan-deploy	Run actions/checkout@v4	﻿2026-10-07T13:31:38.9446786Z ##[group]Run actions/checkout@v4
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9447431Z with:
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9447801Z   repository: ThereIsSomething/devops-work
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9450499Z   token: ***
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9450882Z   ssh-strict: true
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9451265Z   ssh-user: git
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9451633Z   persist-credentials: true
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9452009Z   clean: true
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9452396Z   sparse-checkout-cone-mode: true
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9452850Z   fetch-depth: 1
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9453212Z   fetch-tags: false
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9453571Z   show-progress: true
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9453918Z   lfs: false
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9454274Z   submodules: false
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9454658Z   set-safe-directory: true
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9455239Z   allow-unsafe-pr-checkout: false
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:38.9455860Z ##[endgroup]
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0202941Z Syncing repository: ThereIsSomething/devops-work
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0205331Z ##[group]Getting Git version info
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0206321Z Working directory is '/home/runner/work/devops-work/devops-work'
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0207724Z [command]/usr/bin/git version
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0242958Z git version 2.55.0
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0257369Z ##[endgroup]
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0270718Z Temporarily overriding HOME='/home/runner/work/_temp/32d73e4a-d8bf-4524-8793-4161e2adf519' before making global git config changes
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0271955Z Adding repository directory to the temporary git global config as a safe directory
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0275116Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-work/devops-work
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0317208Z Deleting the contents of '/home/runner/work/devops-work/devops-work'
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0323038Z ##[group]Initializing the repository
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0328362Z [command]/usr/bin/git init /home/runner/work/devops-work/devops-work
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0425449Z hint: Using 'master' as the name for the initial branch. This default branch name
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0429976Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0431634Z hint: to use in all of your new repositories, which will suppress this warning,
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0432849Z hint: call:
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0433420Z hint:
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0434158Z hint: 	git config --global init.defaultBranch <name>
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0434954Z hint:
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0436121Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0437222Z hint: 'development'. The just-created branch can be renamed via this command:
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0438085Z hint:
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0438698Z hint: 	git branch -m <name>
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0439364Z hint:
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0440399Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0441675Z Initialized empty Git repository in /home/runner/work/devops-work/devops-work/.git/
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0443681Z [command]/usr/bin/git remote add origin https://github.com/ThereIsSomething/devops-work
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0495205Z ##[endgroup]
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0496503Z ##[group]Disabling automatic garbage collection
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0497904Z [command]/usr/bin/git config --local gc.auto 0
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0523240Z ##[endgroup]
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0523985Z ##[group]Setting up auth
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0530151Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0555606Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0825396Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0850046Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.0986300Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.1008352Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.1145259Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.1177781Z ##[endgroup]
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.1178745Z ##[group]Fetching the repository
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.1184812Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9d85fe3d871c2ba5ce87c77e33181978a1112fc0:refs/remotes/origin/main
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.5953148Z From https://github.com/ThereIsSomething/devops-work
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.5954090Z  * [new ref]         9d85fe3d871c2ba5ce87c77e33181978a1112fc0 -> origin/main
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.5956999Z ##[endgroup]
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.5958052Z ##[group]Determining the checkout info
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.5959389Z ##[endgroup]
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.5964739Z [command]/usr/bin/git sparse-checkout disable
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.6012749Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.6040341Z ##[group]Checking out the ref
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.6043312Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.6169456Z Switched to a new branch 'main'
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.6173977Z branch 'main' set up to track 'origin/main'.
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.6177567Z ##[endgroup]
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.6203419Z [command]/usr/bin/git log -1 --format=%H
+build-scan-deploy	Run actions/checkout@v4	2026-10-07T13:31:39.6220340Z 9d85fe3d871c2ba5ce87c77e33181978a1112fc0
+build-scan-deploy	Build immutable image tags	﻿2026-10-07T13:31:39.6420625Z ##[group]Run IMAGE_BASE="ghcr.io/${GITHUB_REPOSITORY,,}"
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:39.6421473Z ^[[36;1mIMAGE_BASE="ghcr.io/${GITHUB_REPOSITORY,,}"^[[0m
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:39.6422078Z ^[[36;1mecho "IMAGE_BASE=$IMAGE_BASE" >> "$GITHUB_ENV"^[[0m
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:39.6422906Z ^[[36;1mdocker build -t "$IMAGE_BASE-backend:$GITHUB_SHA" final-devops-project/application/backend^[[0m
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:39.6424051Z ^[[36;1mdocker build -t "$IMAGE_BASE-frontend:$GITHUB_SHA" final-devops-project/application/frontend^[[0m
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:39.6591065Z shell: /usr/bin/bash -e {0}
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:39.6591622Z ##[endgroup]
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:42.8312863Z #0 building with "default" instance using docker driver
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:42.8313422Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:42.8313606Z #1 [internal] load build definition from Dockerfile
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:42.8314035Z #1 transferring dockerfile: 434B 0.0s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:42.8314408Z #1 DONE 0.1s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:42.8314558Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:42.8314726Z #2 [auth] library/python:pull token for registry-1.docker.io
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:42.9814622Z #2 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:42.9815235Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.3441714Z #3 [internal] load metadata for docker.io/library/python:3.13-alpine
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.3442574Z #3 DONE 0.7s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4714251Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4716012Z #4 [internal] load .dockerignore
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4716924Z #4 transferring context: 88B done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4717439Z #4 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4717709Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4717842Z #5 [internal] load build context
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4718387Z #5 transferring context: 18.61kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4719967Z #5 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4720169Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4720805Z #6 [1/7] FROM docker.io/library/python:3.13-alpine@sha256:2d9aefe2fef018a7eb2c13064c89c71929800fd2e5dccdbf52ea5da5bb8d929a
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4721751Z #6 resolve docker.io/library/python:3.13-alpine@sha256:2d9aefe2fef018a7eb2c13064c89c71929800fd2e5dccdbf52ea5da5bb8d929a done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4722584Z #6 sha256:6f4c23997e2db272b9d27917c421c0322c90ce90f0b4eeecd39ce268bdb688d0 0B / 15.24MB 0.1s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4723360Z #6 sha256:82c48d7f22df9ea2f3393a3daf83a7abb5e933e5fb7f4d1b701dc8f71ebff248 0B / 247B 0.1s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4724089Z #6 sha256:2d9aefe2fef018a7eb2c13064c89c71929800fd2e5dccdbf52ea5da5bb8d929a 10.30kB / 10.30kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4725194Z #6 sha256:ba27df8b6499cc3756cff167690f3fcb5321faa1703b3a914df5f4fdadb32f05 1.74kB / 1.74kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4726032Z #6 sha256:050f6d1f4e5f89af62e03f6fcd1c06be2a401339b3694adc4c0a2850d9d8b1e7 5.29kB / 5.29kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.4726787Z #6 sha256:48f6a258842734fe23e0e4c69db9996cbaefd41c1cde2372b95449f9fc5601eb 0B / 416.27kB 0.1s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.6309563Z #6 sha256:6f4c23997e2db272b9d27917c421c0322c90ce90f0b4eeecd39ce268bdb688d0 11.53MB / 15.24MB 0.2s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.6310509Z #6 sha256:82c48d7f22df9ea2f3393a3daf83a7abb5e933e5fb7f4d1b701dc8f71ebff248 247B / 247B 0.1s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.6311154Z #6 sha256:48f6a258842734fe23e0e4c69db9996cbaefd41c1cde2372b95449f9fc5601eb 416.27kB / 416.27kB 0.2s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.6311729Z #6 extracting sha256:48f6a258842734fe23e0e4c69db9996cbaefd41c1cde2372b95449f9fc5601eb 0.1s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.7722514Z #6 sha256:6f4c23997e2db272b9d27917c421c0322c90ce90f0b4eeecd39ce268bdb688d0 15.24MB / 15.24MB 0.3s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:43.8931472Z #6 extracting sha256:6f4c23997e2db272b9d27917c421c0322c90ce90f0b4eeecd39ce268bdb688d0 0.1s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.3319567Z #6 extracting sha256:6f4c23997e2db272b9d27917c421c0322c90ce90f0b4eeecd39ce268bdb688d0 0.4s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.4558674Z #6 extracting sha256:82c48d7f22df9ea2f3393a3daf83a7abb5e933e5fb7f4d1b701dc8f71ebff248
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6559458Z #6 extracting sha256:82c48d7f22df9ea2f3393a3daf83a7abb5e933e5fb7f4d1b701dc8f71ebff248 done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6560157Z #6 DONE 1.1s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6560358Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6560519Z #7 [2/7] WORKDIR /app
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6560762Z #7 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6560897Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6561054Z #8 [3/7] COPY requirements.txt ./
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6561755Z #8 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6561900Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:44.6562346Z #9 [4/7] RUN apk upgrade --no-cache && pip install --no-cache-dir -r requirements.txt && pip uninstall -y pip && adduser -D -u 10001 appuser
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:45.0724011Z #9 0.567 (1/2) Upgrading zlib (1.3.2-r0 -> 1.3.2-r1)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:45.2720628Z #9 0.577 (2/2) Upgrading tzdata (2026d-r0 -> 2026e-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:45.2721136Z #9 0.616 OK: 11.4 MiB in 29 packages
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.4906085Z #9 1.985 Collecting alembic==1.20.0 (from -r requirements.txt (line 7))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.5983465Z #9 2.034   Downloading alembic-1.20.0-py3-none-any.whl.metadata (7.3 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.5984035Z #9 2.054 Collecting annotated-doc==0.0.5 (from -r requirements.txt (line 9))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.5984454Z #9 2.064   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.5984934Z #9 2.082 Collecting annotated-types==0.8.0 (from -r requirements.txt (line 11))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.5985488Z #9 2.093   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.7144441Z #9 2.118 Collecting anyio==4.15.1 (from -r requirements.txt (line 13))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.7145197Z #9 2.128   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.7145755Z #9 2.151 Collecting click==8.5.0 (from -r requirements.txt (line 17))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.7146257Z #9 2.161   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.7146638Z #9 2.209 Collecting fastapi==0.142.2 (from -r requirements.txt (line 19))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.8232123Z #9 2.219   Downloading fastapi-0.142.2-py3-none-any.whl.metadata (27 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.8243048Z #9 2.246 Collecting h11==0.16.0 (from -r requirements.txt (line 21))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.8243632Z #9 2.256   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.8244119Z #9 2.287 Collecting httptools==0.8.0 (from -r requirements.txt (line 23))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.8244677Z #9 2.297   Downloading httptools-0.8.0-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (3.5 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.8245293Z #9 2.318 Collecting idna==3.20 (from -r requirements.txt (line 25))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.9240606Z #9 2.328   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.9245328Z #9 2.349 Collecting mako==1.4.3 (from -r requirements.txt (line 27))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.9246013Z #9 2.359   Downloading mako-1.4.3-py3-none-any.whl.metadata (2.9 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.9257007Z #9 2.409 Collecting markupsafe==3.0.4 (from -r requirements.txt (line 29))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:46.9257653Z #9 2.419   Downloading markupsafe-3.0.4-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (2.7 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.0373170Z #9 2.441 Collecting opentelemetry-api==1.45.1 (from -r requirements.txt (line 31))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.0374029Z #9 2.451   Downloading opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.0374542Z #9 2.470 Collecting prometheus-client==0.26.0 (from -r requirements.txt (line 33))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.0375233Z #9 2.480   Downloading prometheus_client-0.26.0-py3-none-any.whl.metadata (2.1 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.0375889Z #9 2.500 Collecting prometheus-fastapi-instrumentator==8.1.0 (from -r requirements.txt (line 35))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.0376518Z #9 2.511   Downloading prometheus_fastapi_instrumentator-8.1.0-py3-none-any.whl.metadata (13 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.0377854Z #9 2.532 Collecting psycopg==3.3.6 (from psycopg[binary]==3.3.6->-r requirements.txt (line 37))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.1665553Z #9 2.542   Downloading psycopg-3.3.6-py3-none-any.whl.metadata (4.4 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.1666286Z #9 2.661 Collecting psycopg-binary==3.3.6 (from -r requirements.txt (line 39))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.4139203Z #9 2.673   Downloading psycopg_binary-3.3.6-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (2.7 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.4140062Z #9 2.748 Collecting pydantic==2.13.5 (from -r requirements.txt (line 41))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.4140659Z #9 2.758   Downloading pydantic-2.13.5-py3-none-any.whl.metadata (110 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.7083568Z #9 3.203 Collecting pydantic-core==2.46.5 (from -r requirements.txt (line 45))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.8170075Z #9 3.213   Downloading pydantic_core-2.46.5-cp313-cp313-musllinux_1_1_x86_64.whl.metadata (6.6 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.8171153Z #9 3.234 Collecting pydantic-settings==2.15.0 (from -r requirements.txt (line 47))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.8172064Z #9 3.246   Downloading pydantic_settings-2.15.0-py3-none-any.whl.metadata (3.9 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.8172590Z #9 3.266 Collecting python-dotenv==1.2.4 (from -r requirements.txt (line 49))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.8173113Z #9 3.276   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.8173506Z #9 3.311 Collecting pyyaml==6.0.3 (from -r requirements.txt (line 53))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:47.9779275Z #9 3.322   Downloading pyyaml-6.0.3-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (2.4 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.0148366Z #9 3.509 Collecting sqlalchemy==2.1.3 (from -r requirements.txt (line 55))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.1228490Z #9 3.520   Downloading sqlalchemy-2.1.3-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (9.7 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.1229238Z #9 3.576 Collecting starlette==1.7.0 (from -r requirements.txt (line 59))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.1229946Z #9 3.586   Downloading starlette-1.7.0-py3-none-any.whl.metadata (6.6 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.1230617Z #9 3.607 Collecting typing-extensions==4.16.0 (from -r requirements.txt (line 63))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.1231257Z #9 3.617   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.2319133Z #9 3.635 Collecting typing-inspection==0.4.4 (from -r requirements.txt (line 73))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.2319904Z #9 3.645   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.2320710Z #9 3.670 Collecting uvicorn==0.54.0 (from uvicorn[standard]==0.54.0->-r requirements.txt (line 78))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.2321373Z #9 3.680   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.2322033Z #9 3.716 Collecting uvloop==0.23.0 (from -r requirements.txt (line 80))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.2322712Z #9 3.726   Downloading uvloop-0.23.0-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (5.1 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.3820496Z #9 3.784 Collecting watchfiles==1.3.0 (from -r requirements.txt (line 82))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.3821229Z #9 3.794   Downloading watchfiles-1.3.0-cp310-abi3-musllinux_1_1_x86_64.whl.metadata (4.9 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.3821969Z #9 3.876 Collecting websockets==17.2 (from -r requirements.txt (line 84))
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.4861793Z #9 3.887   Downloading websockets-17.2-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (6.3 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.4862988Z #9 3.918 Downloading alembic-1.20.0-py3-none-any.whl (268 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.4863693Z #9 3.940 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.4864199Z #9 3.950 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.4864742Z #9 3.959 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.4865440Z #9 3.970 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.4866683Z #9 3.981 Downloading fastapi-0.142.2-py3-none-any.whl (144 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.5935502Z #9 3.992 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.5936218Z #9 4.004 Downloading httptools-0.8.0-cp313-cp313-musllinux_1_2_x86_64.whl (471 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.5936766Z #9 4.024 Downloading idna-3.20-py3-none-any.whl (69 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.5937179Z #9 4.035 Downloading mako-1.4.3-py3-none-any.whl (80 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.5937760Z #9 4.046 Downloading markupsafe-3.0.4-cp313-cp313-musllinux_1_2_x86_64.whl (23 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.5938323Z #9 4.057 Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.5938860Z #9 4.068 Downloading prometheus_client-0.26.0-py3-none-any.whl (64 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.5939522Z #9 4.078 Downloading prometheus_fastapi_instrumentator-8.1.0-py3-none-any.whl (19 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.5940080Z #9 4.088 Downloading starlette-1.7.0-py3-none-any.whl (78 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.6950879Z #9 4.098 Downloading psycopg-3.3.6-py3-none-any.whl (215 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.6951516Z #9 4.110 Downloading psycopg_binary-3.3.6-cp313-cp313-musllinux_1_2_x86_64.whl (4.3 MB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.6952465Z #9 4.148    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 117.2 MB/s  0:00:00
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.6953095Z #9 4.158 Downloading pydantic-2.13.5-py3-none-any.whl (472 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.6953515Z #9 4.169 Downloading pydantic_core-2.46.5-cp313-cp313-musllinux_1_1_x86_64.whl (2.3 MB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.6954095Z #9 4.179    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 250.9 MB/s  0:00:00
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.6954501Z #9 4.190 Downloading pydantic_settings-2.15.0-py3-none-any.whl (69 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8027863Z #9 4.201 Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8028390Z #9 4.211 Downloading pyyaml-6.0.3-cp313-cp313-musllinux_1_2_x86_64.whl (794 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8029130Z #9 4.214    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 794.1/794.1 kB 850.7 MB/s  0:00:00
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8029664Z #9 4.226 Downloading sqlalchemy-2.1.3-cp313-cp313-musllinux_1_2_x86_64.whl (4.6 MB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8030186Z #9 4.237    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 480.4 MB/s  0:00:00
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8030679Z #9 4.247 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8031053Z #9 4.257 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8031432Z #9 4.267 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8031843Z #9 4.278 Downloading uvloop-0.23.0-cp313-cp313-musllinux_1_2_x86_64.whl (4.3 MB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8032364Z #9 4.287    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 549.1 MB/s  0:00:00
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.8032900Z #9 4.297 Downloading watchfiles-1.3.0-cp310-abi3-musllinux_1_1_x86_64.whl (661 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.9666318Z #9 4.300    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 661.7/661.7 kB 681.0 MB/s  0:00:00
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:48.9667051Z #9 4.311 Downloading websockets-17.2-cp313-cp313-musllinux_1_2_x86_64.whl (225 kB)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:49.0040697Z #9 4.498 Installing collected packages: websockets, uvloop, typing-extensions, pyyaml, python-dotenv, psycopg-binary, psycopg, prometheus-client, markupsafe, idna, httptools, h11, click, annotated-types, annotated-doc, uvicorn, typing-inspection, sqlalchemy, pydantic-core, opentelemetry-api, mako, anyio, watchfiles, starlette, pydantic, alembic, pydantic-settings, prometheus-fastapi-instrumentator, fastapi
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:51.8189990Z #9 7.313 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:51.9723243Z #9 7.316 Successfully installed alembic-1.20.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 click-8.5.0 fastapi-0.142.2 h11-0.16.0 httptools-0.8.0 idna-3.20 mako-1.4.3 markupsafe-3.0.4 opentelemetry-api-1.45.1 prometheus-client-0.26.0 prometheus-fastapi-instrumentator-8.1.0 psycopg-3.3.6 psycopg-binary-3.3.6 pydantic-2.13.5 pydantic-core-2.46.5 pydantic-settings-2.15.0 python-dotenv-1.2.4 pyyaml-6.0.3 sqlalchemy-2.1.3 starlette-1.7.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.2
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:51.9725697Z #9 7.316 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:52.9450082Z #9 8.439 Found existing installation: pip 26.2.1
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.1498272Z #9 8.459 Uninstalling pip-26.2.1:
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.1498878Z #9 8.465   Successfully uninstalled pip-26.2.1
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.1500407Z #9 8.494 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.5604222Z #9 DONE 9.1s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7422130Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7422937Z #10 [5/7] COPY alembic.ini ./
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7423819Z #10 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7424127Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7424256Z #11 [6/7] COPY alembic ./alembic
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7424570Z #11 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7424747Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7424951Z #12 [7/7] COPY app ./app
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7425462Z #12 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7425607Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7425752Z #13 exporting to image
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:53.7426074Z #13 exporting layers
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.0797040Z #13 exporting layers 0.5s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.1001185Z #13 writing image sha256:cbdcb6f743e2bf25ae8367e2f71309c0621df811010654912a8cb9c207ce4feb done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.1002452Z #13 naming to ghcr.io/thereissomething/devops-work-backend:9d85fe3d871c2ba5ce87c77e33181978a1112fc0 done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.1003262Z #13 DONE 0.5s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4266627Z #0 building with "default" instance using docker driver
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4267294Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4267886Z #1 [internal] load build definition from Dockerfile
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4268368Z #1 transferring dockerfile: 488B done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4268820Z #1 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4269092Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4269518Z #2 [auth] library/nginx:pull token for registry-1.docker.io
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4269945Z #2 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4270096Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4270291Z #3 [auth] library/node:pull token for registry-1.docker.io
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4270566Z #3 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4270663Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.4270813Z #4 [internal] load metadata for docker.io/library/node:24-alpine
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.7265380Z #4 ...
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.7265624Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.7265973Z #5 [internal] load metadata for docker.io/library/nginx:1.29-alpine
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.7266305Z #5 DONE 0.5s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8958123Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8959162Z #4 [internal] load metadata for docker.io/library/node:24-alpine
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8959789Z #4 DONE 0.6s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8960056Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8960370Z #6 [internal] load .dockerignore
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8960907Z #6 transferring context: 63B done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8961229Z #6 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8961354Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8961474Z #7 [internal] load build context
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8961811Z #7 transferring context: 40.44kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8962051Z #7 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8962160Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8962498Z #8 [build 1/6] FROM docker.io/library/node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8963129Z #8 resolve docker.io/library/node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8963871Z #8 sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 3.87kB / 3.87kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8964401Z #8 sha256:83f1c388c31fb2e51f7cbd4dea949b96260798c98f206e8e4696bc93bd964e3a 1.72kB / 1.72kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:54.8964987Z #8 sha256:c10884952bb8c37122fcc3fe6f97af3ab0a80e5eb02ee5df707406b4e11a7e3e 6.44kB / 6.44kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:55.1951791Z #8 sha256:3c504d5a797be28f9de43147d49cd8ecb2eea46dfaf7beb8715db695d5f0a7f0 0B / 56.52MB 0.4s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:55.1952632Z #8 sha256:02f40d53b06f6b91fec0cd6a6719656da99270bff8ee54ed8dcdf4c157763fc1 0B / 1.26MB 0.4s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:55.2986000Z #8 sha256:3c504d5a797be28f9de43147d49cd8ecb2eea46dfaf7beb8715db695d5f0a7f0 17.83MB / 56.52MB 0.5s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:55.2986722Z #8 sha256:02f40d53b06f6b91fec0cd6a6719656da99270bff8ee54ed8dcdf4c157763fc1 1.26MB / 1.26MB 0.4s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:55.5280653Z #8 sha256:3c504d5a797be28f9de43147d49cd8ecb2eea46dfaf7beb8715db695d5f0a7f0 39.85MB / 56.52MB 0.7s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:55.5281476Z #8 sha256:7ce7dcbafb7f750cf0c6be3c30e34372b06dd1182fa67f6ae30782c8150c5444 444B / 444B 0.6s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:55.6528775Z #8 sha256:3c504d5a797be28f9de43147d49cd8ecb2eea46dfaf7beb8715db695d5f0a7f0 56.52MB / 56.52MB 0.8s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:55.6529669Z #8 extracting sha256:3c504d5a797be28f9de43147d49cd8ecb2eea46dfaf7beb8715db695d5f0a7f0
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:55.7550168Z #8 sha256:3c504d5a797be28f9de43147d49cd8ecb2eea46dfaf7beb8715db695d5f0a7f0 56.52MB / 56.52MB 0.8s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.0803785Z #8 extracting sha256:3c504d5a797be28f9de43147d49cd8ecb2eea46dfaf7beb8715db695d5f0a7f0 1.3s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.0804603Z #8 extracting sha256:02f40d53b06f6b91fec0cd6a6719656da99270bff8ee54ed8dcdf4c157763fc1
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3264417Z #8 extracting sha256:02f40d53b06f6b91fec0cd6a6719656da99270bff8ee54ed8dcdf4c157763fc1 0.0s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3265353Z #8 extracting sha256:7ce7dcbafb7f750cf0c6be3c30e34372b06dd1182fa67f6ae30782c8150c5444 done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3265862Z #8 DONE 2.4s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3266022Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3266308Z #9 [stage-1 1/4] FROM docker.io/library/nginx:1.29-alpine@sha256:5616878291a2eed594aee8db4dade5878cf7edcb475e59193904b198d9b830de
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3267062Z #9 resolve docker.io/library/nginx:1.29-alpine@sha256:5616878291a2eed594aee8db4dade5878cf7edcb475e59193904b198d9b830de 0.0s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3267643Z #9 sha256:583599bb7d382e9e986a9ff65204981307bfa71670a29f4190eedae93c4858be 627B / 627B 0.1s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3268209Z #9 sha256:5616878291a2eed594aee8db4dade5878cf7edcb475e59193904b198d9b830de 10.33kB / 10.33kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3268742Z #9 sha256:3bcf852aed06467cf075c6105892e4d5a6ebbbafa0ce22d35062db9e90ddef4c 2.50kB / 2.50kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3269251Z #9 sha256:812d47f806db497c53f9b47e76bdab38bcf5d724c69d3986df5ee4336c210559 12.32kB / 12.32kB done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3269730Z #9 sha256:6a0ac1617861a677b045b7ff88545213ec31c0ff08763195a70a4a5adda577bb 3.86MB / 3.86MB 0.1s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3270289Z #9 sha256:82736a35d0e7f1309edc13d09115410b81542cf8b91afff80deeace02b6f2f26 1.87MB / 1.87MB 0.2s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3270795Z #9 extracting sha256:6a0ac1617861a677b045b7ff88545213ec31c0ff08763195a70a4a5adda577bb 0.1s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3271293Z #9 sha256:aee4e54b3865ee4d98545b6b49f9e8ab3b9b6ed114a2eafedc7a22e984ea5a68 956B / 956B 0.2s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3271851Z #9 sha256:781ff50d2644f74714c0d5a4ffa3447bbfd4b293cfb1dc6a637722ae24c89241 404B / 404B 0.2s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3272348Z #9 sha256:453da7dbc73e7338c4e201ec3f3c4a5f7751adbf5a6f127792c1cd001a780721 1.21kB / 1.21kB 0.3s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3272897Z #9 extracting sha256:82736a35d0e7f1309edc13d09115410b81542cf8b91afff80deeace02b6f2f26 0.0s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3273502Z #9 sha256:4a8b0b2a5b1937755263ac7ac4ee26db2906c13a5d70f1fb1875ba8e370cdd8f 1.40kB / 1.40kB 0.3s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3274447Z #9 sha256:612c0c1df4c55a0bf145f84df03cb28de505e6a52fb8e49c9da7b143fc00ad2d 20.25MB / 20.25MB 0.4s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3275283Z #9 extracting sha256:583599bb7d382e9e986a9ff65204981307bfa71670a29f4190eedae93c4858be done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3275752Z #9 extracting sha256:aee4e54b3865ee4d98545b6b49f9e8ab3b9b6ed114a2eafedc7a22e984ea5a68 done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3276266Z #9 extracting sha256:781ff50d2644f74714c0d5a4ffa3447bbfd4b293cfb1dc6a637722ae24c89241 done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3276715Z #9 extracting sha256:453da7dbc73e7338c4e201ec3f3c4a5f7751adbf5a6f127792c1cd001a780721 done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3277168Z #9 extracting sha256:4a8b0b2a5b1937755263ac7ac4ee26db2906c13a5d70f1fb1875ba8e370cdd8f done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3277708Z #9 extracting sha256:612c0c1df4c55a0bf145f84df03cb28de505e6a52fb8e49c9da7b143fc00ad2d 0.3s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3278055Z #9 DONE 2.3s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3278190Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3278320Z #10 [build 2/6] WORKDIR /app
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3278554Z #10 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3278671Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3278816Z #11 [build 3/6] COPY package*.json ./
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3279069Z #11 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3279196Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:57.3279279Z #12 [build 4/6] RUN npm ci
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.3210006Z #12 1.145 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.3210913Z #12 1.145 added 21 packages, and audited 22 packages in 999ms
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.3211642Z #12 1.145 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.4735687Z #12 1.145 9 packages are looking for funding
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.4736188Z #12 1.145   run `npm fund` for details
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.4736512Z #12 1.146 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.4736743Z #12 1.146 found 0 vulnerabilities
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.4737302Z #12 1.147 npm notice
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.4737627Z #12 1.147 npm notice New major version of npm available! 11.19.0 -> 12.2.0
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.4738289Z #12 1.147 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.4738736Z #12 1.147 npm notice To update run: npm install -g npm@12.2.0
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.4739069Z #12 1.147 npm notice
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.7879268Z #12 DONE 1.6s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.9495882Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.9496716Z #13 [build 5/6] COPY . .
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.9497065Z #13 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.9497303Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.9497398Z #14 [build 6/6] RUN npm run build
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.9715319Z #14 0.172 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.9715769Z #14 0.172 > taskboard-frontend@1.0.0 build
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.9716194Z #14 0.172 > vite build
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:58.9716447Z #14 0.172 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.1718969Z #14 0.372 vite v8.3.3 building client environment for production...
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.2791449Z #14 0.382 transforming...
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.2792172Z #14 0.432 ✓ 15 modules transformed.
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.2792447Z #14 0.452 rendering chunks...
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.2792768Z #14 0.480 computing gzip size...
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5011829Z #14 0.483 dist/index.html                   0.34 kB │ gzip:  0.25 kB
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5012716Z #14 0.483 dist/assets/index-DkMuKOF6.css    6.40 kB │ gzip:  2.04 kB
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5013208Z #14 0.483 dist/assets/index-BhcRVjeF.js   226.96 kB │ gzip: 70.81 kB
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5013558Z #14 0.483 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5013844Z #14 0.484 ✓ built in 110ms
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5014220Z #14 DONE 0.5s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5014370Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5014634Z #15 [stage-1 2/4] COPY --from=build /app/dist /usr/share/nginx/html
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5015332Z #15 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5015499Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5015720Z #16 [stage-1 3/4] COPY nginx.conf /etc/nginx/conf.d/default.conf
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5016122Z #16 DONE 0.0s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5016263Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.5016709Z #17 [stage-1 4/4] RUN apk upgrade --no-cache && chown -R nginx:nginx /var/cache/nginx /var/log/nginx /etc/nginx/conf.d && touch /var/run/nginx.pid && chown nginx:nginx /var/run/nginx.pid
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.7844316Z #17 0.434 Preupgrading:
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.7844755Z #17 0.434 (1/2) Upgrading libapk (3.0.6-r0 -> 3.0.8-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.9809101Z #17 0.446 (2/2) Upgrading apk-tools (3.0.6-r0 -> 3.0.8-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.9809751Z #17 0.457 Executing busybox-1.37.0-r30.trigger
+build-scan-deploy	Build immutable image tags	2026-10-07T13:31:59.9810121Z #17 0.480 Continuing with the main upgrade transaction:
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.2639978Z #17 0.913 ( 1/21) Upgrading alpine-release (3.23.4-r0 -> 3.23.6-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.3684156Z #17 0.923 ( 2/21) Upgrading libcrypto3 (3.5.6-r0 -> 3.5.9-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.3684657Z #17 0.964 ( 3/21) Upgrading libssl3 (3.5.6-r0 -> 3.5.9-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.3685396Z #17 0.978 ( 4/21) Upgrading zlib (1.3.2-r0 -> 1.3.2-r1)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.3685805Z #17 0.988 ( 5/21) Upgrading ca-certificates-bundle (20260413-r0 -> 20260909-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.3686315Z #17 1.000 ( 6/21) Upgrading ca-certificates (20260413-r0 -> 20260909-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.3686713Z #17 1.018 ( 7/21) Upgrading c-ares (1.34.6-r0 -> 1.34.8-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.5006423Z #17 1.030 ( 8/21) Upgrading nghttp2-libs (1.68.0-r0 -> 1.69.0-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.5006934Z #17 1.041 ( 9/21) Upgrading libcurl (8.17.0-r1 -> 8.22.0-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.5007406Z #17 1.055 (10/21) Upgrading curl (8.17.0-r1 -> 8.22.0-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.5007754Z #17 1.066 (11/21) Upgrading pcre2 (10.47-r0 -> 10.49-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.5008110Z #17 1.079 (12/21) Upgrading libuuid (2.41.4-r0 -> 2.41.6-r1)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.5008460Z #17 1.089 (13/21) Upgrading libxpm (3.5.17-r0 -> 3.5.19-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.5009044Z #17 1.099 (14/21) Upgrading aom-libs (3.13.1-r1 -> 3.14.1-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.5009409Z #17 1.150 (15/21) Upgrading libexpat (2.7.5-r0 -> 2.8.5-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.6008350Z #17 1.161 (16/21) Upgrading libpng (1.6.57-r0 -> 1.6.59-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.6009343Z #17 1.171 (17/21) Upgrading freetype (2.14.1-r0 -> 2.14.3-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.6009935Z #17 1.185 (18/21) Upgrading xz-libs (5.8.2-r0 -> 5.8.4-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.6010348Z #17 1.196 (19/21) Upgrading libxml2 (2.13.9-r0 -> 2.13.9-r1)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.6010742Z #17 1.212 (20/21) Upgrading tzdata (2026a-r0 -> 2026e-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.6011162Z #17 1.250 (21/21) Purging nghttp3 (1.13.1-r0)
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.6011545Z #17 1.250 Executing busybox-1.37.0-r30.trigger
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.7679822Z #17 1.254 Executing ca-certificates-20260909-r0.trigger
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.7680437Z #17 1.273 OK: 58.8 MiB in 71 packages
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.7680906Z #17 DONE 1.4s
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.9196100Z 
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.9196451Z #18 exporting to image
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:00.9196966Z #18 exporting layers
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:01.0112620Z #18 exporting layers 0.2s done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:01.0296314Z #18 writing image sha256:95363b649d8bc129b754aa24f8d89b32f39baca9e7af05759ea79de1b1188195 done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:01.0297615Z #18 naming to ghcr.io/thereissomething/devops-work-frontend:9d85fe3d871c2ba5ce87c77e33181978a1112fc0 done
+build-scan-deploy	Build immutable image tags	2026-10-07T13:32:01.0298358Z #18 DONE 0.2s
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	﻿2026-10-07T13:32:01.0377577Z ##[group]Run mkdir -p security-reports
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0377953Z ^[[36;1mmkdir -p security-reports^[[0m
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0378284Z ^[[36;1mfor component in backend frontend; do^[[0m
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0378878Z ^[[36;1m  docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD/security-reports:/reports" -v homework-trivy-cache:/root/.cache/trivy \^[[0m
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0380290Z ^[[36;1m    aquasec/trivy:0.75.0 image --timeout 20m --no-progress --scanners vuln --severity HIGH,CRITICAL --exit-code 1 \^[[0m
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0380912Z ^[[36;1m    --format json --output "/reports/$component.json" "$IMAGE_BASE-$component:$GITHUB_SHA"^[[0m
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0381330Z ^[[36;1mdone^[[0m
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0419702Z shell: /usr/bin/bash -e {0}
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0420059Z env:
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0420367Z   IMAGE_BASE: ghcr.io/thereissomething/devops-work
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0420715Z ##[endgroup]
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.0618347Z Unable to find image 'aquasec/trivy:0.75.0' locally
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.5363832Z 0.75.0: Pulling from aquasec/trivy
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.6888661Z e2de96513ba9: Already exists
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.6909283Z c716e0146a8a: Pulling fs layer
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.6912310Z 08201c795fbc: Pulling fs layer
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.6913082Z e3614b31dd78: Pulling fs layer
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.8398021Z e3614b31dd78: Verifying Checksum
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.8398442Z e3614b31dd78: Download complete
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.9267851Z c716e0146a8a: Verifying Checksum
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:01.9268312Z c716e0146a8a: Download complete
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:02.0275247Z 08201c795fbc: Verifying Checksum
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:02.0275905Z 08201c795fbc: Download complete
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:02.4103599Z c716e0146a8a: Pull complete
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:03.8773916Z 08201c795fbc: Pull complete
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:03.8861389Z e3614b31dd78: Pull complete
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:03.8899138Z Digest: sha256:af6acf9a6b85dfe389a1941505c0ce9efef52a4719635e1a962f022a3d855daa
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:03.8917176Z Status: Downloaded newer image for aquasec/trivy:0.75.0
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:04.0736550Z 2026-10-07T13:32:04Z	INFO	[vulndb] Need to update DB
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:04.0737169Z 2026-10-07T13:32:04Z	INFO	[vulndb] Downloading vulnerability DB...
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:04.0737811Z 2026-10-07T13:32:04Z	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:07.7165388Z 2026-10-07T13:32:07Z	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:07.8328237Z 2026-10-07T13:32:07Z	INFO	[vuln] Vulnerability scanning is enabled
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:15.6017947Z 2026-10-07T13:32:15Z	WARN	Third-party SBOM may lead to inaccurate vulnerability detection
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:15.6018613Z 2026-10-07T13:32:15Z	WARN	Recommend using Trivy to generate SBOMs
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:15.6408429Z 2026-10-07T13:32:15Z	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:15.6465641Z 2026-10-07T13:32:15Z	INFO	Detected OS	family="alpine" version="3.24.2"
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:15.6466524Z 2026-10-07T13:32:15Z	INFO	[alpine] Detecting vulnerabilities...	os_version="3.24" repository="3.24" pkg_num=29
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:15.6483610Z 2026-10-07T13:32:15Z	INFO	Number of language-specific files	num=1
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:15.6484257Z 2026-10-07T13:32:15Z	INFO	[python-pkg] Detecting vulnerabilities...
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:15.8803502Z 2026-10-07T13:32:15Z	INFO	[vuln] Vulnerability scanning is enabled
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:16.6626109Z 2026-10-07T13:32:16Z	INFO	Detected OS	family="alpine" version="3.23.4"
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:16.6626783Z 2026-10-07T13:32:16Z	INFO	[alpine] Detecting vulnerabilities...	os_version="3.23" repository="3.23" pkg_num=71
+build-scan-deploy	Scan both images - HIGH and CRITICAL gate	2026-10-07T13:32:16.6697754Z 2026-10-07T13:32:16Z	INFO	Number of language-specific files	num=0
+build-scan-deploy	Run actions/upload-artifact@v4	﻿2026-10-07T13:32:16.7459015Z ##[group]Run actions/upload-artifact@v4
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7459390Z with:
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7459616Z   name: image-security-reports
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7459908Z   path: security-reports
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7460177Z   if-no-files-found: warn
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7460421Z   compression-level: 6
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7460694Z   overwrite: false
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7460921Z   include-hidden-files: false
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7461188Z env:
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7461455Z   IMAGE_BASE: ghcr.io/thereissomething/devops-work
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.7461747Z ##[endgroup]
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.8636741Z (node:2854) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.8637370Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.8716502Z With the provided path, there will be 2 files uploaded
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.8717411Z Artifact name is valid!
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:16.8717730Z Root directory input is valid!
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:17.1372767Z Beginning upload of artifact content to blob storage
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:17.1545218Z (node:2854) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:17.3041440Z Uploaded bytes 35553
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:17.3422895Z Finished uploading artifact content to blob storage!
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:17.3423564Z SHA256 digest of uploaded artifact zip is 23c46a21c9359bc043b2f2283a1fa90e6de5941a41ce91fb4e3000d7a57b6eca
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:17.3425171Z Finalizing artifact upload
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:17.5863976Z Artifact image-security-reports.zip successfully finalized. Artifact ID 11484619750
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:17.5864801Z Artifact image-security-reports has been successfully uploaded! Final size is 35553 bytes. Artifact ID is 11484619750
+build-scan-deploy	Run actions/upload-artifact@v4	2026-10-07T13:32:17.5870371Z Artifact download URL: https://github.com/ThereIsSomething/devops-work/actions/runs/37629099243/artifacts/11484619750
+build-scan-deploy	Create disposable deployment-verification cluster	﻿2026-10-07T13:32:17.5961671Z ##[group]Run curl -fsSLo kind https://kind.sigs.k8s.io/dl/v0.33.0/kind-linux-amd64
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:17.5962191Z ^[[36;1mcurl -fsSLo kind https://kind.sigs.k8s.io/dl/v0.33.0/kind-linux-amd64^[[0m
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:17.5962563Z ^[[36;1mchmod +x kind^[[0m
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:17.5962860Z ^[[36;1msudo mv kind /usr/local/bin/kind^[[0m
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:17.5963153Z ^[[36;1mkind create cluster --name homework --wait 120s^[[0m
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:17.5963658Z ^[[36;1mkind load docker-image "$IMAGE_BASE-backend:$GITHUB_SHA" "$IMAGE_BASE-frontend:$GITHUB_SHA" --name homework^[[0m
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:17.5997089Z shell: /usr/bin/bash -e {0}
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:17.5997376Z env:
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:17.5997636Z   IMAGE_BASE: ghcr.io/thereissomething/devops-work
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:17.5997986Z ##[endgroup]
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:20.8243856Z Creating cluster "homework" ...
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:20.8244635Z  • Ensuring node image (kindest/node:v1.37.0) 🖼️  ...
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:31.3381854Z  ✓ Ensuring node image (kindest/node:v1.37.0) 🖼️
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:31.3384945Z  • Preparing nodes 📦   ...
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:34.2539838Z  ✓ Preparing nodes 📦 
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:34.2745436Z  • Writing configuration 📜  ...
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:34.4130120Z  ✓ Writing configuration 📜
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:34.4136167Z  • Starting control-plane 🕹️  ...
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:41.2587866Z  ✓ Starting control-plane 🕹️
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:41.2588502Z  • Installing CNI 🔌  ...
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:41.4557942Z  ✓ Installing CNI 🔌
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:41.4565227Z  • Installing StorageClass 💾  ...
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:41.6939872Z  ✓ Installing StorageClass 💾
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:41.7140946Z  • Waiting ≤ 2m0s for control-plane = Ready ⏳  ...
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.3262458Z  ✓ Waiting ≤ 2m0s for control-plane = Ready ⏳
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.3263858Z  • Ready after 18s 💚
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.4321597Z Set kubectl context to "kind-homework"
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.4322424Z You can now use your cluster with:
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.4322756Z 
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.4323566Z kubectl cluster-info --context kind-homework
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.4323894Z 
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.4324577Z Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/#community 🙂
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.5545640Z Image: "ghcr.io/thereissomething/devops-work-backend:9d85fe3d871c2ba5ce87c77e33181978a1112fc0" with ID "sha256:cbdcb6f743e2bf25ae8367e2f71309c0621df811010654912a8cb9c207ce4feb" not yet present on node "homework-control-plane", loading...
+build-scan-deploy	Create disposable deployment-verification cluster	2026-10-07T13:32:59.6448354Z Image: "ghcr.io/thereissomething/devops-work-frontend:9d85fe3d871c2ba5ce87c77e33181978a1112fc0" with ID "sha256:95363b649d8bc129b754aa24f8d89b32f39baca9e7af05759ea79de1b1188195" not yet present on node "homework-control-plane", loading...
+build-scan-deploy	Deploy with Helm and verify API	﻿2026-10-07T13:33:06.8957734Z ##[group]Run kubectl create namespace homework-final
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8958229Z ^[[36;1mkubectl create namespace homework-final^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8958734Z ^[[36;1mkubectl apply -f final-devops-project/kubernetes/secret.example.yaml^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8959228Z ^[[36;1mhelm upgrade --install taskboard final-devops-project/helm/taskboard -n homework-final \^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8959743Z ^[[36;1m  --set backend.image="$IMAGE_BASE-backend" --set backend.tag="$GITHUB_SHA" \^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8960211Z ^[[36;1m  --set frontend.image="$IMAGE_BASE-frontend" --set frontend.tag="$GITHUB_SHA" \^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8960667Z ^[[36;1m  --set storageClass=standard --set ingress.enabled=false --set hpa.enabled=false \^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8961073Z ^[[36;1m  --wait --wait-for-jobs --timeout 300s^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8961491Z ^[[36;1mkubectl port-forward -n homework-final svc/frontend 13000:80 > /tmp/port-forward.log 2>&1 &^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8961903Z ^[[36;1mfor attempt in $(seq 1 30); do^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8962306Z ^[[36;1m  if curl --fail http://127.0.0.1:13000/health; then break; fi^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8962659Z ^[[36;1m  sleep 2^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8962902Z ^[[36;1mdone^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8963153Z ^[[36;1mcurl --fail http://127.0.0.1:13000/health^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8963458Z ^[[36;1mcurl --fail http://127.0.0.1:13000/api/tasks^[[0m
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8996525Z shell: /usr/bin/bash -e {0}
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8996851Z env:
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8997222Z   IMAGE_BASE: ghcr.io/thereissomething/devops-work
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:06.8997538Z ##[endgroup]
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:09.4254614Z namespace/homework-final created
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:09.5624691Z secret/taskboard-db created
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:12.2274790Z Release "taskboard" does not exist. Installing it now.
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4762936Z NAME: taskboard
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4764335Z LAST DEPLOYED: Wed Oct  7 13:33:12 2026
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4764885Z NAMESPACE: homework-final
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4765425Z STATUS: deployed
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4765686Z REVISION: 1
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4766099Z TEST SUITE: None
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4856696Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4857476Z                                  Dload  Upload   Total   Spent    Left  Speed
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4857816Z 
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4860142Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4860682Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:44.4861389Z curl: (7) Failed to connect to 127.0.0.1 port 13000 after 0 ms: Couldn't connect to server
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.4922239Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.4922805Z                                  Dload  Upload   Total   Spent    Left  Speed
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.4922998Z 
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.4970481Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.4971157Z 100    15  100    15    0     0   3033      0 --:--:-- --:--:-- --:--:--  3750
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5016559Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5017176Z                                  Dload  Upload   Total   Spent    Left  Speed
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5017475Z 
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5046099Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5047025Z 100    15  100    15    0     0   5110      0 --:--:-- --:--:-- --:--:--  7500
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5085576Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5086075Z                                  Dload  Upload   Total   Spent    Left  Speed
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5086503Z 
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5144234Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5144777Z 100     2  100     2    0     0    334      0 --:--:-- --:--:-- --:--:--   400
+build-scan-deploy	Deploy with Helm and verify API	2026-10-07T13:33:46.5151767Z {"status":"UP"}{"status":"UP"}[]
+build-scan-deploy	Publish verified images to GHCR	﻿2026-10-07T13:33:46.5209055Z ##[group]Run printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.5209623Z ^[[36;1mprintf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin^[[0m
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.5210050Z ^[[36;1mdocker push "$IMAGE_BASE-backend:$GITHUB_SHA"^[[0m
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.5210368Z ^[[36;1mdocker push "$IMAGE_BASE-frontend:$GITHUB_SHA"^[[0m
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.5245205Z shell: /usr/bin/bash -e {0}
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.5245489Z env:
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.5245736Z   IMAGE_BASE: ghcr.io/thereissomething/devops-work
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.5248046Z   GHCR_TOKEN: ***
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.5248327Z ##[endgroup]
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.9200910Z 
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.9201743Z WARNING! Your credentials are stored unencrypted in '/home/runner/.docker/config.json'.
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.9202363Z Configure a credential helper to remove this warning. See
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.9202848Z https://docs.docker.com/go/credential-store/
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.9203125Z 
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.9203282Z Login Succeeded
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:46.9496870Z The push refers to repository [ghcr.io/thereissomething/devops-work-backend]
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0581031Z f1766d147e39: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0581462Z ad6353299d88: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0581951Z 52936edc527d: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0582260Z a51dbd4e26bc: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0582615Z 6f331c0800a2: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0582941Z 1ab102cc0489: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0583264Z 09b41e0a8d45: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0583570Z 4b3c5e4553e1: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0583880Z ebc25a728871: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0584188Z 74d97c428c51: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0585685Z 09b41e0a8d45: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0586911Z 4b3c5e4553e1: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0591198Z ebc25a728871: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0594911Z 74d97c428c51: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:47.0595403Z 1ab102cc0489: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:48.8467068Z 52936edc527d: Pushed
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:48.8470448Z f1766d147e39: Pushed
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:48.8514268Z 6f331c0800a2: Pushed
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:48.9146681Z ad6353299d88: Pushed
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:48.9808479Z 09b41e0a8d45: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:48.9921847Z 4b3c5e4553e1: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:49.0356589Z ebc25a728871: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:49.1040632Z 74d97c428c51: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:50.4221814Z 1ab102cc0489: Pushed
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:51.7148217Z a51dbd4e26bc: Pushed
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.7940440Z 9d85fe3d871c2ba5ce87c77e33181978a1112fc0: digest: sha256:5a8d749dce17a65ff6860a00f5f7a715bbf344b17341564f3e1093ebfce23be6 size: 2405
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.8507775Z The push refers to repository [ghcr.io/thereissomething/devops-work-frontend]
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9436674Z ce8ce4ec26e3: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9437064Z 85b45b0faf11: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9437326Z 4ff62ec0e967: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9437583Z 36c003a300d1: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9437805Z 2b12ccfb247a: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9438054Z 646d544dc619: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9438351Z f7b74afe8798: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9438560Z 00a43f630638: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9438797Z f4eddaa4c303: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9439019Z e6082cdc2516: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9439256Z 29df493baa13: Preparing
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9439531Z 00a43f630638: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9439738Z f4eddaa4c303: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9439972Z e6082cdc2516: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9440196Z 29df493baa13: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9440444Z 646d544dc619: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:53.9440704Z f7b74afe8798: Waiting
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:54.2499834Z 36c003a300d1: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:54.2618130Z 2b12ccfb247a: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:54.3867777Z f7b74afe8798: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:54.3946631Z 646d544dc619: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:54.5187647Z 00a43f630638: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:54.5216139Z f4eddaa4c303: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:54.6369690Z 29df493baa13: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:54.6652747Z e6082cdc2516: Layer already exists
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:55.6879395Z 4ff62ec0e967: Pushed
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:55.6987449Z 85b45b0faf11: Pushed
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:56.4820431Z ce8ce4ec26e3: Pushed
+build-scan-deploy	Publish verified images to GHCR	2026-10-07T13:33:58.6231820Z 9d85fe3d871c2ba5ce87c77e33181978a1112fc0: digest: sha256:a8902201ed86a9c24c0a4e87017faa97a6f1ac11a316fe457413fec4e6adab00 size: 2616
+build-scan-deploy	Remove temporary cluster	﻿2026-10-07T13:33:58.6295556Z ##[group]Run kind delete cluster --name homework
+build-scan-deploy	Remove temporary cluster	2026-10-07T13:33:58.6296062Z ^[[36;1mkind delete cluster --name homework^[[0m
+build-scan-deploy	Remove temporary cluster	2026-10-07T13:33:58.6328679Z shell: /usr/bin/bash -e {0}
+build-scan-deploy	Remove temporary cluster	2026-10-07T13:33:58.6328995Z env:
+build-scan-deploy	Remove temporary cluster	2026-10-07T13:33:58.6329249Z   IMAGE_BASE: ghcr.io/thereissomething/devops-work
+build-scan-deploy	Remove temporary cluster	2026-10-07T13:33:58.6329641Z ##[endgroup]
+build-scan-deploy	Remove temporary cluster	2026-10-07T13:33:58.6496517Z Deleting cluster "homework" ...
+build-scan-deploy	Remove temporary cluster	2026-10-07T13:34:04.0562747Z Deleted nodes: ["homework-control-plane"]
+build-scan-deploy	Post Run actions/checkout@v4	﻿2026-10-07T13:34:04.0683925Z Post job cleanup.
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1376943Z [command]/usr/bin/git version
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1425399Z git version 2.55.0
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1459551Z Temporarily overriding HOME='/home/runner/work/_temp/e70942a7-11ca-4eb5-9f1b-45b9335e4861' before making global git config changes
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1460578Z Adding repository directory to the temporary git global config as a safe directory
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1464657Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-work/devops-work
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1498464Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1527040Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1704054Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1725179Z http.https://github.com/.extraheader
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1733219Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1763864Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1952789Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build-scan-deploy	Post Run actions/checkout@v4	2026-10-07T13:34:04.1979734Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build-scan-deploy	Complete job	﻿2026-10-07T13:34:04.2284437Z Cleaning up orphan processes
+build-scan-deploy	Complete job	2026-10-07T13:34:04.2579121Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

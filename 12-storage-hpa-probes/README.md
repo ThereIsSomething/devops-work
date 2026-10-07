@@ -109,10 +109,10 @@ NAME      REFERENCE            TARGETS          MINPODS   MAXPODS   REPLICAS   A
 web-app   Deployment/web-app   cpu: 1000%/50%   2         5         2          96s
 [exit 0]
 $ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s13 top pods
-NAME                       CPU(cores)   MEMORY(bytes)   
-client                     0m           0Mi             
-load-generator             339m         3Mi             
-web-app-85c8fd8f57-rx84t   250m         11Mi            
+NAME                       CPU(cores)   MEMORY(bytes)
+client                     0m           0Mi
+load-generator             339m         3Mi
+web-app-85c8fd8f57-rx84t   250m         11Mi
 web-app-85c8fd8f57-wbk47   250m         10Mi
 [exit 0]
 $ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s13 get pods

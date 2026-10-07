@@ -1,0 +1,6 @@
+Browser check against the rebuilt Compose frontend on http://localhost:13000.
+An initial create saved the task but left the form open. React cleared event.currentTarget before the awaited request finished.
+Fixed by retaining the form element before await and checking the HTTP response.
+Retest: created "Verify the task form closes after saving"; form closed and Total tasks became 2.
+Clicked Advance status on the new task; In progress became 1 and the row showed IN PROGRESS.
+API persistence was also checked through /api/tasks.

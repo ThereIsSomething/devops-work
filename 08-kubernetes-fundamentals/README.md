@@ -148,7 +148,7 @@ Waiting for deployment "web" rollout to finish: 1 old replicas are pending termi
 deployment "web" successfully rolled out
 [exit 0]
 $ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s09 rollout history deployment/web
-deployment.apps/web 
+deployment.apps/web
 REVISION  CHANGE-CAUSE
 1         <none>
 2         <none>

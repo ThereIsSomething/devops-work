@@ -14,3 +14,7 @@ scripts/kubectl -n homework-monitoring port-forward svc/grafana 13001:3000
 Observe CPU/memory with kubectl top as well as application metrics. An up metric means the scrape succeeded, not that every business operation is healthy; /ready also checks database access.
 
 References: [Prometheus](https://prometheus.io/docs/introduction/overview/), [Grafana provisioning](https://grafana.com/docs/grafana/latest/administration/provisioning/).
+
+## Azure evidence
+
+The same stack also ran on the real AKS cluster. [Recorded cloud queries](../outputs/azure-monitoring.txt) show Prometheus and TaskBoard scrape targets up, a process-memory sample and no active unavailable alert. The hosted Azure deployment log includes ready monitoring Deployments and real `kubectl top` measurements. The lab stack uses one backend Service scrape target; a production deployment should discover and scrape individual replicas.

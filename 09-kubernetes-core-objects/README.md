@@ -115,9 +115,9 @@ $ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/k
 
 [Excerpt: 1222 intermediate lines omitted; complete transcript linked above.]
 
-  Ready                       True 
-  ContainersReady             True 
-  PodScheduled                True 
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
 Volumes:
   kube-api-access-cxcn4:
     Type:                    Projected (a volume that contains injected data from multiple sources)

@@ -1,0 +1,85 @@
+$ curl http://localhost:19091/api/v1/targets
+{
+  "status": "success",
+  "targets": [
+    {
+      "job": "prometheus",
+      "health": "up",
+      "lastError": ""
+    },
+    {
+      "job": "taskboard",
+      "health": "up",
+      "lastError": ""
+    }
+  ]
+}
+$ curl http://localhost:19091/api/v1/alerts
+{
+  "status": "success",
+  "data": {
+    "alerts": []
+  }
+}
+$ curl http://localhost:19091/api/v1/query?query=up
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "backend.homework-final.svc.cluster.local:8000",
+          "job": "taskboard"
+        },
+        "value": [
+          1791380992.93,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "localhost:9090",
+          "job": "prometheus"
+        },
+        "value": [
+          1791380992.93,
+          "1"
+        ]
+      }
+    ]
+  }
+}
+$ curl http://localhost:19091/api/v1/query?query=process_resident_memory_bytes
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "__name__": "process_resident_memory_bytes",
+          "instance": "backend.homework-final.svc.cluster.local:8000",
+          "job": "taskboard"
+        },
+        "value": [
+          1791380993.009,
+          "92495872"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "process_resident_memory_bytes",
+          "instance": "localhost:9090",
+          "job": "prometheus"
+        },
+        "value": [
+          1791380993.009,
+          "91672576"
+        ]
+      }
+    ]
+  }
+}

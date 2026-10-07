@@ -85,7 +85,7 @@ $ curl --fail -H Host:homework.local http://127.0.0.1:18082
 
   0      0   0      0   0      0      0      0                              0
 curl: (22) The requested URL returned error: 404
-Warning: Problem (retrying all errors). Will retry in 1 second. 10 retries 
+Warning: Problem (retrying all errors). Will retry in 1 second. 10 retries
 Warning: left.
 
   0      0   0      0   0      0      0      0                              0

@@ -36,6 +36,11 @@ Reference: [Service](https://kubernetes.io/docs/concepts/services-networking/ser
 
 Actual local transcripts are included below after the runs finish. A missing or incomplete transcript is not a completed exercise.
 
+
+## Real cloud LoadBalancer verification
+
+The Minikube LoadBalancer Service initially remained Pending because it had no cloud load-balancer controller or active tunnel. The real AKS deployment supplies that controller. Its temporary frontend LoadBalancer, assigned public IP and HTTP response are recorded in the [Azure functional test](../final-devops-project/outputs/azure-functional.txt). The service is restored to ClusterIP before cloud cleanup.
+
 <!-- EVIDENCE -->
 
 ### run.txt

@@ -1,0 +1,37 @@
+ Container homework-taskboard-postgres-1 Recreate 
+ Container homework-taskboard-postgres-1 Recreated 
+ Container homework-taskboard-migrate-1 Recreate 
+ Container homework-taskboard-migrate-1 Recreated 
+ Container homework-taskboard-backend-1 Recreate 
+ Container homework-taskboard-backend-1 Recreated 
+ Container homework-taskboard-frontend-1 Recreate 
+ Container homework-taskboard-frontend-1 Recreated 
+ Container homework-taskboard-postgres-1 Starting 
+ Container homework-taskboard-postgres-1 Started 
+ Container homework-taskboard-postgres-1 Waiting 
+ Container homework-taskboard-postgres-1 Healthy 
+ Container homework-taskboard-migrate-1 Starting 
+ Container homework-taskboard-migrate-1 Started 
+ Container homework-taskboard-migrate-1 Waiting 
+ Container homework-taskboard-migrate-1 Exited 
+ Container homework-taskboard-backend-1 Starting 
+ Container homework-taskboard-backend-1 Started 
+ Container homework-taskboard-backend-1 Waiting 
+ Container homework-taskboard-backend-1 Healthy 
+ Container homework-taskboard-frontend-1 Starting 
+ Container homework-taskboard-frontend-1 Started 
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0
+curl: (56) Recv failure: Connection reset by peer
+Warning: Problem (retrying all errors). Will retry in 2 seconds. 20 retries 
+Warning: left.
+  0      0   0      0   0      0      0      0                              0
+curl: (56) Recv failure: Connection reset by peer
+Warning: Problem (retrying all errors). Will retry in 2 seconds. 19 retries 
+Warning: left.
+  0      0   0      0   0      0      0      0                              0100     15 100     15   0      0   7767      0                              0100     15 100     15   0      0   6986      0                              0100     15 100     15   0      0   6404      0                              0
+{"status":"UP"}  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0100      2 100      2   0      0    451      0                              0100      2 100      2   0      0    440      0                              0100      2 100      2   0      0    430      0                              0
+[]

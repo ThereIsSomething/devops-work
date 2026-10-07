@@ -14,6 +14,9 @@ resource "azurerm_kubernetes_cluster" "lab" {
     name       = "system"
     node_count = 1
     vm_size    = var.node_vm_size
+    upgrade_settings {
+      max_surge = "10%"
+    }
   }
   identity { type = "SystemAssigned" }
   network_profile {
