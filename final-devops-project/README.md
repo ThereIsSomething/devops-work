@@ -114,4 +114,4 @@ A Running Pod can still be unready. A healthy application can be unreachable bec
 
 ## Cleanup
 
-`scripts/cleanup-homework.sh` removes only the homework Kubernetes namespaces and stops the homework Compose stack. It retains the Compose database volume. Deleting the final namespace deletes its PVCs; save any data you need first. Cloud resources are destroyed from their own Terraform state, separately from local cleanup. The lab group is then deleted and a subscription inventory check confirms zero remaining resources. [Azure cleanup transcript](outputs/azure-destroy.txt).
+`scripts/cleanup-homework.sh` removes only the homework Kubernetes namespaces and stops the homework Compose stack. It retains the Compose database volume. Deleting the final namespace deletes its PVCs; save any data you need first. Cloud resources are destroyed from their own Terraform state, separately from local cleanup. The lab group and Azure-generated NetworkWatcherRG are then deleted, and a subscription inventory check confirms zero remaining resources. [Azure cleanup transcript](outputs/azure-destroy.txt).

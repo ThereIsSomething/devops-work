@@ -311,3 +311,19 @@ $ gh variable delete AZURE_SUBSCRIPTION_ID
 
 $ gh variable delete AZURE_API_CIDR
 [exit 0]
+
+The first final inventory found the automatically created Network Watcher outside the lab group. Remove its dedicated group, then recheck the subscription.
+
+$ az group delete --name NetworkWatcherRG --yes
+
+[exit 0]
+
+$ az resource list --query [].{name:name,type:type,resourceGroup:resourceGroup} -o json
+[]
+
+[exit 0]
+
+$ az group list --query [].name -o json
+[]
+
+[exit 0]
