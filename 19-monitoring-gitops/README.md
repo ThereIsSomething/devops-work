@@ -28,3 +28,125 @@ A real GitOps demonstration requires the watched files to be pushed first. Creat
 The same principle applies to a Git change: commit replicas=3, push it, and verify three replicas after reconciliation. Reconciliation is the compare-and-correct loop. Self-healing fixes cluster drift toward Git; it does not guess whether a committed change was a good idea.
 
 References: [Argo CD](https://argo-cd.readthedocs.io/en/stable/), [Prometheus](https://prometheus.io/docs/introduction/overview/).
+
+<!-- EVIDENCE -->
+
+### argocd-install.txt
+
+[Complete transcript](outputs/argocd-install.txt)
+
+````text
+customresourcedefinition.apiextensions.k8s.io/applications.argoproj.io serverside-applied
+customresourcedefinition.apiextensions.k8s.io/applicationsets.argoproj.io serverside-applied
+customresourcedefinition.apiextensions.k8s.io/appprojects.argoproj.io serverside-applied
+serviceaccount/argocd-application-controller serverside-applied
+serviceaccount/argocd-applicationset-controller serverside-applied
+serviceaccount/argocd-redis serverside-applied
+serviceaccount/argocd-repo-server serverside-applied
+role.rbac.authorization.k8s.io/argocd-application-controller serverside-applied
+role.rbac.authorization.k8s.io/argocd-applicationset-controller serverside-applied
+role.rbac.authorization.k8s.io/argocd-redis serverside-applied
+clusterrole.rbac.authorization.k8s.io/argocd-application-controller serverside-applied
+rolebinding.rbac.authorization.k8s.io/argocd-application-controller serverside-applied
+rolebinding.rbac.authorization.k8s.io/argocd-applicationset-controller serverside-applied
+rolebinding.rbac.authorization.k8s.io/argocd-redis serverside-applied
+clusterrolebinding.rbac.authorization.k8s.io/argocd-application-controller serverside-applied
+configmap/argocd-cm serverside-applied
+configmap/argocd-cmd-params-cm serverside-applied
+configmap/argocd-gpg-keys-cm serverside-applied
+configmap/argocd-rbac-cm serverside-applied
+configmap/argocd-ssh-known-hosts-cm serverside-applied
+configmap/argocd-tls-certs-cm serverside-applied
+secret/argocd-secret serverside-applied
+service/argocd-applicationset-controller serverside-applied
+service/argocd-metrics serverside-applied
+service/argocd-redis serverside-applied
+service/argocd-repo-server serverside-applied
+deployment.apps/argocd-applicationset-controller serverside-applied
+deployment.apps/argocd-redis serverside-applied
+deployment.apps/argocd-repo-server serverside-applied
+statefulset.apps/argocd-application-controller serverside-applied
+networkpolicy.networking.k8s.io/argocd-application-controller-network-policy serverside-applied
+networkpolicy.networking.k8s.io/argocd-applicationset-controller-network-policy serverside-applied
+networkpolicy.networking.k8s.io/argocd-redis-network-policy serverside-applied
+networkpolicy.networking.k8s.io/argocd-repo-server-network-policy serverside-applied
+NAME                                                READY   STATUS              RESTARTS   AGE
+argocd-application-controller-0                     0/1     ContainerCreating   0          1s
+argocd-applicationset-controller-76fd8cdd4f-bgm65   0/1     ContainerCreating   0          1s
+argocd-redis-bdbdffcb4-5v6fz                        0/1     Init:0/1            0          1s
+argocd-repo-server-d89c7967d-2f575                  0/1     Init:0/1            0          1s
+````
+
+### monitoring.txt
+
+[Complete transcript](outputs/monitoring.txt)
+
+````text
+Captured 2026-10-07T13:08:33.778261+00:00
+$ curl http://127.0.0.1:19090/api/v1/targets
+[
+  {
+    "job": "prometheus",
+    "health": "up",
+    "lastError": ""
+  },
+  {
+    "job": "taskboard",
+    "health": "down",
+    "lastError": "Get \"http://backend.homework-final.svc.cluster.local:8000/metrics\": dial tcp 10.98.164.157:8000: connect: connection refused"
+  }
+]
+$ curl http://127.0.0.1:19090/api/v1/alerts
+{
+  "status": "success",
+  "data": {
+    "alerts": [
+      {
+        "labels": {
+          "alertname": "TaskBoardUnavailable",
+          "instance": "backend.homework-final.svc.cluster.local:8000",
+          "job": "taskboard",
+          "severity": "warning"
+        },
+        "annotations": {
+          "summary": "TaskBoard metrics endpoint cannot be scraped"
+        },
+        "state": "firing",
+        "activeAt": "2026-10-07T13:02:57.196613459Z",
+        "value": "0e+00"
+      }
+    ]
+  }
+}
+$ curl http://127.0.0.1:19090/api/v1/query?query=up
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "backend.homework-final.svc.cluster.local:8000",
+          "job": "taskboard"
+        },
+        "value": [
+          1791378513.793,
+          "0"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "localhost:9090",
+          "job": "prometheus"
+        },
+        "value": [
+          1791378513.793,
+          "1"
+        ]
+      }
+    ]
+  }
+}
+````

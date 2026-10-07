@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "author": "Pujan Khunt (24BCS10138)",
+  "author": "Nitish Kumar Bhambu (24BCS10589)",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -1,0 +1,207 @@
+Captured 2026-10-07T13:01:01.850923+00:00
+$ ip -brief address
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp62s0          DOWN           
+wlp0s20f3        UP             192.168.6.199/19 fe80::a215:ee0:afc3:7587/64 
+outline-tun0     DOWN           10.0.85.1/32 
+docker0          UP             172.17.0.1/16 fe80::b000:1ff:fe09:4a93/64 
+br-bd87a280590b  UP             192.168.49.1/24 fe80::10ad:19ff:fe46:7b42/64 
+veth8a1badc@if2  UP             fe80::28aa:cff:fe61:a822/64 
+br-1e07af2e7d59  UP             172.18.0.1/16 fe80::e490:2fff:fe38:45e7/64 
+veth4c492bf@if2  UP             fe80::ecbb:20ff:fec1:35f8/64 
+veth24caf47@if2  UP             fe80::80b1:b5ff:fe07:b65b/64 
+vethd1a3cc4@if2  UP             fe80::78c5:a3ff:fe13:bc65/64 
+vethfc04432@if2  UP             fe80::1cd9:78ff:fe1f:6505/64
+[exit 0]
+$ ip route
+default via 192.168.1.1 dev wlp0s20f3 proto dhcp src 192.168.6.199 metric 600 
+10.0.85.2 dev outline-tun0 scope link src 10.0.85.1 linkdown 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 
+172.18.0.0/16 dev br-1e07af2e7d59 proto kernel scope link src 172.18.0.1 
+192.168.0.0/19 dev wlp0s20f3 proto kernel scope link src 192.168.6.199 metric 600 
+192.168.49.0/24 dev br-bd87a280590b proto kernel scope link src 192.168.49.1
+[exit 0]
+$ ip neigh
+172.17.0.2 dev docker0 lladdr ba:97:c5:5d:d9:aa REACHABLE 
+172.17.0.3 dev docker0 lladdr e2:f7:67:1b:ca:24 REACHABLE 
+192.168.49.2 dev br-bd87a280590b lladdr 56:9d:45:53:19:0a STALE 
+192.168.1.1 dev wlp0s20f3 lladdr 90:e3:ba:02:21:c6 REACHABLE
+[exit 0]
+$ dig example.com
+
+; <<>> DiG 9.18.50 <<>> example.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61654
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;example.com.			IN	A
+
+;; ANSWER SECTION:
+example.com.		58	IN	A	104.20.23.154
+example.com.		58	IN	A	172.66.147.243
+
+;; Query time: 57 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+;; WHEN: Wed Oct 07 18:31:02 IST 2026
+;; MSG SIZE  rcvd: 72
+[exit 0]
+$ getent hosts example.com
+2606:4700:10::ac42:93f3 example.com
+2606:4700:10::6814:179a example.com
+[exit 0]
+$ ping -c 2 1.1.1.1
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+64 bytes from 1.1.1.1: icmp_seq=1 ttl=57 time=44.2 ms
+64 bytes from 1.1.1.1: icmp_seq=2 ttl=57 time=60.9 ms
+
+--- 1.1.1.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 44.222/52.562/60.902/8.340 ms
+[exit 0]
+$ ss -tuln
+Netid State  Recv-Q Send-Q      Local Address:Port  Peer Address:Port
+udp   UNCONN 0      0            192.168.49.1:50572      0.0.0.0:*   
+udp   UNCONN 0      0                 0.0.0.0:35298      0.0.0.0:*   
+udp   UNCONN 0      0                 0.0.0.0:60765      0.0.0.0:*   
+udp   UNCONN 0      0              172.17.0.1:60796      0.0.0.0:*   
+udp   UNCONN 0      0                 0.0.0.0:44448      0.0.0.0:*   
+udp   UNCONN 0      0                 0.0.0.0:60995      0.0.0.0:*   
+udp   UNCONN 0      0                 0.0.0.0:45505      0.0.0.0:*   
+udp   UNCONN 0      0             224.0.0.251:5353       0.0.0.0:*   
+udp   UNCONN 0      0             224.0.0.251:5353       0.0.0.0:*   
+udp   UNCONN 0      0                 0.0.0.0:5353       0.0.0.0:*   
+udp   UNCONN 0      0                 0.0.0.0:5353       0.0.0.0:*   
+udp   UNCONN 0      0                 0.0.0.0:5355       0.0.0.0:*   
+udp   UNCONN 0      0              172.18.0.1:54925      0.0.0.0:*   
+udp   UNCONN 0      0              172.17.0.1:39275      0.0.0.0:*   
+udp   UNCONN 0      0           192.168.6.199:39656      0.0.0.0:*   
+udp   UNCONN 0      0              172.17.0.1:56433      0.0.0.0:*   
+udp   UNCONN 0      0              127.0.0.54:53         0.0.0.0:*   
+udp   UNCONN 0      0           127.0.0.53%lo:53         0.0.0.0:*   
+udp   UNCONN 0      0                 0.0.0.0:41211      0.0.0.0:*   
+udp   UNCONN 0      0               127.0.0.1:323        0.0.0.0:*   
+udp   UNCONN 0      0                       *:41772            *:*   
+udp   UNCONN 0      0                       *:1716             *:*   
+udp   UNCONN 0      0                    [::]:5353          [::]:*   
+udp   UNCONN 0      0                    [::]:5355          [::]:*   
+udp   UNCONN 0      0                   [::1]:323           [::]:*   
+tcp   LISTEN 0      4096            127.0.0.1:32772      0.0.0.0:*   
+tcp   LISTEN 0      4096            127.0.0.1:32768      0.0.0.0:*   
+tcp   LISTEN 0      4096            127.0.0.1:32769      0.0.0.0:*   
+tcp   LISTEN 0      4096            127.0.0.1:32770      0.0.0.0:*   
+tcp   LISTEN 0      4096            127.0.0.1:32771      0.0.0.0:*   
+tcp   LISTEN 0      4096              0.0.0.0:5355       0.0.0.0:*   
+tcp   LISTEN 0      4096            127.0.0.1:631        0.0.0.0:*   
+tcp   LISTEN 0      4096        127.0.0.53%lo:53         0.0.0.0:*   
+tcp   LISTEN 0      4096            127.0.0.1:18000      0.0.0.0:*   
+tcp   LISTEN 0      4096            127.0.0.1:3001       0.0.0.0:*   
+tcp   LISTEN 0      4096           127.0.0.54:53         0.0.0.0:*   
+tcp   LISTEN 0      4096            127.0.0.1:20241      0.0.0.0:*   
+tcp   LISTEN 0      4096            127.0.0.1:13000      0.0.0.0:*   
+tcp   LISTEN 0      4096                 [::]:5355          [::]:*   
+tcp   LISTEN 0      50     [::ffff:127.0.0.1]:52829            *:*   
+tcp   LISTEN 0      50                      *:1716             *:*   
+tcp   LISTEN 0      4096   [::ffff:127.0.0.1]:46421            *:*   
+tcp   LISTEN 0      4096                [::1]:631           [::]:*
+[exit 0]
+$ curl --head --max-time 15 https://example.com
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+  0      0   0      0   0      0      0      0                              0
+  0      0   0      0   0      0      0      0                              0
+  0      0   0      0   0      0      0      0                              0
+HTTP/2 200 
+date: Wed, 07 Oct 2026 13:01:03 GMT
+content-type: text/html; charset=utf-8
+server: cloudflare
+last-modified: Fri, 02 Oct 2026 16:11:02 GMT
+allow: GET, HEAD
+accept-ranges: bytes
+age: 2927
+cf-cache-status: HIT
+cf-ray: a46d17a02f4ca901-MAA
+alt-svc: h3=":443"; ma=86400
+[exit 0]
+$ ip -s link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    RX:  bytes packets errors dropped  missed   mcast           
+       2040551   11568      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+       2040551   11568      0       0       0       0 
+2: enp62s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN mode DEFAULT group default qlen 1000
+    link/ether 74:d4:dd:5e:1b:8c brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+    altname enx74d4dd5e1b8c
+3: wlp0s20f3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DORMANT group default qlen 1000
+    link/ether e4:c7:67:8a:26:ef brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+    1687451296 1726935      0    1142       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+      81828716  323265      0      24       0       0 
+    altname wlxe4c7678a26ef
+4: outline-tun0: <NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP> mtu 1500 qdisc fq_codel state DOWN mode DEFAULT group default qlen 500
+    link/none 
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0      65       0       0 
+5: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default 
+    link/ether b2:00:01:09:4a:93 brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+       1080569   15940      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+      87141223   33715      0      79       0       0 
+6: br-bd87a280590b: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default 
+    link/ether 12:ad:19:46:7b:42 brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+       7907242   18857      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+     115825783   47582      0      63       0       0 
+7: veth8a1badc@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-bd87a280590b state UP mode DEFAULT group default 
+    link/ether 2a:aa:0c:61:a8:22 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    RX:  bytes packets errors dropped  missed   mcast           
+       8171240   18857      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+     115832007   47618      0       0       0       0 
+18: br-1e07af2e7d59: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default 
+    link/ether e6:90:2f:38:45:e7 brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+           392      14      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+          8402      43      0      10       0       0 
+19: veth4c492bf@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-1e07af2e7d59 state UP mode DEFAULT group default 
+    link/ether ee:bb:20:c1:35:f8 brd ff:ff:ff:ff:ff:ff link-netnsid 1
+    RX:  bytes packets errors dropped  missed   mcast           
+         19765     195      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+         38463     354      0       0       0       0 
+22: veth24caf47@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-1e07af2e7d59 state UP mode DEFAULT group default 
+    link/ether 82:b1:b5:07:b6:5b brd ff:ff:ff:ff:ff:ff link-netnsid 3
+    RX:  bytes packets errors dropped  missed   mcast           
+         19995     247      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+         23464     209      0       0       0       0 
+23: vethd1a3cc4@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-1e07af2e7d59 state UP mode DEFAULT group default 
+    link/ether 7a:c5:a3:13:bc:65 brd ff:ff:ff:ff:ff:ff link-netnsid 4
+    RX:  bytes packets errors dropped  missed   mcast           
+           126       3      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+          6734      37      0       0       0       0 
+28: vethfc04432@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master docker0 state UP mode DEFAULT group default 
+    link/ether 42:bb:cf:fd:e8:3b brd ff:ff:ff:ff:ff:ff link-netnsid 2
+    RX:  bytes packets errors dropped  missed   mcast           
+           264       6      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+          5972      38      0       0       0       0
+[exit 0]
+LAB EXECUTION FINISHED

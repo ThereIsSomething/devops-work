@@ -1,0 +1,8 @@
+subscription_id = "replace-with-your-subscription-id"
+storage_account_name = "replacewithuniquename"
+location = "centralindia"
+resource_group_name = "rg-devops-homework"
+enable_vm = false
+# To enable the actual VM after reviewing cost and quota:
+# enable_vm = true
+# ssh_public_key = "ssh-ed25519 AAAA... your-public-key"

@@ -1,0 +1,3 @@
+subscription_id = "YOUR_SUBSCRIPTION_ID"
+resource_group_name = "rg-devops-homework"
+api_allowed_cidrs = ["YOUR_PUBLIC_IP/32"]

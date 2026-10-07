@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: homework
+  namespace: homework-gitops
+spec:
+  sourceRepos:
+    - https://github.com/ThereIsSomething/devops-work.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: homework-gitops-demo
+    - server: https://kubernetes.default.svc
+      namespace: homework-final
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace

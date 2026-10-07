@@ -1,0 +1,17 @@
+$ scripts/kubectl get application homework-web -n homework-gitops -o wide
+NAME           SYNC STATUS   HEALTH STATUS   REVISION                                   PROJECT
+homework-web   Synced        Healthy         28424dbac1f9cef8f395e608e8471a137a2ca7f4   homework
+
+$ scripts/kubectl get deploy homework-web -n homework-gitops-demo
+Error from server (NotFound): deployments.apps "homework-web" not found
+
+$ scripts/kubectl scale deploy homework-web -n homework-gitops-demo --replicas=1
+Error from server (NotFound): deployments.apps "homework-web" not found
+
+$ scripts/kubectl get deploy homework-web -n homework-gitops-demo
+Error from server (NotFound): deployments.apps "homework-web" not found
+
+$ scripts/kubectl get application homework-web -n homework-gitops -o wide
+NAME           SYNC STATUS   HEALTH STATUS   REVISION                                   PROJECT
+homework-web   Synced        Healthy         28424dbac1f9cef8f395e608e8471a137a2ca7f4   homework
+

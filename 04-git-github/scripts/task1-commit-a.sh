@@ -5,7 +5,7 @@ SANDBOX=${1:-/tmp/git-task1}
 rm -rf "$SANDBOX"; mkdir -p "$SANDBOX"; cd "$SANDBOX"
 
 git init -q
-git config user.name  "Pujan Khunt"
+git config user.name  "Nitish Kumar Bhambu"
 git config user.email "support@symbiotes.in"
 git config commit.gpgsign false
 git symbolic-ref HEAD refs/heads/main

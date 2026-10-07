@@ -1,0 +1,10 @@
+$ helm install explicit-install 14-helm/chart -n homework-s15 --wait
+NAME: explicit-install
+LAST DEPLOYED: Wed Oct  7 18:32:23 2026
+NAMESPACE: homework-s15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+$ helm uninstall explicit-install -n homework-s15
+release "explicit-install" uninstalled

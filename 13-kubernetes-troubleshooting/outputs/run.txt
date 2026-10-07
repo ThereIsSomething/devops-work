@@ -1,0 +1,810 @@
+Captured 2026-10-07T12:57:01.383554+00:00
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' create namespace homework-s14
+namespace/homework-s14 created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 apply -f 13-kubernetes-troubleshooting/app.yaml
+deployment.apps/troubleshooting-app created
+service/troubleshooting-service created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 rollout status deployment/troubleshooting-app --timeout=180s
+Waiting for deployment "troubleshooting-app" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "troubleshooting-app" rollout to finish: 1 of 2 updated replicas are available...
+deployment "troubleshooting-app" successfully rolled out
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 run client --image=busybox:1.37 --restart=Never -- sleep 7200
+pod/client created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 wait --for=condition=Ready pod/client --timeout=120s
+pod/client condition met
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 apply -f 13-kubernetes-troubleshooting/crash.yaml
+pod/crash created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 apply -f 13-kubernetes-troubleshooting/image.yaml
+pod/image created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 apply -f 13-kubernetes-troubleshooting/pending.yaml
+pod/pending created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 apply -f 13-kubernetes-troubleshooting/creating.yaml
+pod/creating created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 apply -f 13-kubernetes-troubleshooting/config.yaml
+pod/config created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 apply -f 13-kubernetes-troubleshooting/dns.yaml
+pod/dns created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 get pods -o wide
+NAME                                  READY   STATUS                       RESTARTS      AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+client                                1/1     Running                      0             38s   10.244.0.68   minikube   <none>           <none>
+config                                0/1     CreateContainerConfigError   0             36s   10.244.0.71   minikube   <none>           <none>
+crash                                 1/1     Running                      3 (22s ago)   37s   10.244.0.69   minikube   <none>           <none>
+creating                              0/1     ContainerCreating            0             36s   <none>        minikube   <none>           <none>
+dns                                   1/1     Running                      0             35s   10.244.0.72   minikube   <none>           <none>
+image                                 0/1     ErrImagePull                 0             37s   10.244.0.70   minikube   <none>           <none>
+pending                               0/1     Pending                      0             36s   <none>        <none>     <none>           <none>
+troubleshooting-app-98786d457-bmkvt   1/1     Running                      0             40s   10.244.0.66   minikube   <none>           <none>
+troubleshooting-app-98786d457-l9d92   1/1     Running                      0             40s   10.244.0.67   minikube   <none>           <none>
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 events
+LAST SEEN           TYPE      REASON              OBJECT                                     MESSAGE
+40s                 Normal    SuccessfulCreate    ReplicaSet/troubleshooting-app-98786d457   Created pod: troubleshooting-app-98786d457-l9d92
+40s                 Normal    SuccessfulCreate    ReplicaSet/troubleshooting-app-98786d457   Created pod: troubleshooting-app-98786d457-bmkvt
+40s                 Normal    ScalingReplicaSet   Deployment/troubleshooting-app             Scaled up replica set troubleshooting-app-98786d457 from 0 to 2
+40s                 Normal    Scheduled           Pod/troubleshooting-app-98786d457-bmkvt    Successfully assigned homework-s14/troubleshooting-app-98786d457-bmkvt to minikube
+40s                 Normal    Scheduled           Pod/troubleshooting-app-98786d457-l9d92    Successfully assigned homework-s14/troubleshooting-app-98786d457-l9d92 to minikube
+39s                 Normal    Started             Pod/troubleshooting-app-98786d457-l9d92    Container started
+39s                 Normal    Created             Pod/troubleshooting-app-98786d457-l9d92    Container created
+39s                 Normal    Pulled              Pod/troubleshooting-app-98786d457-l9d92    Container image "nginx:1.28-alpine" already present on machine and can be accessed by the pod
+39s                 Normal    Started             Pod/troubleshooting-app-98786d457-bmkvt    Container started
+39s                 Normal    Created             Pod/troubleshooting-app-98786d457-bmkvt    Container created
+39s                 Normal    Pulled              Pod/troubleshooting-app-98786d457-bmkvt    Container image "nginx:1.28-alpine" already present on machine and can be accessed by the pod
+38s                 Normal    Started             Pod/client                                 Container started
+38s                 Normal    Created             Pod/client                                 Container created
+38s                 Normal    Pulled              Pod/client                                 Container image "busybox:1.37" already present on machine and can be accessed by the pod
+38s                 Normal    Scheduled           Pod/client                                 Successfully assigned homework-s14/client to minikube
+37s                 Normal    Scheduled           Pod/crash                                  Successfully assigned homework-s14/crash to minikube
+37s                 Normal    Scheduled           Pod/image                                  Successfully assigned homework-s14/image to minikube
+36s                 Warning   FailedScheduling    Pod/pending                                0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+36s                 Normal    Scheduled           Pod/creating                               Successfully assigned homework-s14/creating to minikube
+35s                 Normal    Scheduled           Pod/config                                 Successfully assigned homework-s14/config to minikube
+35s                 Normal    Scheduled           Pod/dns                                    Successfully assigned homework-s14/dns to minikube
+34s                 Normal    Created             Pod/dns                                    Container created
+34s                 Normal    Started             Pod/dns                                    Container started
+34s                 Normal    Pulled              Pod/dns                                    Container image "busybox:1.37" already present on machine and can be accessed by the pod
+22s (x2 over 35s)   Warning   BackOff             Pod/crash                                  Back-off restarting failed container app in pod crash_homework-s14(a3382af5-cd81-49d6-a8c5-a15fe1f6c533)
+20s (x2 over 36s)   Normal    Pulling             Pod/image                                  Pulling image "nginx:homework-does-not-exist"
+19s (x2 over 35s)   Warning   Failed              Pod/image                                  Error: ErrImagePull
+19s (x2 over 35s)   Warning   Failed              Pod/image                                  Failed to pull image "nginx:homework-does-not-exist": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/library/nginx:homework-does-not-exist": failed to resolve reference "docker.io/library/nginx:homework-does-not-exist": docker.io/library/nginx:homework-does-not-exist: not found
+7s (x4 over 35s)    Warning   Failed              Pod/config                                 Error: configmap "missing-config" not found
+7s (x4 over 35s)    Normal    Pulled              Pod/config                                 Container image "busybox:1.37" already present on machine and can be accessed by the pod
+4s (x7 over 36s)    Warning   FailedMount         Pod/creating                               MountVolume.SetUp failed for volume "missing" : secret "missing-volume" not found
+3s (x2 over 34s)    Warning   Failed              Pod/image                                  Error: ImagePullBackOff
+3s (x2 over 34s)    Normal    BackOff             Pod/image                                  Back-off pulling image "nginx:homework-does-not-exist"
+0s (x4 over 36s)    Normal    Started             Pod/crash                                  Container started
+0s (x4 over 37s)    Normal    Created             Pod/crash                                  Container created
+0s (x4 over 37s)    Normal    Pulled              Pod/crash                                  Container image "busybox:1.37" already present on machine and can be accessed by the pod
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 explain pod.spec.containers
+KIND:       Pod
+VERSION:    v1
+
+FIELD: containers <[]Container>
+
+
+DESCRIPTION:
+    List of containers belonging to the pod. Containers cannot currently be
+    added or removed. There must be at least one container in a Pod. Cannot be
+    updated.
+    A single application container that you want to run within a pod.
+    
+FIELDS:
+  args	<[]string>
+    Arguments to the entrypoint. The container image's CMD is used if this is
+    not provided. Variable references $(VAR_NAME) are expanded using the
+    container's environment. If a variable cannot be resolved, the reference in
+    the input string will be unchanged. Double $$ are reduced to a single $,
+    which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will
+    produce the string literal "$(VAR_NAME)". Escaped references will never be
+    expanded, regardless of whether the variable exists or not. Cannot be
+    updated. More info:
+    https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+
+  command	<[]string>
+    Entrypoint array. Not executed within a shell. The container image's
+    ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME)
+    are expanded using the container's environment. If a variable cannot be
+    resolved, the reference in the input string will be unchanged. Double $$ are
+    reduced to a single $, which allows for escaping the $(VAR_NAME) syntax:
+    i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped
+    references will never be expanded, regardless of whether the variable exists
+    or not. Cannot be updated. More info:
+    https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+
+  env	<[]EnvVar>
+    List of environment variables to set in the container. Cannot be updated.
+
+  envFrom	<[]EnvFromSource>
+    List of sources to populate environment variables in the container. The keys
+    defined within a source may consist of any printable ASCII characters except
+    '='. When a key exists in multiple sources, the value associated with the
+    last source will take precedence. Values defined by an Env with a duplicate
+    key will take precedence. Cannot be updated.
+
+  image	<string>
+    Container image name. More info:
+    https://kubernetes.io/docs/concepts/containers/images This field is optional
+    to allow higher level config management to default or override container
+    images in workload controllers like Deployments and StatefulSets.
+
+  imagePullPolicy	<string>
+  enum: Always, IfNotPresent, Never
+    Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if
+    :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More
+    info: https://kubernetes.io/docs/concepts/containers/images#updating-images
+    
+    Possible enum values:
+     - `"Always"` means that kubelet always attempts to pull the latest image.
+    Container will fail If the pull fails.
+     - `"IfNotPresent"` means that kubelet pulls if the image isn't present on
+    disk. Container will fail if the image isn't present and the pull fails.
+     - `"Never"` means that kubelet never pulls an image, but only uses a local
+    image. Container will fail if the image isn't present
+
+  lifecycle	<Lifecycle>
+    Actions that the management system should take in response to container
+    lifecycle events. Cannot be updated.
+
+  livenessProbe	<Probe>
+    Periodic probe of container liveness. Container will be restarted if the
+    probe fails. Cannot be updated. More info:
+    https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+
+  name	<string> -required-
+    Name of the container specified as a DNS_LABEL. Each container in a pod must
+    have a unique name (DNS_LABEL). Cannot be updated.
+
+  ports	<[]ContainerPort>
+    List of ports to expose from the container. Not specifying a port here DOES
+    NOT prevent that port from being exposed. Any port which is listening on the
+    default "0.0.0.0" address inside a container will be accessible from the
+    network. Modifying this array with strategic merge patch may corrupt the
+    data. For more information See
+    https://github.com/kubernetes/kubernetes/issues/108255. Cannot be updated.
+
+  readinessProbe	<Probe>
+    Periodic probe of container service readiness. Container will be removed
+    from service endpoints if the probe fails. Cannot be updated. More info:
+    https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+
+  resizePolicy	<[]ContainerResizePolicy>
+    Resources resize policy for the container. This field cannot be set on
+    ephemeral containers.
+
+  resources	<ResourceRequirements>
+    Compute Resources required by this container. Cannot be updated. More info:
+    https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+  restartPolicy	<string>
+    RestartPolicy defines the restart behavior of individual containers in a
+    pod. This overrides the pod-level restart policy. When this field is not
+    specified, the restart behavior is defined by the Pod's restart policy and
+    the container type. Additionally, setting the RestartPolicy as "Always" for
+    the init container will have the following effect: this init container will
+    be continually restarted on exit until all regular containers have
+    terminated. Once all regular containers have completed, all init containers
+    with restartPolicy "Always" will be shut down. This lifecycle differs from
+    normal init containers and is often referred to as a "sidecar" container.
+    Although this init container still starts in the init container sequence, it
+    does not wait for the container to complete before proceeding to the next
+    init container. Instead, the next init container starts immediately after
+    this init container is started, or after any startupProbe has successfully
+    completed.
+
+  restartPolicyRules	<[]ContainerRestartRule>
+    Represents a list of rules to be checked to determine if the container
+    should be restarted on exit. The rules are evaluated in order. Once a rule
+    matches a container exit condition, the remaining rules are ignored. If no
+    rule matches the container exit condition, the Container-level restart
+    policy determines the whether the container is restarted or not. Constraints
+    on the rules: - At most 20 rules are allowed. - Rules can have the same
+    action. - Identical rules are not forbidden in validations. When rules are
+    specified, container MUST set RestartPolicy explicitly even it if matches
+    the Pod's RestartPolicy.
+
+  securityContext	<SecurityContext>
+    SecurityContext defines the security options the container should be run
+    with. If set, the fields of SecurityContext override the equivalent fields
+    of PodSecurityContext. More info:
+    https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+
+  startupProbe	<Probe>
+    StartupProbe indicates that the Pod has successfully initialized. If
+    specified, no other probes are executed until this completes successfully.
+    If this probe fails, the Pod will be restarted, just as if the livenessProbe
+    failed. This can be used to provide different probe parameters at the
+    beginning of a Pod's lifecycle, when it might take a long time to load data
+    or warm a cache, than during steady-state operation. This cannot be updated.
+    More info:
+    https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+
+  stdin	<boolean>
+    Whether this container should allocate a buffer for stdin in the container
+    runtime. If this is not set, reads from stdin in the container will always
+    result in EOF. Default is false.
+
+  stdinOnce	<boolean>
+    Whether the container runtime should close the stdin channel after it has
+    been opened by a single attach. When stdin is true the stdin stream will
+    remain open across multiple attach sessions. If stdinOnce is set to true,
+    stdin is opened on container start, is empty until the first client attaches
+    to stdin, and then remains open and accepts data until the client
+    disconnects, at which time stdin is closed and remains closed until the
+    container is restarted. If this flag is false, a container processes that
+    reads from stdin will never receive an EOF. Default is false
+
+  terminationMessagePath	<string>
+    Optional: Path at which the file to which the container's termination
+    message will be written is mounted into the container's filesystem. Message
+    written is intended to be brief final status, such as an assertion failure
+    message. Will be truncated by the node if greater than 4096 bytes. The total
+    message length across all containers will be limited to 12kb. Defaults to
+    /dev/termination-log. Cannot be updated.
+
+  terminationMessagePolicy	<string>
+  enum: FallbackToLogsOnError, File
+    Indicate how the termination message should be populated. File will use the
+    contents of terminationMessagePath to populate the container status message
+    on both success and failure. FallbackToLogsOnError will use the last chunk
+    of container log output if the termination message file is empty and the
+    container exited with an error. The log output is limited to 2048 bytes or
+    80 lines, whichever is smaller. Defaults to File. Cannot be updated.
+    
+    Possible enum values:
+     - `"FallbackToLogsOnError"` will read the most recent contents of the
+    container logs for the container status message when the container exits
+    with an error and the terminationMessagePath has no contents.
+     - `"File"` is the default behavior and will set the container status
+    message to the contents of the container's terminationMessagePath when the
+    container exits.
+
+  tty	<boolean>
+    Whether this container should allocate a TTY for itself, also requires
+    'stdin' to be true. Default is false.
+
+  volumeDevices	<[]VolumeDevice>
+    volumeDevices is the list of block devices to be used by the container.
+
+  volumeMounts	<[]VolumeMount>
+    Pod volumes to mount into the container's filesystem. Cannot be updated.
+
+  workingDir	<string>
+    Container's working directory. If not specified, the container runtime's
+    default will be used, which might be configured in the container image.
+    Cannot be updated.
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 top pods
+error: metrics not available yet
+[exit 1]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 describe pod crash
+Name:             crash
+Namespace:        homework-s14
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Wed, 07 Oct 2026 18:27:05 +0530
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.69
+IPs:
+  IP:  10.244.0.69
+Containers:
+  app:
+    Container ID:  containerd://9137bcfe336ce8884e78b262cf4e0dbcb420a5b01c3135b1e1ecc054c805ae3f
+    Image:         busybox:1.37
+    Image ID:      docker.io/library/busybox@sha256:bdf57e528e45e4433820e045b29b4597825a1c9e38353532d90a01445013f82e
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      echo deliberate-failure; exit 1
+    State:          Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Wed, 07 Oct 2026 18:27:42 +0530
+      Finished:     Wed, 07 Oct 2026 18:27:42 +0530
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Wed, 07 Oct 2026 18:27:20 +0530
+      Finished:     Wed, 07 Oct 2026 18:27:20 +0530
+    Ready:          False
+    Restart Count:  3
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8fz8x (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-8fz8x:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age               From               Message
+  ----     ------     ----              ----               -------
+  Normal   Scheduled  38s               default-scheduler  Successfully assigned homework-s14/crash to minikube
+  Normal   Pulled     1s (x4 over 38s)  kubelet            spec.containers{app}: Container image "busybox:1.37" already present on machine and can be accessed by the pod
+  Normal   Created    1s (x4 over 38s)  kubelet            spec.containers{app}: Container created
+  Normal   Started    1s (x4 over 37s)  kubelet            spec.containers{app}: Container started
+  Warning  BackOff    0s (x3 over 36s)  kubelet            spec.containers{app}: Back-off restarting failed container app in pod crash_homework-s14(a3382af5-cd81-49d6-a8c5-a15fe1f6c533)
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 describe pod image
+Name:             image
+Namespace:        homework-s14
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Wed, 07 Oct 2026 18:27:05 +0530
+Labels:           <none>
+Annotations:      <none>
+Status:           Pending
+IP:               10.244.0.70
+IPs:
+  IP:  10.244.0.70
+Containers:
+  app:
+    Container ID:   
+    Image:          nginx:homework-does-not-exist
+    Image ID:       
+    Port:           <none>
+    Host Port:      <none>
+    State:          Waiting
+      Reason:       ErrImagePull
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-q6hqx (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-q6hqx:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  38s                default-scheduler  Successfully assigned homework-s14/image to minikube
+  Normal   Pulling    21s (x2 over 37s)  kubelet            spec.containers{app}: Pulling image "nginx:homework-does-not-exist"
+  Warning  Failed     20s (x2 over 36s)  kubelet            spec.containers{app}: Failed to pull image "nginx:homework-does-not-exist": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/library/nginx:homework-does-not-exist": failed to resolve reference "docker.io/library/nginx:homework-does-not-exist": docker.io/library/nginx:homework-does-not-exist: not found
+  Warning  Failed     20s (x2 over 36s)  kubelet            spec.containers{app}: Error: ErrImagePull
+  Normal   BackOff    4s (x2 over 35s)   kubelet            spec.containers{app}: Back-off pulling image "nginx:homework-does-not-exist"
+  Warning  Failed     4s (x2 over 35s)   kubelet            spec.containers{app}: Error: ImagePullBackOff
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 describe pod pending
+Name:             pending
+Namespace:        homework-s14
+Priority:         0
+Service Account:  default
+Node:             <none>
+Labels:           <none>
+Annotations:      <none>
+Status:           Pending
+IP:               
+IPs:              <none>
+Containers:
+  app:
+    Image:      busybox:1.37
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+      sleep 3600
+    Requests:
+      cpu:        1k
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-f2trc (ro)
+Conditions:
+  Type           Status
+  PodScheduled   False 
+Volumes:
+  kube-api-access-f2trc:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age   From               Message
+  ----     ------            ----  ----               -------
+  Warning  FailedScheduling  38s   default-scheduler  0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 describe pod creating
+Name:             creating
+Namespace:        homework-s14
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Wed, 07 Oct 2026 18:27:06 +0530
+Labels:           <none>
+Annotations:      <none>
+Status:           Pending
+IP:               
+IPs:              <none>
+Containers:
+  app:
+    Container ID:  
+    Image:         busybox:1.37
+    Image ID:      
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      sleep 3600
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /config from missing (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-569p8 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  missing:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  missing-volume
+    Optional:    false
+  kube-api-access-569p8:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason       Age               From               Message
+  ----     ------       ----              ----               -------
+  Normal   Scheduled    38s               default-scheduler  Successfully assigned homework-s14/creating to minikube
+  Warning  FailedMount  6s (x7 over 38s)  kubelet            MountVolume.SetUp failed for volume "missing" : secret "missing-volume" not found
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 describe pod config
+Name:             config
+Namespace:        homework-s14
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Wed, 07 Oct 2026 18:27:06 +0530
+Labels:           <none>
+Annotations:      <none>
+Status:           Pending
+IP:               10.244.0.71
+IPs:
+  IP:  10.244.0.71
+Containers:
+  app:
+    Container ID:  
+    Image:         busybox:1.37
+    Image ID:      
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      sleep 3600
+    State:          Waiting
+      Reason:       CreateContainerConfigError
+    Ready:          False
+    Restart Count:  0
+    Environment Variables from:
+      missing-config  ConfigMap  Optional: false
+    Environment:      <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-lvbcf (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-lvbcf:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age               From               Message
+  ----     ------     ----              ----               -------
+  Normal   Scheduled  37s               default-scheduler  Successfully assigned homework-s14/config to minikube
+  Normal   Pulled     9s (x4 over 37s)  kubelet            spec.containers{app}: Container image "busybox:1.37" already present on machine and can be accessed by the pod
+  Warning  Failed     9s (x4 over 37s)  kubelet            spec.containers{app}: Error: configmap "missing-config" not found
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 describe pod dns
+Name:             dns
+Namespace:        homework-s14
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Wed, 07 Oct 2026 18:27:07 +0530
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.72
+IPs:
+  IP:  10.244.0.72
+Containers:
+  app:
+    Container ID:  containerd://b1019b159566ec8f141409cec6cf016c7d7e853f04c9669ecc1144292a567f12
+    Image:         busybox:1.37
+    Image ID:      docker.io/library/busybox@sha256:bdf57e528e45e4433820e045b29b4597825a1c9e38353532d90a01445013f82e
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      sleep 3600
+    State:          Running
+      Started:      Wed, 07 Oct 2026 18:27:08 +0530
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jvwl8 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-jvwl8:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  37s   default-scheduler  Successfully assigned homework-s14/dns to minikube
+  Normal  Pulled     37s   kubelet            spec.containers{app}: Container image "busybox:1.37" already present on machine and can be accessed by the pod
+  Normal  Created    37s   kubelet            spec.containers{app}: Container created
+  Normal  Started    37s   kubelet            spec.containers{app}: Container started
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 logs crash --previous
+unable to retrieve container logs for containerd://4a34ac61628d35caa091d6ab41fad7419c51e19fa921d7f9a07de5d000a3a8fc
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 exec dns -- nslookup kubernetes.default.svc.cluster.local
+;; connection timed out; no servers could be reached
+
+command terminated with exit code 1
+[exit 1]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 patch svc troubleshooting-service --type=merge -p '{"spec":{"selector":{"app":"wrong-app"}}}'
+service/troubleshooting-service patched
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 get endpointslices -l kubernetes.io/service-name=troubleshooting-service -o yaml
+apiVersion: v1
+items:
+- addressType: IPv4
+  apiVersion: discovery.k8s.io/v1
+  endpoints: null
+  kind: EndpointSlice
+  metadata:
+    creationTimestamp: "2026-10-07T12:57:02Z"
+    generateName: troubleshooting-service-
+    generation: 4
+    labels:
+      endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+      kubernetes.io/service-name: troubleshooting-service
+    name: troubleshooting-service-sjgp8
+    namespace: homework-s14
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Service
+      name: troubleshooting-service
+      uid: 78446f9a-ca66-401e-b385-e16ba941463f
+    resourceVersion: "346355"
+    uid: cf5df864-8c6e-4972-bf38-3a03fcb0b22e
+  ports: null
+kind: List
+metadata:
+  resourceVersion: ""
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 get pods --show-labels
+NAME                                  READY   STATUS                       RESTARTS      AGE   LABELS
+client                                1/1     Running                      0             47s   run=client
+config                                0/1     CreateContainerConfigError   0             45s   <none>
+crash                                 0/1     Error                        3 (31s ago)   46s   <none>
+creating                              0/1     ContainerCreating            0             45s   <none>
+dns                                   1/1     Running                      0             44s   <none>
+image                                 0/1     ImagePullBackOff             0             46s   <none>
+pending                               0/1     Pending                      0             45s   <none>
+troubleshooting-app-98786d457-bmkvt   1/1     Running                      0             49s   app=troubleshooting-app,pod-template-hash=98786d457
+troubleshooting-app-98786d457-l9d92   1/1     Running                      0             49s   app=troubleshooting-app,pod-template-hash=98786d457
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 patch svc troubleshooting-service --type=merge -p '{"spec":{"selector":{"app":"troubleshooting-app"}}}'
+service/troubleshooting-service patched
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 exec client -- wget -qO- http://troubleshooting-service
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 create secret generic missing-volume --from-literal=demo=public-dummy
+secret/missing-volume created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 create configmap missing-config --from-literal=MODE=fixed
+configmap/missing-config created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 wait --for=condition=Ready pod/creating pod/config --timeout=120s
+pod/creating condition met
+pod/config condition met
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 delete pod crash
+pod "crash" deleted from homework-s14 namespace
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 run crash --image=busybox:1.37 --restart=Never -- sleep 3600
+pod/crash created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 wait --for=condition=Ready pod/crash --timeout=120s
+pod/crash condition met
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 delete pod image
+pod "image" deleted from homework-s14 namespace
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 run image --image=busybox:1.37 --restart=Never -- sleep 3600
+pod/image created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 wait --for=condition=Ready pod/image --timeout=120s
+pod/image condition met
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 delete pod pending
+pod "pending" deleted from homework-s14 namespace
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 run pending --image=busybox:1.37 --restart=Never -- sleep 3600
+pod/pending created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 wait --for=condition=Ready pod/pending --timeout=120s
+pod/pending condition met
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 delete pod dns
+pod "dns" deleted from homework-s14 namespace
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 run dns --image=busybox:1.37 --restart=Never -- sleep 3600
+pod/dns created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 wait --for=condition=Ready pod/dns --timeout=120s
+pod/dns condition met
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 exec dns -- nslookup kubernetes.default.svc.cluster.local
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+Name:	kubernetes.default.svc.cluster.local
+Address: 10.96.0.1
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 exec client -- wget -qO- http://troubleshooting-service
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s14 get pods,deploy,rs,svc -o wide
+NAME                                      READY   STATUS    RESTARTS   AGE    IP            NODE       NOMINATED NODE   READINESS GATES
+pod/client                                1/1     Running   0          107s   10.244.0.68   minikube   <none>           <none>
+pod/config                                1/1     Running   0          105s   10.244.0.71   minikube   <none>           <none>
+pod/crash                                 1/1     Running   0          38s    10.244.0.74   minikube   <none>           <none>
+pod/creating                              1/1     Running   0          105s   10.244.0.73   minikube   <none>           <none>
+pod/dns                                   1/1     Running   0          1s     10.244.0.77   minikube   <none>           <none>
+pod/image                                 1/1     Running   0          36s    10.244.0.75   minikube   <none>           <none>
+pod/pending                               1/1     Running   0          35s    10.244.0.76   minikube   <none>           <none>
+pod/troubleshooting-app-98786d457-bmkvt   1/1     Running   0          109s   10.244.0.66   minikube   <none>           <none>
+pod/troubleshooting-app-98786d457-l9d92   1/1     Running   0          109s   10.244.0.67   minikube   <none>           <none>
+
+NAME                                  READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS   IMAGES              SELECTOR
+deployment.apps/troubleshooting-app   2/2     2            2           109s   web          nginx:1.28-alpine   app=troubleshooting-app
+
+NAME                                            DESIRED   CURRENT   READY   AGE    CONTAINERS   IMAGES              SELECTOR
+replicaset.apps/troubleshooting-app-98786d457   2         2         2       109s   web          nginx:1.28-alpine   app=troubleshooting-app,pod-template-hash=98786d457
+
+NAME                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE    SELECTOR
+service/troubleshooting-service   ClusterIP   10.104.45.187   <none>        80/TCP    109s   app=troubleshooting-app
+[exit 0]
+LAB EXECUTION FINISHED

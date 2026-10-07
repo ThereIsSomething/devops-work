@@ -9,7 +9,7 @@
 # =============================================================================
 
 # ---------- Stage 1: BUILD ----------
-FROM golang:1.22-alpine AS builder
+FROM golang:1.26-alpine AS builder
 
 WORKDIR /build
 
@@ -29,7 +29,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/server main.go
 # The final image is the binary and nothing else.
 FROM scratch
 
-LABEL maintainer="Pujan Khunt <24BCS10138>"
+LABEL maintainer="Nitish Kumar Bhambu <24BCS10589>"
 LABEL description="Hello World from Docker multi-stage build"
 
 # Copy ONLY the compiled artefact out of the builder stage

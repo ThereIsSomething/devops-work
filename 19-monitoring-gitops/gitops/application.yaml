@@ -4,7 +4,7 @@ metadata:
   name: homework-web
   namespace: homework-gitops
 spec:
-  project: default
+  project: homework
   source:
     repoURL: https://github.com/ThereIsSomething/devops-work.git
     targetRevision: main

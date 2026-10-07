@@ -1,0 +1,170 @@
++ set -u
++ ip -brief address
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp62s0          DOWN           
+wlp0s20f3        UP             192.168.6.199/19 fe80::a215:ee0:afc3:7587/64 
+outline-tun0     DOWN           10.0.85.1/32 
+docker0          UP             172.17.0.1/16 fe80::b000:1ff:fe09:4a93/64 
+br-bd87a280590b  UP             192.168.49.1/24 fe80::10ad:19ff:fe46:7b42/64 
+veth8a1badc@if2  UP             fe80::28aa:cff:fe61:a822/64 
+br-1e07af2e7d59  UP             172.18.0.1/16 fe80::e490:2fff:fe38:45e7/64 
+veth4c492bf@if2  UP             fe80::ecbb:20ff:fec1:35f8/64 
+vethd1a3cc4@if2  UP             fe80::78c5:a3ff:fe13:bc65/64 
+veth753170f@if2  UP             fe80::10e6:9dff:fe74:e6b1/64 
+vethbe315d7@if2  UP             fe80::58d0:25ff:fe1a:837d/64 
+veth096df60@if2  UP             fe80::8013:96ff:fe1b:7c23/64 
+vethb89e5bf@if2  UP             fe80::584d:a2ff:fe3b:7602/64 
+veth33aaa2f@if2  UP             fe80::449c:fff:feef:4191/64 
+vethf83e503@if2  UP             fe80::ac71:faff:feaa:b5e5/64 
+vethf40cd42@if2  UP             fe80::7c06:73ff:fe19:b8e0/64 
+br-9b6ba834bade  UP             172.19.0.1/16 fe80::60e6:f7ff:fec3:b1fd/64 
+br-f992a0c6c49a  UP             172.20.0.1/16 fe80::48db:16ff:fe51:3cfd/64 
+br-be2e243a63ec  DOWN           172.21.0.1/16 
+veth274ac39@if2  UP             fe80::7c8a:80ff:fe2c:9a3e/64 
+veth8c7db06@if2  UP             fe80::885d:16ff:fe5c:8a0e/64 
+veth28d2b1d@if2  UP             fe80::2e:dcff:fe27:c285/64 
+veth96ec519@if3  UP             fe80::c44a:7eff:fec1:52eb/64 
+vethcfb71c1@if2  UP             fe80::4051:b1ff:fea4:101a/64 
+vethe8d74df@if2  UP             fe80::5c38:9ff:feb8:91c7/64 
+veth42d8852@if93 UP             fe80::d43a:d7ff:fe01:7b9a/64 
++ ip route
+default via 192.168.1.1 dev wlp0s20f3 proto dhcp src 192.168.6.199 metric 600 
+10.0.85.2 dev outline-tun0 scope link src 10.0.85.1 linkdown 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 
+172.18.0.0/16 dev br-1e07af2e7d59 proto kernel scope link src 172.18.0.1 
+172.19.0.0/16 dev br-9b6ba834bade proto kernel scope link src 172.19.0.1 
+172.20.0.0/16 dev br-f992a0c6c49a proto kernel scope link src 172.20.0.1 
+172.21.0.0/16 dev br-be2e243a63ec proto kernel scope link src 172.21.0.1 linkdown 
+192.168.0.0/19 dev wlp0s20f3 proto kernel scope link src 192.168.6.199 metric 600 
+192.168.49.0/24 dev br-bd87a280590b proto kernel scope link src 192.168.49.1 
++ nslookup example.com
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+Name:	example.com
+Address: 104.20.23.154
+Name:	example.com
+Address: 172.66.147.243
+Name:	example.com
+Address: 2606:4700:10::ac42:93f3
+Name:	example.com
+Address: 2606:4700:10::6814:179a
+
++ netstat -tuln
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 127.0.0.1:32772         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:32768         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:32769         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:32770         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:32771         0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:5355            0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:18000         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:18081         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:18082         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:3004          0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:3005          0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:3006          0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:3001          0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:3002          0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:3003          0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.54:53           0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:19090         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:20241         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:13000         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:13001         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:13002         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:8080          0.0.0.0:*               LISTEN     
+tcp6       0      0 :::5355                 :::*                    LISTEN     
+tcp6       0      0 ::1:13002               :::*                    LISTEN     
+tcp6       0      0 ::1:13001               :::*                    LISTEN     
+tcp6       0      0 127.0.0.1:52829         :::*                    LISTEN     
+tcp6       0      0 ::1:18082               :::*                    LISTEN     
+tcp6       0      0 :::1716                 :::*                    LISTEN     
+tcp6       0      0 127.0.0.1:46421         :::*                    LISTEN     
+tcp6       0      0 ::1:631                 :::*                    LISTEN     
+tcp6       0      0 ::1:19090               :::*                    LISTEN     
+udp        0      0 192.168.49.1:50572      0.0.0.0:*                          
+udp        0      0 0.0.0.0:35298           0.0.0.0:*                          
+udp        0      0 172.17.0.1:60796        0.0.0.0:*                          
+udp        0      0 172.17.0.1:45708        0.0.0.0:*                          
+udp        0      0 224.0.0.251:5353        0.0.0.0:*                          
+udp        0      0 224.0.0.251:5353        0.0.0.0:*                          
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                          
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                          
+udp        0      0 0.0.0.0:5355            0.0.0.0:*                          
+udp        0      0 172.18.0.1:54925        0.0.0.0:*                          
+udp        0      0 172.17.0.1:39275        0.0.0.0:*                          
+udp        0      0 172.19.0.1:47628        0.0.0.0:*                          
+udp        0      0 172.20.0.1:47735        0.0.0.0:*                          
+udp        0      0 192.168.6.199:39656     0.0.0.0:*                          
+udp        0      0 172.17.0.1:56433        0.0.0.0:*                          
+udp        0      0 0.0.0.0:56511           0.0.0.0:*                          
+udp        0      0 127.0.0.54:53           0.0.0.0:*                          
+udp        0      0 127.0.0.53:53           0.0.0.0:*                          
+udp        0      0 127.0.0.1:323           0.0.0.0:*                          
+udp6       0      0 :::41772                :::*                               
+udp6       0      0 :::1716                 :::*                               
+udp6       0      0 :::5353                 :::*                               
+udp6       0      0 :::5355                 :::*                               
+udp6       0      0 ::1:323                 :::*                               
++ traceroute -m 4 -w 1 1.1.1.1
+traceroute to 1.1.1.1 (1.1.1.1), 4 hops max, 60 byte packets
+ 1  dns.nfen (192.168.1.1)  4.605 ms  4.540 ms  4.526 ms
+ 2  static-193.79.194.14-tataidc.co.in (14.194.79.193)  4.559 ms  4.551 ms  4.544 ms
+ 3  * 115.111.223.9 (115.111.223.9)  4.521 ms  4.514 ms
+ 4  172.31.167.58 (172.31.167.58)  10.616 ms  10.610 ms  11.007 ms
++ nc -z -w 3 127.0.0.1 13000
+Connection to 127.0.0.1 13000 port [tcp/*] succeeded!
++ curl -I --max-time 15 https://example.com
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0HTTP/2 200 
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0                              0
+date: Wed, 07 Oct 2026 13:15:50 GMT
+content-type: text/html; charset=utf-8
+server: cloudflare
+last-modified: Fri, 02 Oct 2026 16:11:02 GMT
+allow: GET, HEAD
+accept-ranges: bytes
+age: 3814
+cf-cache-status: HIT
+cf-ray: a46d2d487acc7821-MAA
+alt-svc: h3=":443"; ma=86400
+
++ wget --spider -T 15 https://example.com
+Spider mode enabled. Check if remote file exists.
+--2026-10-07 13:15:50--  https://example.com/
+Resolving example.com (example.com)... 172.66.147.243, 104.20.23.154, 2606:4700:10::ac42:93f3, ...
+Connecting to example.com (example.com)|172.66.147.243|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Remote file exists and could contain further links,
+but recursion is disabled -- not retrieving.
+
++ nmap -sT -Pn -p 13000,18000 127.0.0.1
+Starting Nmap 7.97 ( https://nmap.org ) at 2026-10-07 13:15 +0000
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000026s latency).
+
+PORT      STATE SERVICE
+13000/tcp open  unknown
+18000/tcp open  biimenu
+
+Nmap done: 1 IP address (1 host up) scanned in 0.02 seconds
++ CAPTURE_PID=18
++ sleep 1
++ timeout 8 tcpdump -i lo -nn -c 3 'tcp port 13000'
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on lo, link-type EN10MB (Ethernet), snapshot length 262144 bytes
++ curl -s http://127.0.0.1:13000/health
+{"status":"UP"}+ wait 18
+13:15:51.714626 IP 127.0.0.1.50208 > 127.0.0.1.13000: Flags [S], seq 2036061428, win 65495, options [mss 65495,sackOK,TS val 1861999113 ecr 0,nop,wscale 10], length 0
+13:15:51.714644 IP 127.0.0.1.13000 > 127.0.0.1.50208: Flags [S.], seq 2313278429, ack 2036061429, win 65483, options [mss 65495,sackOK,TS val 2468076271 ecr 1861999113,nop,wscale 10], length 0
+13:15:51.714655 IP 127.0.0.1.50208 > 127.0.0.1.13000: Flags [.], ack 1, win 64, options [nop,nop,TS val 1861999113 ecr 2468076271], length 0
+3 packets captured
+20 packets received by filter
+0 packets dropped by kernel

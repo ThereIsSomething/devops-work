@@ -1,0 +1,3 @@
+replicaCount: 1
+image: nginx:1.28-alpine
+message: Welcome to my guestbook - version one

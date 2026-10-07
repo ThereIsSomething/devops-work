@@ -1,6 +1,6 @@
 FROM httpd:2.4
 
-LABEL maintainer="Pujan Khunt <24BCS10138>"
+LABEL maintainer="Nitish Kumar Bhambu <24BCS10589>"
 LABEL description="Hello World static page served by the Apache HTTP Server"
 
 # Apache's DocumentRoot in this image is /usr/local/apache2/htdocs

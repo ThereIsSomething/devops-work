@@ -1,0 +1,181 @@
+---
+# Source: taskboard/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: taskboard-config
+data:
+  APP_NAME: TaskBoard API
+
+---
+# Source: taskboard/templates/backend.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels: {app: taskboard-backend}
+spec:
+  selector: {app: taskboard-backend}
+  ports: [{name: http, port: 8000, targetPort: http}]
+
+---
+# Source: taskboard/templates/frontend.yaml
+apiVersion: v1
+kind: Service
+metadata: {name: frontend}
+spec:
+  selector: {app: taskboard-frontend}
+  ports: [{port: 80, targetPort: http}]
+
+---
+# Source: taskboard/templates/postgres.yaml
+apiVersion: v1
+kind: Service
+metadata: {name: postgres}
+spec:
+  clusterIP: None
+  selector: {app: taskboard-postgres}
+  ports: [{port: 5432, targetPort: 5432}]
+---
+# Source: taskboard/templates/backend.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  selector:
+    matchLabels: {app: taskboard-backend}
+  template:
+    metadata:
+      labels: {app: taskboard-backend}
+    spec:
+      securityContext: {runAsUser: 10001, runAsNonRoot: true}
+      containers:
+        - name: backend
+          image: "homework-taskboard-backend:local"
+          imagePullPolicy: IfNotPresent
+          ports: [{name: http, containerPort: 8000}]
+          envFrom: [{configMapRef: {name: taskboard-config}}]
+          env:
+            - name: DATABASE_URL
+              valueFrom: {secretKeyRef: {name: taskboard-db, key: database-url}}
+          startupProbe:
+            httpGet: {path: /ready, port: http}
+            periodSeconds: 5
+            failureThreshold: 36
+          readinessProbe: {httpGet: {path: /ready, port: http}, periodSeconds: 5}
+          livenessProbe: {httpGet: {path: /health, port: http}, periodSeconds: 10}
+          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          resources: {requests: {cpu: 100m, memory: 96Mi}, limits: {cpu: 500m, memory: 256Mi}}
+---
+# Source: taskboard/templates/frontend.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: frontend}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: taskboard-frontend}}
+  template:
+    metadata: {labels: {app: taskboard-frontend}}
+    spec:
+      securityContext: {runAsUser: 101, runAsNonRoot: true}
+      containers:
+        - name: frontend
+          image: "homework-taskboard-frontend:local"
+          imagePullPolicy: IfNotPresent
+          ports: [{name: http, containerPort: 8080}]
+          readinessProbe: {httpGet: {path: /, port: http}, periodSeconds: 5}
+          livenessProbe: {httpGet: {path: /, port: http}, periodSeconds: 10}
+          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          resources: {requests: {cpu: 25m, memory: 16Mi}, limits: {cpu: 250m, memory: 64Mi}}
+---
+# Source: taskboard/templates/ingress-hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: {name: backend}
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: backend}
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: 60}
+
+---
+# Source: taskboard/templates/postgres.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: {name: postgres}
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector: {matchLabels: {app: taskboard-postgres}}
+  template:
+    metadata: {labels: {app: taskboard-postgres}}
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          imagePullPolicy: IfNotPresent
+          ports: [{containerPort: 5432}]
+          env:
+            - {name: POSTGRES_DB, value: taskboard}
+            - {name: POSTGRES_USER, value: taskboard}
+            - name: POSTGRES_PASSWORD
+              valueFrom: {secretKeyRef: {name: taskboard-db, key: password}}
+          readinessProbe:
+            exec: {command: [sh, -c, 'pg_isready -U taskboard -d taskboard']}
+            periodSeconds: 5
+          resources: {requests: {cpu: 50m, memory: 64Mi}, limits: {cpu: 500m, memory: 256Mi}}
+          volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
+  volumeClaimTemplates:
+    - metadata: {name: data}
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 1Gi
+
+---
+# Source: taskboard/templates/backend.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: taskboard-migrate-1
+spec:
+  ttlSecondsAfterFinished: 300
+  backoffLimit: 10
+  template:
+    spec:
+      restartPolicy: OnFailure
+      securityContext:
+        runAsUser: 10001
+        runAsNonRoot: true
+      containers:
+        - name: migrate
+          image: "homework-taskboard-backend:local"
+          imagePullPolicy: IfNotPresent
+          command: [alembic, upgrade, head]
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: taskboard-db
+                  key: database-url
+---
+# Source: taskboard/templates/ingress-hpa.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: {name: taskboard}
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: taskboard.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend: {service: {name: frontend, port: {number: 80}}}

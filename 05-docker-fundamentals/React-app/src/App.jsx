@@ -41,7 +41,7 @@ export default function App() {
         <dd>{mountedAt || '…'}</dd>
       </dl>
 
-      <p className="foot">Pujan Khunt · 24BCS10138 · DevOps Homework</p>
+      <p className="foot">Nitish Kumar Bhambu · 24BCS10589 · DevOps Homework</p>
     </div>
   )
 }

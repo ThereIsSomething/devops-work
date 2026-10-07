@@ -1,5 +1,5 @@
 # ---------- Stage 1: BUILD the React bundle ----------
-FROM node:20-alpine AS build
+FROM node:24-alpine AS build
 
 WORKDIR /app
 
@@ -14,10 +14,10 @@ RUN npm run build
 
 # ---------- Stage 2: SERVE the static files ----------
 # Node is not needed at runtime — a React SPA compiles down to plain HTML/CSS/JS.
-# Shipping nginx:alpine instead of node:20-alpine drops the image from ~400MB to ~50MB.
+# Shipping nginx:alpine instead of node:24-alpine drops the image from ~400MB to ~50MB.
 FROM nginx:alpine
 
-LABEL maintainer="Pujan Khunt <24BCS10138>"
+LABEL maintainer="Nitish Kumar Bhambu <24BCS10589>"
 LABEL description="Hello World React SPA, built with Vite and served by Nginx"
 
 RUN rm -rf /usr/share/nginx/html/*

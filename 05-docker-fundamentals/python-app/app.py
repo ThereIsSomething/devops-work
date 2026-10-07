@@ -53,7 +53,7 @@ def hello():
       <dt>Container</dt><dd>{socket.gethostname()}</dd>
       <dt>Port</dt><dd>{PORT}</dd>
     </dl>
-    <p class="foot">Pujan Khunt &middot; 24BCS10138 &middot; DevOps Homework</p>
+    <p class="foot">Nitish Kumar Bhambu &middot; 24BCS10589 &middot; DevOps Homework</p>
   </div>
 </body>
 </html>"""

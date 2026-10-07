@@ -68,7 +68,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
       <dt>Port</dt><dd>%s</dd>
       <dt>Uptime</dt><dd>%.1fs</dd>
     </dl>
-    <p class="foot">Pujan Khunt &middot; 24BCS10138 &middot; DevOps Homework</p>
+    <p class="foot">Nitish Kumar Bhambu &middot; 24BCS10589 &middot; DevOps Homework</p>
   </div>
 </body>
 </html>`, style, message, runtime.Version(), runtime.GOOS, runtime.GOARCH,

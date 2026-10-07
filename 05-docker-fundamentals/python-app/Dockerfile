@@ -1,7 +1,7 @@
 # -slim is the sweet spot: full CPython, but without the build toolchain and docs
 FROM python:3.12-slim
 
-LABEL maintainer="Pujan Khunt <24BCS10138>"
+LABEL maintainer="Nitish Kumar Bhambu <24BCS10589>"
 LABEL description="Hello World web application in Python (Flask)"
 
 # Don't write .pyc files; don't buffer stdout so logs appear immediately in `docker logs`

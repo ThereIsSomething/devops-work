@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # =============================================================================
 #  sysinfo.sh — System Information Script
-#  Pujan Khunt (24BCS10138) — Shell Scripting homework
+#  Nitish Kumar Bhambu (24BCS10589) — Shell Scripting homework
 #
 #  Requirement checklist (all implemented below):
 #    [x] prints the current date              -> date

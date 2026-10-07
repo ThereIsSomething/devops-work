@@ -14,7 +14,7 @@ RUN javac -d classes HelloWorld.java && \
 # the size of the JDK image and a smaller attack surface.
 FROM eclipse-temurin:21-jre
 
-LABEL maintainer="Pujan Khunt <24BCS10138>"
+LABEL maintainer="Nitish Kumar Bhambu <24BCS10589>"
 LABEL description="Hello World web application in Java"
 
 WORKDIR /app

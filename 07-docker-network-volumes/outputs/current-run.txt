@@ -1,0 +1,139 @@
+Captured 2026-10-07T13:10:11.347969+00:00
+$ docker network create homework-front
+9b6ba834bade80da39712c6f4438545b8c022c070d7a098ca4ad3176b11be8f1
+[exit 0]
+$ docker network create homework-back
+f992a0c6c49abf051e14e16644098bd4791ca18544f7059de83b61318669d90a
+[exit 0]
+$ docker network create homework-isolated
+be2e243a63eccbf5c97ff2f0306021110b09f8f328351bb22b60a6168a4c6e7f
+[exit 0]
+$ docker run -d --name homework-front --network homework-front nginx:1.29-alpine
+Unable to find image 'nginx:1.29-alpine' locally
+1.29-alpine: Pulling from library/nginx
+Digest: sha256:5616878291a2eed594aee8db4dade5878cf7edcb475e59193904b198d9b830de
+Status: Downloaded newer image for nginx:1.29-alpine
+a9539db202dcdbfcce064b57b781358450520812dfc39820b7aa2c32e8a652a2
+[exit 0]
+$ docker run -d --name homework-db --network homework-back -e MYSQL_ROOT_PASSWORD=classroom-example-only mysql:8.0
+b9cf1fb3763522c390255c925059f75c3afc19e72476b262f93bf4e885739876
+[exit 0]
+$ docker run -d --name homework-backend --network homework-back alpine:latest sleep 3600
+a383e8c163baeeffbb826f53fd9df2632b3bb1f9f709845068cecdbb9d3be69d
+[exit 0]
+$ docker network connect homework-front homework-backend
+
+[exit 0]
+$ docker inspect homework-backend --format '{{json .NetworkSettings.Networks}}'
+{"homework-back":{"IPAMConfig":null,"Links":null,"Aliases":null,"DriverOpts":null,"GwPriority":0,"NetworkID":"f992a0c6c49abf051e14e16644098bd4791ca18544f7059de83b61318669d90a","EndpointID":"7cf58bc4cfba307d867d57de495917114dcfbe48009a7b45af2f4949481969e6","Gateway":"172.20.0.1","IPAddress":"172.20.0.3","MacAddress":"6e:0a:75:1e:f6:63","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"DNSNames":["homework-backend","a383e8c163ba"]},"homework-front":{"IPAMConfig":{},"Links":null,"Aliases":[],"DriverOpts":{},"GwPriority":0,"NetworkID":"9b6ba834bade80da39712c6f4438545b8c022c070d7a098ca4ad3176b11be8f1","EndpointID":"1288f75594e89105907acac14d464eb6947db47a3822b8cbe1bcacf1b1b2ed94","Gateway":"172.19.0.1","IPAddress":"172.19.0.3","MacAddress":"be:a9:cf:89:1a:d2","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"DNSNames":["homework-backend","a383e8c163ba"]}}
+[exit 0]
+$ docker exec homework-backend wget -qO- http://homework-front
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy, 
+API gateway, load balancer, content cache, or other features.</p>
+
+<p>For online documentation and support please refer to
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional 
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[exit 0]
+$ docker exec homework-backend nc -z -w 5 homework-db 3306
+
+[exit 1]
+$ docker exec homework-front nslookup homework-db
+Server:		127.0.0.11
+Address:	127.0.0.11:53
+
+** server can't find homework-db: NXDOMAIN
+
+** server can't find homework-db: NXDOMAIN
+[exit 1]
+$ docker run -d --name homework-bind -p 127.0.0.1:18081:80 -v '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/07-docker-network-volumes/bind-mount-site:/usr/share/nginx/html:ro,z' nginx:1.29-alpine
+4fee1bf54557c0e27a195817aeb5a7b4c0fd2cad2f652702364dc7ab8aefa6e0
+[exit 0]
+$ curl --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 --fail http://127.0.0.1:18081
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+curl: (56) Recv failure: Connection reset by peer
+Warning: Problem (retrying all errors). Will retry in 1 second. 10 retries 
+Warning: left.
+
+  0      0   0      0   0      0      0      0                              0
+100     15 100     15   0      0  21994      0                              0
+100     15 100     15   0      0  20891      0                              0
+100     15 100     15   0      0  20134      0                              0
+Hello students
+[exit 0]
+$ curl --fail http://127.0.0.1:18081
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+100     58 100     58   0      0  99827      0                              0
+100     58 100     58   0      0  96666      0                              0
+100     58 100     58   0      0  93548      0                              0
+Hello students - updated without restarting the container
+[exit 0]
+$ docker inspect homework-bind --format 'started={{.State.StartedAt}}'
+started=2026-10-07T13:10:20.892639219Z
+[exit 0]
+$ docker run -d --name homework-host-apache --network host httpd:2.4
+Unable to find image 'httpd:2.4' locally
+2.4: Pulling from library/httpd
+Digest: sha256:c842ac797bd1fe8b3cd26d002ac9d948aa2814097544600600b35aef42e6785a
+Status: Downloaded newer image for httpd:2.4
+12036a564f0f49fbf6b48e2b193c12162e4d57370fadb99de786118246fde7b4
+[exit 0]
+$ curl --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 --fail http://127.0.0.1:80
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+curl: (7) Failed to connect to 127.0.0.1 port 80 after 0 ms: Could not connect to server
+Warning: Problem : connection refused. Will retry in 1 second. 10 retries left.
+
+  0      0   0      0   0      0      0      0                              0
+100    191 100    191   0      0 323.8k      0                              0
+100    191 100    191   0      0 309.3k      0                              0
+100    191 100    191   0      0 295.5k      0                              0
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>It works! Apache httpd</title>
+</head>
+<body>
+<p>It works!</p>
+</body>
+</html>
+[exit 0]
+$ docker inspect homework-host-apache --format '{{.HostConfig.NetworkMode}}'
+host
+[exit 0]
+$ docker stop homework-host-apache
+homework-host-apache
+[exit 0]
+$ docker exec homework-backend nc -z -w 5 homework-db 3306
+
+[exit 0]
+LAB EXECUTION FINISHED

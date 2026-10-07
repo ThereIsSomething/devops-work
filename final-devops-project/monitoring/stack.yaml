@@ -1,0 +1,168 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: "global:\n  evaluation_interval: 10s\n  scrape_interval: 10s\nrule_files:\n\
+    - /etc/prometheus/rules/*.yaml\nscrape_configs:\n- job_name: taskboard\n  static_configs:\n\
+    \  - targets:\n    - backend.homework-final.svc.cluster.local:8000\n- job_name:\
+    \ prometheus\n  static_configs:\n  - targets:\n    - localhost:9090\n"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-rules
+data:
+  alerts.yaml: "groups:\n- name: homework\n  rules:\n  - alert: TaskBoardUnavailable\n\
+    \    annotations:\n      summary: TaskBoard metrics endpoint cannot be scraped\n\
+    \    expr: up{job=\"taskboard\"} == 0\n    for: 30s\n    labels:\n      severity:\
+    \ warning\n"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+      - name: prometheus
+        image: prom/prometheus:v3.15.0
+        ports:
+        - containerPort: 9090
+        volumeMounts:
+        - name: config
+          mountPath: /etc/prometheus
+        - name: rules
+          mountPath: /etc/prometheus/rules
+        - name: data
+          mountPath: /prometheus
+        resources:
+          requests:
+            cpu: 25m
+            memory: 64Mi
+          limits:
+            cpu: 300m
+            memory: 384Mi
+        args:
+        - --config.file=/etc/prometheus/prometheus.yml
+        - --storage.tsdb.path=/prometheus
+        - --storage.tsdb.retention.time=1h
+      volumes:
+      - name: config
+        configMap:
+          name: prometheus-config
+      - name: rules
+        configMap:
+          name: prometheus-rules
+      - name: data
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+spec:
+  selector:
+    app: prometheus
+  ports:
+  - port: 9090
+    targetPort: 9090
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-provisioning
+data:
+  datasources.yaml: "apiVersion: 1\ndatasources:\n- access: proxy\n  isDefault: true\n\
+    \  name: Prometheus\n  type: prometheus\n  url: http://prometheus:9090\n"
+  dashboards.yaml: "apiVersion: 1\nproviders:\n- name: homework\n  options:\n    path:\
+    \ /var/lib/grafana/dashboards\n  type: file\n"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard
+data:
+  taskboard.json: '{"title": "TaskBoard homework", "schemaVersion": 39, "version":
+    1, "panels": [{"id": 1, "title": "Application scrape health", "type": "timeseries",
+    "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8}, "targets": [{"expr": "up{job=\"taskboard\"}",
+    "refId": "A"}]}, {"id": 2, "title": "HTTP requests per second", "type": "timeseries",
+    "gridPos": {"x": 12, "y": 0, "w": 12, "h": 8}, "targets": [{"expr": "sum(rate(http_requests_total[1m]))",
+    "refId": "A"}]}, {"id": 3, "title": "Backend resident memory", "type": "timeseries",
+    "gridPos": {"x": 0, "y": 8, "w": 12, "h": 8}, "targets": [{"expr": "process_resident_memory_bytes{job=\"taskboard\"}",
+    "refId": "A"}]}, {"id": 4, "title": "Backend CPU seconds per second", "type":
+    "timeseries", "gridPos": {"x": 12, "y": 8, "w": 12, "h": 8}, "targets": [{"expr":
+    "rate(process_cpu_seconds_total{job=\"taskboard\"}[1m])", "refId": "A"}]}]}'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana:13.2.3
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: provision
+          mountPath: /etc/grafana/provisioning/datasources/datasources.yaml
+          subPath: datasources.yaml
+        - name: provision
+          mountPath: /etc/grafana/provisioning/dashboards/dashboards.yaml
+          subPath: dashboards.yaml
+        - name: dashboard
+          mountPath: /var/lib/grafana/dashboards
+        - name: data
+          mountPath: /var/lib/grafana
+        resources:
+          requests:
+            cpu: 25m
+            memory: 64Mi
+          limits:
+            cpu: 300m
+            memory: 384Mi
+        env:
+        - name: GF_AUTH_ANONYMOUS_ENABLED
+          value: 'true'
+        - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+          value: Viewer
+        - name: GF_AUTH_DISABLE_LOGIN_FORM
+          value: 'true'
+      volumes:
+      - name: provision
+        configMap:
+          name: grafana-provisioning
+      - name: dashboard
+        configMap:
+          name: grafana-dashboard
+      - name: data
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+spec:
+  selector:
+    app: grafana
+  ports:
+  - port: 3000
+    targetPort: 3000

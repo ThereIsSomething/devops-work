@@ -5,7 +5,7 @@ SANDBOX=${1:-/tmp/git-task2}
 rm -rf "$SANDBOX"; mkdir -p "$SANDBOX"; cd "$SANDBOX"
 
 git init -q
-git config user.name  "Pujan Khunt"
+git config user.name  "Nitish Kumar Bhambu"
 git config user.email "support@symbiotes.in"
 git config commit.gpgsign false
 git symbolic-ref HEAD refs/heads/main
@@ -16,7 +16,7 @@ echo "##################################################################"
 echo "#  STEP 1: create 3 commits on main                               #"
 echo "##################################################################"
 
-echo "# DevOps Homework — Pujan Khunt (24BCS10138)" > README.md
+echo "# DevOps Homework — Nitish Kumar Bhambu (24BCS10589)" > README.md
 git add README.md
 git commit -q -m "C1: add README"
 echo "  committed C1"

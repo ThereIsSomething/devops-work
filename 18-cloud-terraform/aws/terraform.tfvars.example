@@ -1,0 +1,2 @@
+aws_region = "ap-south-1"
+bucket_name = "nitish-homework-replace-with-unique-suffix"

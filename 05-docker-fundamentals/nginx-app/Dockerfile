@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-LABEL maintainer="Pujan Khunt <24BCS10138>"
+LABEL maintainer="Nitish Kumar Bhambu <24BCS10589>"
 LABEL description="Hello World static page served by Nginx"
 
 # Replace the stock nginx welcome page with our own

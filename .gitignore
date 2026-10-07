@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/node_modules/
+**/dist/
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/tfplan
+**/crash.log
+**/test.db
+**/.pytest_cache/
+**/secrets.local.yaml
+**/kubeconfig*

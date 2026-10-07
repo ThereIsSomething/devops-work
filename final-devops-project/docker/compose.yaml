@@ -1,0 +1,47 @@
+name: homework-taskboard
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: taskboard
+      POSTGRES_USER: taskboard
+      POSTGRES_PASSWORD: ${TASKBOARD_DB_PASSWORD:?Set TASKBOARD_DB_PASSWORD in your shell}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U taskboard -d taskboard']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  migrate:
+    image: homework-taskboard-backend:local
+    build: ../application/backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://taskboard:${TASKBOARD_DB_PASSWORD}@postgres:5432/taskboard
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: [alembic, upgrade, head]
+  backend:
+    image: homework-taskboard-backend:local
+    build: ../application/backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://taskboard:${TASKBOARD_DB_PASSWORD}@postgres:5432/taskboard
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    ports: ['127.0.0.1:18000:8000']
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/ready')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  frontend:
+    image: homework-taskboard-frontend:local
+    build: ../application/frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports: ['127.0.0.1:13000:8080']
+volumes:
+  postgres-data:

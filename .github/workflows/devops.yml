@@ -1,0 +1,123 @@
+name: TaskBoard CI, DevSecOps and deployment verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'final-devops-project/**'
+      - '.github/workflows/devops.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: taskboard-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build-test-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: final-devops-project/application/backend/requirements-dev.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: final-devops-project/application/frontend/package-lock.json
+      - name: Install, test and SAST
+        working-directory: final-devops-project/application/backend
+        run: |
+          pip install -r requirements-dev.txt
+          pytest -v --junitxml=pytest.xml
+          bandit -r app -ll -ii
+      - name: SCA - Python dependencies
+        working-directory: final-devops-project/application/backend
+        run: pip-audit -r requirements.txt
+      - name: Frontend build and dependency audit
+        working-directory: final-devops-project/application/frontend
+        run: |
+          npm ci
+          npm run build
+          npm audit --audit-level=high
+      - name: Secret scan - repository history
+        run: docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.30.1 git /repo --redact --verbose
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-and-frontend
+          path: |
+            final-devops-project/application/backend/pytest.xml
+            final-devops-project/application/frontend/dist
+  build-scan-deploy:
+    needs: build-test-security
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build immutable image tags
+        run: |
+          IMAGE_BASE="ghcr.io/${GITHUB_REPOSITORY,,}"
+          echo "IMAGE_BASE=$IMAGE_BASE" >> "$GITHUB_ENV"
+          docker build -t "$IMAGE_BASE-backend:$GITHUB_SHA" final-devops-project/application/backend
+          docker build -t "$IMAGE_BASE-frontend:$GITHUB_SHA" final-devops-project/application/frontend
+      - name: Scan both images - HIGH and CRITICAL gate
+        run: |
+          mkdir -p security-reports
+          for component in backend frontend; do
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD/security-reports:/reports" -v homework-trivy-cache:/root/.cache/trivy \
+              aquasec/trivy:0.75.0 image --timeout 20m --no-progress --scanners vuln --severity HIGH,CRITICAL --exit-code 1 \
+              --format json --output "/reports/$component.json" "$IMAGE_BASE-$component:$GITHUB_SHA"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: image-security-reports
+          path: security-reports
+      - name: Create disposable deployment-verification cluster
+        run: |
+          curl -fsSLo kind https://kind.sigs.k8s.io/dl/v0.33.0/kind-linux-amd64
+          chmod +x kind
+          sudo mv kind /usr/local/bin/kind
+          kind create cluster --name homework --wait 120s
+          kind load docker-image "$IMAGE_BASE-backend:$GITHUB_SHA" "$IMAGE_BASE-frontend:$GITHUB_SHA" --name homework
+      - name: Deploy with Helm and verify API
+        run: |
+          kubectl create namespace homework-final
+          kubectl apply -f final-devops-project/kubernetes/secret.example.yaml
+          helm upgrade --install taskboard final-devops-project/helm/taskboard -n homework-final \
+            --set backend.image="$IMAGE_BASE-backend" --set backend.tag="$GITHUB_SHA" \
+            --set frontend.image="$IMAGE_BASE-frontend" --set frontend.tag="$GITHUB_SHA" \
+            --set storageClass=standard --set ingress.enabled=false --set hpa.enabled=false \
+            --wait --wait-for-jobs --timeout 300s
+          kubectl port-forward -n homework-final svc/frontend 13000:80 > /tmp/port-forward.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail http://127.0.0.1:13000/health; then break; fi
+            sleep 2
+          done
+          curl --fail http://127.0.0.1:13000/health
+          curl --fail http://127.0.0.1:13000/api/tasks
+      - name: Publish verified images to GHCR
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker push "$IMAGE_BASE-backend:$GITHUB_SHA"
+          docker push "$IMAGE_BASE-frontend:$GITHUB_SHA"
+      - name: Cluster diagnostics
+        if: failure()
+        run: |
+          kubectl get pods,jobs,pvc -A || true
+          kubectl get events -n homework-final --sort-by=.metadata.creationTimestamp || true
+          kubectl logs -n homework-final deployment/backend --tail=100 || true
+      - name: Remove temporary cluster
+        if: always()
+        run: kind delete cluster --name homework

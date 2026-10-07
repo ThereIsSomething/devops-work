@@ -1,0 +1,735 @@
+Captured 2026-10-07T12:58:51.875277+00:00
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' create namespace homework-s15
+namespace/homework-s15 created
+[exit 0]
+$ helm create '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/14-helm/generated-example'
+Creating /home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/14-helm/generated-example
+[exit 0]
+$ helm repo add traefik https://traefik.github.io/charts --force-update
+"traefik" has been added to your repositories
+[exit 0]
+$ helm repo update
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "traefik" chart repository
+...Successfully got an update from the "bitnami" chart repository
+Update Complete. ⎈Happy Helming!⎈
+[exit 0]
+$ helm search repo traefik/traefik --versions
+NAME                	CHART VERSION	APP VERSION	DESCRIPTION                                       
+traefik/traefik     	41.6.1       	v3.7.13    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.6.0       	v3.7.13    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.5.0       	v3.7.13    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.4.0       	v3.7.12    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.3.0       	v3.7.11    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.2.0       	v3.7.10    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.1.1       	v3.7.9     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.1.0       	v3.7.9     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.0.2       	v3.7.6     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.0.1       	v3.7.5     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	41.0.0       	v3.7.5     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	40.3.0       	v3.7.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	40.2.0       	v3.7.1     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	40.1.0       	v3.7.1     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	40.0.1       	v3.7.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	40.0.0       	v3.7.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.9       	v3.6.15    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.8       	v3.6.13    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.7       	v3.6.12    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.6       	v3.6.11    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.5       	v3.6.10    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.4       	v3.6.9     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.3       	v3.6.9     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.2       	v3.6.8     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.1       	v3.6.8     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	39.0.0       	v3.6.7     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	38.0.2       	v3.6.6     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	38.0.1       	v3.6.5     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	38.0.0       	v3.6.5     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	37.4.0       	v3.6.2     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	37.3.0       	v3.6.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	37.2.0       	v3.5.3     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	37.1.2       	v3.5.3     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	37.1.1       	v3.5.2     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	37.1.0       	v3.5.1     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	37.0.0       	v3.5.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	36.3.0       	v3.4.3     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	36.2.0       	v3.4.1     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	36.1.0       	v3.4.1     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	36.0.0       	v3.4.1     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	35.4.0       	v3.4.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	35.3.0       	v3.4.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	35.2.0       	v3.3.6     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	35.1.0       	v3.3.6     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	35.0.1       	v3.3.6     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	35.0.0       	v3.3.5     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	34.5.0       	v3.3.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	34.4.1       	v3.3.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	34.4.0       	v3.3.3     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	34.3.0       	v3.3.3     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	34.2.0       	v3.3.2     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	34.1.0       	v3.3.2     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	34.0.0       	v3.3.1     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	33.2.1       	v3.2.2     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	33.2.0       	v3.2.2     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	33.1.0       	v3.2.1     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	33.0.0       	v3.2.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	32.1.1       	v3.1.6     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	32.1.0       	v3.1.5     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	32.0.0       	v3.1.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	31.1.1       	v3.1.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	31.1.0       	v3.1.3     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	31.0.0       	v3.1.2     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	30.1.0       	v3.1.2     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	30.0.2       	v3.1.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	30.0.1       	v3.1.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	30.0.0       	v3.1.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	29.0.1       	v3.0.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	29.0.0       	v3.0.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	28.3.0       	v3.0.2     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	28.2.0       	v3.0.1     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	28.1.0       	v3.0.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	28.0.0       	v3.0.0     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	27.0.2       	v2.11.2    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	27.0.1       	v2.11.1    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	27.0.0       	v2.11.0    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	26.1.0       	v2.11.0    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	26.0.0       	v2.10.6    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	25.0.0       	v2.10.5    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	24.0.0       	v2.10.4    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	23.2.0       	v2.10.4    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	23.1.0       	v2.10.1    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	23.0.1       	v2.10.1    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	23.0.0       	v2.10.0    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	22.3.0       	v2.10.0    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	22.2.0       	v2.9.10    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	22.1.0       	v2.9.10    	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	22.0.0       	v2.9.9     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	21.2.1       	v2.9.9     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	21.2.0       	v2.9.8     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	21.1.0       	v2.9.7     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	21.0.0       	v2.9.6     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.8.0       	v2.9.6     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.7.0       	v2.9.6     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.6.0       	v2.9.5     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.5.3       	v2.9.5     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.5.2       	v2.9.5     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.5.1       	v2.9.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.5.0       	v2.9.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.4.1       	v2.9.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.4.0       	v2.9.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.3.1       	v2.9.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.3.0       	v2.9.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.2.1       	v2.9.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.2.0       	v2.9.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.1.1       	v2.9.4     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.1.0       	2.9.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	20.0.0       	2.9.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	19.0.4       	2.9.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	19.0.3       	2.9.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	19.0.2       	2.9.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	19.0.1       	2.9.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	19.0.0       	2.9.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	18.3.0       	2.9.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	18.2.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	18.1.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	18.0.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	17.0.5       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	17.0.4       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	17.0.3       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	17.0.2       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	17.0.1       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	17.0.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	16.2.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	16.1.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	16.0.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	15.3.1       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	15.3.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	15.2.2       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	15.2.1       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	15.2.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	15.1.1       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	15.1.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	15.0.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	14.0.2       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	14.0.1       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	14.0.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	13.0.1       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	13.0.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	12.0.7       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	12.0.6       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	12.0.5       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	12.0.4       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	12.0.3       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	12.0.2       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	12.0.1       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	12.0.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	11.1.1       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	11.1.0       	2.9.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	11.0.0       	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.33.0      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.32.0      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.31.0      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.30.1      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.30.0      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.29.0      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.28.0      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.27.0      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.26.1      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.26.0      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.25.1      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.25.0      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.24.5      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.24.4      	2.8.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.24.3      	2.8.5      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.24.2      	2.8.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.24.1      	2.8.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.24.0      	2.8.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.23.0      	2.7.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.22.0      	2.7.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.21.1      	2.7.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.21.0      	2.7.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.20.1      	2.7.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.20.0      	2.7.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.19.5      	2.6.6      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.19.4      	2.6.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.19.3      	2.6.2      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.19.2      	2.6.2      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.19.1      	2.6.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.19.0      	2.6.2      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.18.0      	2.6.2      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.17.0      	2.6.2      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.16.1      	2.6.2      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.16.0      	2.6.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.15.0      	2.6.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.14.2      	2.6.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.14.1      	2.6.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.14.0      	2.6.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.13.0      	2.6.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.12.0      	2.6.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.11.1      	2.6.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.11.0      	2.6.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.10.0      	2.6.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.9.1       	2.5.6      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.9.0       	2.5.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.8.0       	2.5.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.7.1       	2.5.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.7.0       	2.5.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.6.2       	2.5.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.6.1       	2.5.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.6.0       	2.5.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.5.0       	2.5.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.4.2       	2.5.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.4.1       	2.5.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.4.0       	2.5.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.3.6       	2.5.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.3.5       	2.5.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.3.4       	2.5.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.3.3       	2.5.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.3.2       	2.5.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.3.1       	2.5.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.3.0       	2.5.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.2.0       	2.4.13     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.1.6       	2.4.13     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.1.5       	2.4.13     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.1.4       	2.4.13     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.1.3       	2.4.13     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.1.2       	2.4.13     	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.1.1       	2.4.9      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.1.0       	2.4.9      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.0.2       	2.4.9      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.0.1       	2.4.9      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	10.0.0       	2.4.9      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.20.1       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.20.0       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.19.2       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.19.1       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.19.0       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.18.3       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.18.2       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.18.1       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.18.0       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.17.6       	2.4.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.17.5       	2.4.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.17.4       	2.4.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.17.3       	2.4.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.17.2       	2.4.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.17.1       	2.4.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.16.2       	2.4.7      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.16.1       	2.4.6      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.15.2       	2.4.6      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.15.1       	2.4.5      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.14.4       	2.4.5      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.14.3       	2.4.5      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.14.2       	2.4.2      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.14.1       	2.4.2      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.14.0       	2.4.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.13.0       	2.4.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.12.3       	2.3.6      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.12.2       	2.3.6      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.12.1       	2.3.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.12.0       	2.3.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.11.0       	2.3.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.10.2       	2.3.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.10.1       	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.10.0       	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.9.0        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.8.4        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.8.3        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.8.2        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.8.1        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.8.0        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.7.0        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.6.0        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.5.2        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.5.1        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.4.3        	2.3.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.4.2        	2.3.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.4.1        	2.3.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.3.0        	2.3.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.2.1        	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.2.0        	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.1.1        	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.1.0        	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	9.0.0        	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.13.3       	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.13.2       	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.13.1       	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.13.0       	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.12.0       	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.11.0       	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.10.0       	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.9.2        	2.2.8      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.9.1        	2.2.5      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.9.0        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.8.1        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.8.0        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.7.2        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.7.1        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.7.0        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.6.1        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.6.0        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.5.0        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.4.1        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.4.0        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.3.0        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.2.1        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.2.0        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.1.5        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.1.4        	2.2.1      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.1.3        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.1.2        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.1.1        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.1.0        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.0.4        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.0.3        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.0.2        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.0.1        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	8.0.0        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	7.2.1        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	7.2.0        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	7.1.0        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	7.0.0        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	6.4.0        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	6.3.0        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	6.2.0        	2.2.0      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	6.1.1        	2.1.4      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	6.1.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	6.0.2        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	6.0.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.6.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.5.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.3.3        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.3.2        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.3.1        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.3.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.2.1        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.2.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.1.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	5.0.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	4.1.3        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	4.1.2        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	4.1.1        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	4.1.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	4.0.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	3.5.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik     	3.4.0        	2.1.3      	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.18.0       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.17.0       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.16.0       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.15.0       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.14.1       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.14.0       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.13.1       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.13.0       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.12.0       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.11.1       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.11.0       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.10.0       	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.9.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.8.1        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.8.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.7.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.6.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.5.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.4.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.3.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.2.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.1.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-crds	1.0.0        	           	A Traefik based Kubernetes ingress controller     
+traefik/traefik-hub 	4.2.0        	v2.11.0    	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	4.1.0        	v2.10.0    	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	4.0.0        	v2.9.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	3.0.0        	v2.8.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.10.0       	v2.8.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.9.0        	v2.7.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.8.0        	v2.6.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.7.0        	v2.6.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.6.0        	v2.5.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.5.1        	v2.4.2     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.5.0        	v2.4.1     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.4.0        	v2.4.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.3.0        	v2.3.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.2.1        	v2.2.1     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.2.0        	v2.2.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.1.0        	v2.1.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	2.0.0        	v2.1.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	1.0.6        	v2.1.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	1.0.5        	v2.1.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	1.0.4        	v2.1.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-hub 	1.0.3        	v2.1.0     	Traefik Hub Ingress Controller                    
+traefik/traefik-mesh	4.1.1        	v1.4.8     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	4.1.0        	v1.4.8     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	4.0.4        	v1.4.8     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	4.0.3        	v1.4.7     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	4.0.2        	v1.4.5     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	4.0.1        	v1.4.5     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	4.0.0        	v1.4.4     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	3.0.9        	v1.4.4     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	3.0.8        	v1.4.1     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	3.0.7        	v1.4.1     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	3.0.6        	v1.4.1     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	3.0.5        	v1.4.0     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	3.0.4        	v1.4.0     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	3.0.3        	v1.4.0     	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	3.0.2        	v1.4.0-rc1 	Traefik Mesh - Simpler Service Mesh               
+traefik/traefik-mesh	3.0.1        	v1.4.0-rc1 	Traefik Mesh - Simpler Service Mesh               
+traefik/traefikee   	4.2.10       	v2.12.10   	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.9        	v2.12.9    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.8        	v2.12.8    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.7        	v2.12.7    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.6        	v2.12.6    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.5        	v2.12.5    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.4        	v2.12.4    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.3        	v2.12.4    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.2        	v2.12.3    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.1        	v2.12.2    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.2.0        	v2.12.1    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.1.0        	v2.12.0    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.0.6        	v2.11.8    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.0.5        	v2.11.7    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.0.4        	v2.11.6    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.0.3        	v2.11.5    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.0.2        	v2.11.4    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.0.1        	v2.11.3    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	4.0.0        	v2.11.2    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.4.1        	v2.11.1    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.4.0        	v2.11.0    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.3.2        	v2.10.9    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.3.1        	v2.10.9    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.3.0        	v2.10.8    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.2.0        	v2.10.8    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.1.0        	v2.10.7    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.0.2        	v2.10.7    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.0.1        	v2.10.6    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	3.0.0        	v2.10.5    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	2.0.0        	v2.10.5    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.15.0       	v2.10.4    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.14.2       	v2.10.4    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.14.1       	v2.10.2    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.14.0       	v2.10.1    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.13.0       	v2.10.1    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.12.0       	v2.10.1    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.11.0       	v2.10.1    	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.10.0       	v2.9.2     	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.9.1        	v2.9.2     	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.9.0        	v2.9.1     	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.8.0        	v2.9.1     	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.7.0        	v2.9.1     	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.6.1        	v2.9.1     	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.6.0        	v2.9.0     	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.5.0        	v2.9.0     	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.4.2        	v2.8.4     	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.4.1        	2.8.4      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.4.0        	2.8.4      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.3.0        	2.8.4      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.2.7        	2.8.4      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.2.6        	2.8.3      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.2.5        	2.8.3      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.2.4        	2.8.3      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.2.3        	2.8.3      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.2.2        	2.8.2      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.2.1        	2.8.1      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.2.0        	2.8.0      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.1.4        	2.7.3      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.1.3        	2.7.2      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.1.2        	2.7.1      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.1.1        	2.7.0      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.1.0        	2.7.0      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.0.2        	2.6.5      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.0.1        	2.6.4      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	1.0.0        	2.6.1      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.2.1        	2.6.1      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.2.0        	2.6.0      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.11       	2.5.8      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.10       	2.5.7      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.9        	2.5.7      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.8        	2.5.6      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.7        	2.5.6      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.6        	2.5.3      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.5        	2.5.3      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.4        	2.5.2      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.3        	2.5.1      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.2        	2.5.0      	Traefik Enterprise is a unified cloud-native ne...
+traefik/traefikee   	0.1.1        	2.5.0      	Traefik Enterprise is a unified cloud-native ne...
+[exit 0]
+$ helm lint 14-helm/chart
+==> Linting 14-helm/chart
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+[exit 0]
+$ helm template guestbook 14-helm/chart -n homework-s15
+---
+# Source: homework-web/templates/app.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: guestbook-page
+data:
+  index.html: "Welcome to my guestbook - version one"
+---
+# Source: homework-web/templates/app.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: guestbook
+spec:
+  selector:
+    app: guestbook
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+# Source: homework-web/templates/app.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+      annotations:
+        checksum/page: "e80d3eee55dc4c49340c806372e4f3f4cb3786b2d52f28358dc580a5a993c670"
+    spec:
+      containers:
+        - name: nginx
+          image: "nginx:1.28-alpine"
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+          resources:
+            requests:
+              cpu: 25m
+              memory: 16Mi
+            limits:
+              cpu: 250m
+              memory: 64Mi
+          volumeMounts:
+            - name: page
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: page
+          configMap:
+            name: guestbook-page
+[exit 0]
+$ helm upgrade --install guestbook 14-helm/chart -n homework-s15 --wait --timeout 180s
+Release "guestbook" does not exist. Installing it now.
+NAME: guestbook
+LAST DEPLOYED: Wed Oct  7 18:29:33 2026
+NAMESPACE: homework-s15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s15 run client --image=busybox:1.37 --restart=Never -- sleep 7200
+pod/client created
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s15 wait --for=condition=Ready pod/client --timeout=120s
+pod/client condition met
+[exit 0]
+$ helm list -n homework-s15
+NAME     	NAMESPACE   	REVISION	UPDATED                                	STATUS  	CHART             	APP VERSION
+guestbook	homework-s15	1       	2026-10-07 18:29:33.625287824 +0530 IST	deployed	homework-web-0.1.0	1.28
+[exit 0]
+$ helm status guestbook -n homework-s15
+NAME: guestbook
+LAST DEPLOYED: Wed Oct  7 18:29:33 2026
+NAMESPACE: homework-s15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+RESOURCES:
+==> v1/ConfigMap
+NAME             DATA   AGE
+guestbook-page   1      4s
+
+==> v1/Service
+NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+guestbook   ClusterIP   10.104.209.237   <none>        80/TCP    4s
+
+==> v1/Deployment
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+guestbook   1/1     1            1           4s
+
+==> v1/Pod(related)
+NAME                         READY   STATUS    RESTARTS   AGE
+guestbook-5d65948446-tmqdq   1/1     Running   0          3s
+
+
+TEST SUITE: None
+[exit 0]
+$ helm get values guestbook -n homework-s15
+USER-SUPPLIED VALUES:
+null
+[exit 0]
+$ helm get manifest guestbook -n homework-s15
+---
+# Source: homework-web/templates/app.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: guestbook-page
+data:
+  index.html: "Welcome to my guestbook - version one"
+---
+# Source: homework-web/templates/app.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: guestbook
+spec:
+  selector:
+    app: guestbook
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+# Source: homework-web/templates/app.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+      annotations:
+        checksum/page: "e80d3eee55dc4c49340c806372e4f3f4cb3786b2d52f28358dc580a5a993c670"
+    spec:
+      containers:
+        - name: nginx
+          image: "nginx:1.28-alpine"
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+          resources:
+            requests:
+              cpu: 25m
+              memory: 16Mi
+            limits:
+              cpu: 250m
+              memory: 64Mi
+          volumeMounts:
+            - name: page
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: page
+          configMap:
+            name: guestbook-page
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s15 exec client -- wget -qO- http://guestbook
+Welcome to my guestbook - version one
+[exit 0]
+$ helm upgrade guestbook 14-helm/chart -n homework-s15 --set 'message=Welcome to my guestbook - version two' --wait --timeout 180s
+Release "guestbook" has been upgraded. Happy Helming!
+NAME: guestbook
+LAST DEPLOYED: Wed Oct  7 18:29:38 2026
+NAMESPACE: homework-s15
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s15 exec client -- wget -qO- http://guestbook
+Welcome to my guestbook - version two
+[exit 0]
+$ helm upgrade guestbook 14-helm/chart -n homework-s15 --set 'message=Welcome to my guestbook - version three' --wait --timeout 180s
+Release "guestbook" has been upgraded. Happy Helming!
+NAME: guestbook
+LAST DEPLOYED: Wed Oct  7 18:29:51 2026
+NAMESPACE: homework-s15
+STATUS: deployed
+REVISION: 3
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s15 exec client -- wget -qO- http://guestbook
+wget: can't connect to remote host (10.104.209.237): Connection refused
+command terminated with exit code 1
+[exit 1]
+$ helm history guestbook -n homework-s15
+REVISION	UPDATED                 	STATUS    	CHART             	APP VERSION	DESCRIPTION     
+1       	Wed Oct  7 18:29:33 2026	superseded	homework-web-0.1.0	1.28       	Install complete
+2       	Wed Oct  7 18:29:38 2026	superseded	homework-web-0.1.0	1.28       	Upgrade complete
+3       	Wed Oct  7 18:29:51 2026	deployed  	homework-web-0.1.0	1.28       	Upgrade complete
+[exit 0]
+$ helm rollback guestbook 1 -n homework-s15 --wait --timeout 180s
+Rollback was a success! Happy Helming!
+[exit 0]
+$ '/home/zephoryx/Documents/Academics/SST/TERM - IX/DevOps/devops-work/scripts/kubectl' -n homework-s15 exec client -- wget -qO- http://guestbook
+Welcome to my guestbook - version one
+[exit 0]
+$ helm history guestbook -n homework-s15
+REVISION	UPDATED                 	STATUS    	CHART             	APP VERSION	DESCRIPTION     
+1       	Wed Oct  7 18:29:33 2026	superseded	homework-web-0.1.0	1.28       	Install complete
+2       	Wed Oct  7 18:29:38 2026	superseded	homework-web-0.1.0	1.28       	Upgrade complete
+3       	Wed Oct  7 18:29:51 2026	superseded	homework-web-0.1.0	1.28       	Upgrade complete
+4       	Wed Oct  7 18:30:04 2026	deployed  	homework-web-0.1.0	1.28       	Rollback to 1
+[exit 0]
+$ helm uninstall guestbook -n homework-s15
+release "guestbook" uninstalled
+[exit 0]
+$ helm list -n homework-s15
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
+[exit 0]
+LAB EXECUTION FINISHED

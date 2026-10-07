@@ -1,8 +1,8 @@
 # Alpine keeps the image tiny (~135MB vs ~1.1GB for the full node image)
-FROM node:20-alpine
+FROM node:24-alpine
 
 # Metadata
-LABEL maintainer="Pujan Khunt <24BCS10138>"
+LABEL maintainer="Nitish Kumar Bhambu <24BCS10589>"
 LABEL description="Hello World web application in Node.js"
 
 WORKDIR /app
